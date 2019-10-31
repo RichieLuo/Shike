@@ -1,0 +1,156 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model ShiKe.ViewModels.ApplicationOrganization.ApplicationUserVM
+@using ShiKe.CustomMvcCoreExtension;
+@using ShiKe.Common.ViewModelComponents.ForMvcHelper
+@{
+    ViewData["Title"] = "注册成为食刻用户";
+    Layout = "~/Views/Shared/_IndexLayout.cshtml";
+}
+
+<meta charset="UTF-8">
+<div class="container">
+    <div class="row" id="Register" style="padding: 20px 0px 0px 0px; ">
+        <div class="col-xs-3"></div>
+        <div class="col-xs-5">
+            <div class="form-horizontal" style="padding:10px">
+                <form id="RegisterForm" method="post"
+                      data-ajax-mode='replace'
+                      data-ajax='true' data-toggle="validator"
+                      action="../Account/Register">
+                    
+                    @{ 
+                        
+                        
+
+                        var inputForName = new HtmlInputItemSpecification()
+                        {
+                            ItemID = "Name",
+                            ItemDisplayName = "显示名",
+                            ItemValue = Model.Name,
+                            PlaceholderString = "请输入显示名",
+                            AutofocusName = "",
+                            OnfocusFuntion = "clearErrStyle(this.id)",
+                            OnBlurFunction = ""
+                        };
+                        @Html.ShiKeBoorStrapInputValidate(inputForName);
+
+                        var inputForUserName = new HtmlInputItemSpecification()
+                        {
+                            ItemID = "UserName",
+                            ItemDisplayName = "用户名",
+                            ItemValue = Model.UserName,
+                            PlaceholderString = "请输入用户名",
+                            AutofocusName = "",
+                            OnfocusFuntion = "clearErrStyle(this.id)",
+                            OnBlurFunction = ""
+                        };
+                        @Html.ShiKeBoorStrapInputValidate(inputForUserName);
+
+
+                        var inputForMobileNumber = new HtmlInputItemSpecification()
+                        {
+                            ItemID = "MobileNumber",
+                            ItemDisplayName = "手机号码",
+                            ItemValue = Model.MobileNumber,
+                            PlaceholderString = "请输入手机号码",
+                            AutofocusName = "",
+                            OnfocusFuntion = "clearErrStyle(this.id)",
+                            OnBlurFunction = ""
+                        };
+                        @Html.ShiKeBoorStrapInputValidate(inputForMobileNumber);
+
+                        var inputForMobileEMail = new HtmlInputItemSpecification()
+                        {
+                            ItemID = "EMail",
+                            ItemDisplayName = "电子邮件",
+                            ItemValue = Model.EMail,
+                            PlaceholderString = "请输入电子邮件地址",
+                            AutofocusName = "",
+                            OnfocusFuntion = "clearErrStyle(this.id)",
+                            OnBlurFunction = ""
+                        };
+                        @Html.ShiKeBoorStrapInputValidate(inputForMobileEMail);
+
+                        var inputForMobilePassword = new HtmlInputItemSpecification()
+                        {
+                            ItemID = "Password",
+                            ItemDisplayName = "密码",
+                            ItemValue = Model.Password,
+                            PlaceholderString = "请输入密码，密码长度大于6个字符",
+                            AutofocusName = "",
+                            OnfocusFuntion = "clearErrStyle(this.id)",
+                            OnBlurFunction = ""
+                        };
+                        @Html.ShiKeBoorStrapInputPassword(inputForMobilePassword);
+
+                        
+                        var inputForMobileConfirmPassword = new HtmlInputItemSpecification()
+                        {
+                            ItemID = "ConfirmPassword",
+                            ItemDisplayName = "重复密码",
+                            ItemValue = Model.ConfirmPassword,
+                            PlaceholderString = "请重复输入与上面密码相同的内容。",
+                            AutofocusName = "",
+                            OnfocusFuntion = "clearErrStyle(this.id)",
+                            OnBlurFunction = ""
+                        };
+                        @Html.ShiKeBoorStrapInputPassword(inputForMobileConfirmPassword);
+                    }
+
+                    <div class="form-group text-center">
+                        <span id="registerModalErrMessage" style="color:red"></span>     <!--这是一个空的文字段落标签，用于显示数据删除操作是否成功-->
+                    </div>
+                    <div class="form-group" style="padding-left: 96px">
+                        <button type="button" class="btn btn-success" style="width: 150px;" onclick="register()">注册</button><button type="reset" class="btn btn-default" style="width: 150px;margin-left:30px;">重置</button>
+                    </div>
+                    <div class="form-group" style="padding-left: 188px">
+                        <a href="../Home/Logon">已有账号？立即登录</a>
+                    </div>
+                    <div style="padding-left: 126px" class="form-group">
+                        <input id="ck1" type="checkbox" checked /><a href="#">已阅读并同意相关服务条款和隐私政策</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-xs-4"></div>
+    </div>
+</div>
+<script>
+
+    function register() {
+        var systemWorkPlaceFormOptions = {
+            dataType: 'json',
+            success: function (validateMessage) {
+                if (validateMessage.isOK === true) {
+                    //gotoList(validateMessage.validateMessageItems[0].message);
+                    window.location.href = '../../Home/Logon'
+                }
+                else {
+                    $.each(validateMessage.validateMessageItems, function (i, item) {
+                        activeErrStatus(item.messageName, item.message);
+                    });
+                }
+            }
+        };
+        $('#RegisterForm').ajaxSubmit(systemWorkPlaceFormOptions);
+    }
+
+
+    // 呈现错误消息
+    function activeErrStatus(idName, msg) {
+        document.getElementById(idName + "_DIV").classList.add("has-error", "has-feedback");
+        document.getElementById(idName + "_Help").innerHTML = '<span class="help-block small" >' + msg + '</span>';
+    }
+
+    // 清理错误消息，输入域失去焦点的时候使用
+    function clearErrStyle(idName) {
+        document.getElementById(idName + "_DIV").classList.remove("has-error", "has-feedback");
+        document.getElementById(idName + "_Help").innerHTML = "";
+    }
+
+    // 失去焦点的时候进行处理的内容
+    function checkIfValidate(idName) {
+        var result = document.getElementById(idName).value;
+        alert(result);
+    }
+</script>

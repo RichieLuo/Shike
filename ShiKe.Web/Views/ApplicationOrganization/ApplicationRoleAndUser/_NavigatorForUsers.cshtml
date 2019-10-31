@@ -1,0 +1,24 @@
+﻿@model IEnumerable<ShiKe.ViewModels.ApplicationOrganization.ApplicationRoleVM>
+
+<div class="list-group" style="border-radius:0">
+    <div href="#" class="list-group-item" style="border-radius:0;background-color:darkblue;color:white">
+        <button type="button" class="btn btn-success pull-right" aria-label="" onclick="createApplicationUser()">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新建用户
+        </button>
+        <h4 class="list-group-item-heading">系统用户组清单</h4>
+        <p class="list-group-item-text">编辑维护系统用户数据</p>
+    </div>
+    @{
+        foreach (var item in Model)
+        {
+            <button class="list-group-item" onclick="gotoList('@item.ID')">
+                <h5 class="list-group-item-heading">@item.DisplayName （@item.Name）</h5>
+                <p class="list-group-item-text small"> @item.Description</p>
+            </button>
+        }
+    }
+    <button class="list-group-item" onclick="gotoList('')">
+        <h5 class="list-group-item-heading">尚未分配角色的用户</h5>
+        <p class="list-group-item-text small">没有分配到任何的角色组，原则上没有任何业务操作的权限。</p>
+    </button>
+</div>

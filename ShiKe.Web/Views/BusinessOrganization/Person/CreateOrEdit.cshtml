@@ -1,0 +1,70 @@
+﻿@model ShiKe.ViewModels.BusinessOrganization.PersonVM
+@{
+    Layout = "_AdminDesktopLayout";
+}
+
+<div>
+    <a href="../../Person/Index" type="button" class="btn btn-success pull-right">退出</a>
+    <h2 class="sub-header">编辑人员数据</h2>
+</div>
+
+<form class="form-horizontal" asp-action="Save" id="personEditor" data-toggle="validator" role="form">
+    <input type="hidden" name="ID" id="ID" value="@Model.ID" />
+    <input type="hidden" name="IsNew" id="IsNew" value="@Model.IsNew.ToString()" />
+
+    <div class="form-group">
+        <label for="ParentItemID" class="col-sm-2 control-label">归属部门：</label>
+        <div class="col-sm-10">
+            <select class="form-control"  name="ParentItemID" id="ParentItemID" >
+                @foreach (var sItem in Model.ParentItemCollection)
+                {
+                    if (sItem.ID == Model.ParentItemID)
+                    {
+                        <option value="@sItem.ID" selected>@sItem.DisplayName</option>
+                    }
+                    else
+                    {
+                        <option value="@sItem.ID">@sItem.DisplayName</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="Name" class="col-sm-2 control-label">姓名：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="Name" id="Name" placeholder="请输入姓名" value="@Model.Name" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Email" class="col-sm-2 control-label">电子邮件：</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" name="Email" id="Email" placeholder="请输入电子邮件" value="@Model.Email" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Mobile" class="col-sm-2 control-label">移动电话：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="MobileNumber" id="MobileNumber" placeholder="请输入移动电话号码" value="@Model.MobileNumber" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Description" class="col-sm-2 control-label">简要描述：</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" rows="4" name="Description" id="Description">@Model.Description</textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="SortCode" class="col-sm-2 control-label">人员编码：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="SortCode" id="SortCode" placeholder="请输入人员编码" value="@Model.SortCode"  data-error="不能为空。" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">提交数据</button>
+        </div>
+    </div>
+</form>

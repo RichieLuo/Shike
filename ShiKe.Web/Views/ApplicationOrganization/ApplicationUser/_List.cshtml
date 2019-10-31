@@ -1,0 +1,158 @@
+﻿@model IEnumerable<ShiKe.ViewModels.ApplicationOrganization.ApplicationUserVM>
+@{ 
+    ViewData["Title"] = "系统用户管理";
+    var pageGroup = ViewBag.PageGroup as ShiKe.Common.ViewModelComponents.PagenateGroup;
+    var pageParameter = ViewBag.PageParameter as ShiKe.Common.JsonModels.ListPageParameter;
+
+}
+<div>
+    <div class="pull-right" style="width:10px"></div>
+    <div class="input-group pull-right" style="width:250px">
+        <input id="inputKeyWord" type="text" class="form-control" placeholder="输入关键词..." value="@pageParameter.Keyword">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" type="button" onclick="gotoSearch()">查询</button>
+        </span>
+    </div>
+    <h2 class="sub-header">@ViewBag.RoleName</h2>
+</div>
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead style="">
+            <tr style="height:50px" >
+                <th width="50px" valign="middle">序号</th>
+                <th width="100px" valign="middle">
+                    @if (pageParameter.SortDesc == "")
+                    {
+                        <a id="sort_UserName" href="javascript:gotoSort('UserName','sort_UserName')" aria-label="排序" class="pull-right"><span aria-hidden="true" class="glyphicon glyphicon-chevron-up" style="color:white"></span></a>
+                    }
+                    else
+                    {
+                        <a id="sort_UserName" href="javascript:gotoSort('UserName','sort_UserName')" aria-label="排序" class="pull-right"><span aria-hidden="true" class="glyphicon glyphicon-chevron-down" style="color:white"></span></a>
+                    }
+                    用户名
+                </th>
+                <th width="100px" valign="middle">关联人员</th>
+                <th width="100px" valign="middle">移动电话</th>
+                <th valign="middle">电子邮件</th>
+                <th width="50px" valign="middle">状态</th>
+                <th width="250px" valign="middle">数据操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.OrderNumber</td>
+                        <td>@user.UserName</td>
+                        <td>@user.Name</td>
+                        <td>@user.MobileNumber</td>
+                        <td>@user.EMail</td>
+                        <td>@if (!user.LockoutEnabled)
+                            {
+                                <span class="glyphicon glyphicon-lock warning"></span>
+                            }
+                        </td>
+                        <td>
+                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                                <button onclick="editApplicationUser('@user.ID','@ViewBag.RoleID')" type="button" class="btn btn-default">编辑</button>
+                                <button type="button" class="btn btn-default" onclick="userDetail('@user.ID.ToString()','@ViewBag.RoleID')">明细</button>
+                                <button type="button" class="btn btn-default" onclick="openResetUserPasswordModal('@user.ID')">重置密码</button>
+                                @if (user.LockoutEnabled)
+                                {
+                                    <button type="button" class="btn btn-default" onclick="lockoutUser('@user.ID','@ViewBag.RoleID')">禁用</button>
+                                }
+                                else
+                                {
+                                    <button type="button" class="btn btn-default" onclick="unLockoutUser('@user.ID','@ViewBag.RoleID')">启用</button>
+                                }
+                                <button type="button" class="btn btn-default"
+                                        onclick="openDeleteUserModal('@user.ID.ToString()','你所选择删除的用户是：@user.UserName（@user.Name），删除后将无法恢复，请确认是否继续执行。')">
+                                    移出
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+                // 补充处理空行
+                var additionalRowAmount = pageGroup.PageSize - Model.Count();
+                for (int i = 0; i < additionalRowAmount;i++)
+                {
+                    <tr>
+                        <td>　</td>
+                        <td>　</td>
+                        <td>　</td>
+                        <td>　</td>
+                        <td>　</td>
+                        <td>　</td>
+                        <td>　</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- 处理翻页器 -->
+<div id="pagenateArea">
+    @if (pageGroup.PagenateGroupItem == null)
+    {
+        <div  class="center-block"> 根据当前查询的条件，没有任何结果。</div>
+    }
+    else
+    {
+        <nav aria-label="...">
+            <ul class="pagination">
+                @if (pageGroup.PagenateGroupItem.FirstIndex == 1)
+                {
+                    <li class="disabled"><a href="javascript:gotoPage('1')" aria-label="第一页"><span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span></a></li>
+                    <li class="disabled"><a href="#" aria-label="回退一组"><span aria-hidden="true" class="glyphicon glyphicon-backward"></span></a></li>
+                    if (pageGroup.PageIndex >= 2)
+                    {
+                        <li class=""><a href="javascript:gotoPage('@(pageGroup.PageIndex-1)')" aria-label="前一页"><span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span></a></li>
+                    }
+                    else
+                    {
+                        <li class="disabled"><a href="#" aria-label="前一页"><span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span></a></li>
+                    }
+                }
+                else
+                {
+                    <li class=""><a href="javascript:gotoPage('1')" aria-label="第一页"><span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span></a></li>
+                    <li class=""><a href="javascript:gotoPage('@(pageGroup.PagenateGroupItem.FirstIndex-1)')" aria-label="回退一组"><span aria-hidden="true" class="glyphicon glyphicon-backward"></span></a></li>
+                    <li class=""><a href="javascript:gotoPage('@(pageGroup.PageIndex-1)')" aria-label="前一页"><span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span></a></li>
+                }
+                @for (int i = pageGroup.PagenateGroupItem.FirstIndex; i < pageGroup.PagenateGroupItem.LastIndex + 1; i++)
+                {
+                    var activeString = "";
+                    if (i == pageGroup.PageIndex)
+                    {
+                        activeString = "active";
+                    }
+                    <li class="@activeString "><a href="javascript:gotoPage('@i')">@i <span class="sr-only">(current)</span></a></li>
+                }
+                @if (pageGroup.PagenateGroupItem.LastIndex == pageGroup.PageAmount)
+                {
+                    if (pageGroup.PageIndex < pageGroup.PageAmount)
+                    {
+                        <li class=""><a href="javascript:gotoPage('@(pageGroup.PageIndex+1)')" aria-label="下一页"><span aria-hidden="false" class="glyphicon glyphicon-chevron-right"></span></a></li>
+                    }
+                    else
+                    {
+                        <li class="disabled"><a href="#" aria-label="下一页"><span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span></a></li>
+                    }
+                    <li class="disabled"><a href="#" aria-label="向前一组"><span aria-hidden="true" class="glyphicon glyphicon-forward"></span></a></li>
+                    <li class="disabled"><a href="#" aria-label="最后页"><span aria-hidden="true" class="glyphicon glyphicon-fast-forward"></span></a></li>
+                }
+                else
+                {
+                    <li class=""><a href="javascript:gotoPage('@(pageGroup.PageIndex+1)')" aria-label="后一页"><span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span></a></li>
+                    <li class=""><a href="javascript:gotoPage('@(pageGroup.PagenateGroupItem.LastIndex+1)')" aria-label="向前一组"><span aria-hidden="true" class="glyphicon glyphicon-forward"></span></a></li>
+                    <li class=""><a href="javascript:gotoPage('@pageGroup.PageAmount')" aria-label="最后一条"><span aria-hidden="true" class="glyphicon glyphicon-fast-forward"></span></a></li>
+                }
+
+            </ul>
+        </nav>
+    }
+</div>

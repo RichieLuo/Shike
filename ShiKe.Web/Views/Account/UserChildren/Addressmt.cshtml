@@ -1,0 +1,90 @@
+﻿@{
+    ViewData["Title"] = "地址管理";
+    Layout = "_UserLayout";
+}
+
+<meta charset="utf-8" />
+<link href="~/css/UserChildrenye/Addressmt.css" rel="stylesheet" />
+@*<h2>Addressmt    地址管理</h2>*@
+
+<div class="Information">
+    <div>
+        <h3 class="CollectionTitle">地址管理 <span>/ My Addressmt</span></h3>
+        <div class="new">
+            <span class="new-fonts">新增收货地址</span>
+            <span class="new-fonts-one">电话号码、手机号选填一项, 其余均为必填项</span>
+            <div class="new-one">
+                <span>所在地区 *</span>
+                <select name="province6"></select><select name="city6"></select><select name="area6"></select><br>
+            </div>
+            <div class="new-detailed">
+                <span>详细地址 *</span>
+                <input class="text" type="text" name="lastname" placeholder="建议您如实填写详细收货地址，例如街道名称，门牌号码，楼层和房间号等信息">
+            </div>
+            <div class="new-detailed">
+                <span>邮政编码&nbsp;&nbsp;</span>
+                <input class="text-one" type="text" name="lastname" placeholder="如您不清楚邮递区号，请填000000">
+            </div>
+            <div class="new-detailed">
+                <span>收货人姓名 *</span>
+                <input class="text-one" type="text" name="lastname" placeholder="长度不超25个字符">
+            </div>
+            <div class="new-detailed">
+                <span>手机号码 *</span>
+                <input class="text-one" type="text" name="lastname" placeholder="长度不超25个字符">
+            </div>
+            <div class="new-detailed">
+                <span>电话号码 *</span>
+                <input class="text-two" type="text" name="lastname" placeholder="区号">-
+                <input class="text-two" type="text" name="lastname" placeholder="电话号码">-
+                <input class="text-two" type="text" name="lastname" placeholder="分机">
+            </div>
+            <div class="new-default">
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="inlineCheckbox1" value="option1"> 设置为默认地址
+                </label>
+            </div>
+            <div class="new-save">
+                <span class="btn-group" role="group" aria-label="..."><button type="button" class="btn btn-success">保存</button></span>
+            </div>
+        </div>
+
+        <div class="address">
+            <span class="address-fonts">电话号码、手机号选填一项, 其余均为必填项</span>
+            <div class="address-one">
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">
+                        <table>
+                            <tr>
+                                <th class="table-th-one">收货人</th>
+                                <th class="table-th-two">所在地区</th>
+                                <th class="table-th-three">详细地址</th>
+                                <th class="table-th-four">邮编</th>
+                                <th class="table-th-five">手机/电话</th>
+                                <th class="table-th-six">操作</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <td class="table-th-one">小柒</td>
+                            <td class="table-th-two">广西壮族自治区 柳州市 鱼峰区 麒麟街道</td>
+                            <td class="table-th-three">社湾坳柳州职业技术学院</td>
+                            <td class="table-th-four">000000</td>
+                            <td class="table-th-five">1857****8889</td>
+                            <td class="table-th-six"><a href="../../Home/Unfinished">修改</a>/<a href="../../Home/Unfinished">删除</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+
+    </div>
+</div>
+<script language="javascript" defer>
+    new PCAS("province6", "city6", "area6", "--请选择省份--", "--请选择城市--", "--请选择县级--");
+    new PCAS("province5", "city5", "area5", "--请选择省份--", "--请选择城市--", "--请选择县级--");
+</script>

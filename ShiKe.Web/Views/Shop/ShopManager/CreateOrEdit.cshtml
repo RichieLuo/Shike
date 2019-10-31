@@ -1,0 +1,92 @@
+﻿@model ShiKe.ViewModels.BusinessOrganization.SK_WM_ShopVM
+
+@{
+    ViewData["Title"] = "商家店铺信息设置";
+    Layout = "_AdminDesktopLayout";
+}
+
+<meta charset="utf-8" />
+
+<div style="width:1000px;margin:auto auto 80px 200px">
+    <a href="../../BusinessBG/IndexForShop" type="button" class="btn btn-success pull-right">返回我的店铺首页</a>
+    <h2 class="sub-header">设置我的店铺信息</h2>
+</div>
+
+<form class="form-horizontal" style="width:600px;margin-left:120px;" asp-action="Save" id="userEditor" data-toggle="validator" role="form">
+    <input type="hidden" name="ID" id="ID" value="@Model.ID" />
+    <input type="hidden" name="IsNew" id="IsNew" value="@Model.IsNew.ToString()" />
+    <input type="hidden" name="SettledDateTime" id="ShelvesTime" value="@Model.SettledDateTime" />
+    <div class="form-group">
+        <label for="Name" class="col-sm-2 control-label">店名：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="Name" id="Name" placeholder="请输入店名" value="@Model.Name" required>
+        </div>
+    </div>  
+    <div class="form-group">
+        <label for="" class="col-sm-2 control-label">LOGO预览:</label>
+        <div class="col-sm-10">
+            <img src="~/images/logo.png" alt="" style="width:200px;height:75px">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-sm-2 control-label">店铺LOGO:</label>
+        <div class="col-sm-10">
+            <input type="file" name="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-sm-2 control-label">横幅预览:</label>
+        <div class="col-sm-10">
+            <img src="~/images/hf.jpg" alt="" style="width:100%;height:180px">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-sm-2 control-label">店铺横幅:</label>
+        <div class="col-sm-10">
+            <input type="file" name="" placeholder="店铺名称">
+        </div>
+    </div>
+  
+    <div class="form-group">
+        <label for="Telephone" class="col-sm-2 control-label">店铺电话：</label>
+        <div class="col-sm-10">
+            <input class="form-control" rows="1" name="Telephone" id="Telephone" value="@Model.Telephone">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Adress" class="col-sm-2 control-label">店铺地址：</label>
+        <div class="col-sm-10">
+            <select name="province6" id="province6" onclick="myFunction()"></select><select name="city6" id="city6" onclick="myFunction()"></select><select name="area6" id="area6" onclick="myFunction()"></select>
+            <input class="form-control" rows="1" name="Adress" id="ShopAdress" value="@Model.Adress">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Description" class="col-sm-2 control-label">店铺说明：</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" rows="4" name="Description" id="Description">@Model.Description</textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">提交数据</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    new PCAS("province6", "city6", "area6", "--请选择省份--", "--请选择城市--", "--请选择县级--");
+    function myFunction() {
+        var ShopAdress = document.getElementById("ShopAdress");
+        var province = document.getElementById("province6");
+        var city = document.getElementById("city6");
+        var area = document.getElementById("area6");
+        var sh = ShopAdress.innerHTML;
+
+        var ar = area.value;
+
+        ShopAdress.value = province.value + city.value + area.value;
+        if (ar == "") {
+            ShopAdress.value = sh;
+        }
+    }
+</script>

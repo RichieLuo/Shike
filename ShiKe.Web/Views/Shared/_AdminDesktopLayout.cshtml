@@ -1,0 +1,107 @@
+﻿
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <title>@ViewBag.Title - 商家后台管理</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/businessBG.css" rel="stylesheet" />
+    @*<link href="~/lib/bootstrap/dist/css/fileinput.css" rel="stylesheet" />*@
+    <link href="~/lib/bootstrap/dist/css/fileinput.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/non-responsive.css" rel="stylesheet" />
+    <script src="~/js/PCASClass.js"></script>
+
+</head>
+<body style="padding-top:50px;padding-bottom:20px">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" style="color:#fff">网站名称</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/" target="_blank" style="color:#fff">网站首页</a></li>
+                    <li><a href="../../Account/EditProfile" style="color:#fff">个人中心</a></li>
+                    <li><a href="#" style="color:#fff">联系客服</a></li>
+                    <li><a href="#" style="color:#fff">使用帮助</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-3 col-xs-2 sidebar">
+                <ul class="nav nav-sidebar" style="background-color:#f9f9f9">
+                    <li class="active"><a href="#">菜单区域<span class="sr-only">(current)</span></a></li>
+                    <li><a href="../../BusinessBG/IndexForShop">首页</a></li>
+                    <li><a href="../../ShopManager/Index">全部店铺管理</a></li>
+                    <li><a href="../../BusinessBG/Index">全部商品管理</a></li>
+                    <li><a href="../../BusinessBG/CreateOrEdit">添加商品</a></li>
+                    <li><a href="#">正在出售的商品</a></li>
+                    <li><a href="#">已下架的商品</a></li>
+                    <li><a href="#">已出售的商品</a></li>
+                    <li><a href="#">订单管理</a></li>   
+                    <li><a href="#">侧边导航待添加...</a></li>
+                    <li><a href="#">侧边导航待添加...</a></li>
+                    <li><a href="#">侧边导航待添加...</a></li>
+                    <li><a href="#">侧边导航待添加...</a></li>    
+                </ul>
+            </div>
+            <div class="col-xs-9 col-xs-offset-3 col-xs-10 col-xs-offset-2 main">
+                @*<div id="personWorkPlace">*@
+                    @RenderBody()
+                @*</div>*@
+            </div>
+        </div>
+    </div>
+    <footer>
+        <hr />
+        <div class="container" style="height:50px;text-align:center">
+            <p>&copy; 2017 - 食客管理系统丨<a href="#">XXX ICP备案999999号</a>丨<a href="#">电子公告服务规则</a></p>
+        </div>
+    </footer>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/holder.min.js"></script>    
+    <script src="~/lib/bootstrap/dist/js/fileinput.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/locales/zh.js"></script>
+    <script src="~/lib/jquery/dist/jquery-form.js"></script>
+    <script src="~/js/for-Shop-Goods.js"></script>
+    <script src="~/js/PCASClass.js"></script> 
+
+    <script type="text/javascript">
+        $("#input-image-1").fileinput({
+            allowedFileExtensions: ["jpg", "png", "gif"],
+            maxImageWidth: 200,
+            maxFileCount: 4,
+            resizeImage: true,
+            language: 'zh',
+            showUpload: false,
+        });
+
+        $("#input-image-2").fileinput({
+            allowedFileExtensions: ["jpg", "png", "gif"],
+            maxImageWidth: 200,
+            maxFileCount: 4,
+            resizeImage: true,
+            language: 'zh',
+        });
+    </script>
+</body>
+</html>

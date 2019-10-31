@@ -1,0 +1,465 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model ShiKe.ViewModels.BusinessOrganization.SK_WM_ShopSttledVM
+@using ShiKe.CustomMvcCoreExtension;
+@using ShiKe.Common.ViewModelComponents.ForMvcHelper
+@{
+    ViewData["Title"] = "商家入驻";
+    Layout = "_IndexLayout";
+}
+<link href="~/css/style.css" rel="stylesheet" />
+
+<div class="container">
+
+    <div class="row" style="padding: 10px 0px; ">
+
+        <div class="row" style="height:550px">
+            <div class="row" style="height:50px;padding:0 35px;margin:0 15px 20px">
+                @*<div class="spanStep" style="background-image:none!important"><span>填写基本信息</span></div>
+                <div class="spanStep"><span style="padding-left: 35px;">上传身份信息</span></div>
+                <div class="spanStep"><span style="padding-left: 35px;">上传店铺信息</span></div>
+                <div class="spanStep"><span style="padding-left: 35px;">等待审核</span></div>
+                <div class="spanStep"><span style="padding-left: 35px;">审核通过</span></div>*@
+                <ul class="nav nav-pills nav-justified step step-arrow">
+                    <li class="active">
+                        <a>填写基本信息</a>
+                    </li>
+                    <li>
+                        <a>上传身份信息</a>
+                    </li>
+                    <li>
+                        <a>上传店铺信息</a>
+                    </li>
+                    <li>
+                        <a>等待审核</a>
+                    </li>
+                    <li>
+                        <a>审核通过</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="row" style="height:500px">
+                <form class="form-horizontal" id="SettledForm" action="../ShopManager/SaveSettled"
+                      method="post"
+                      enctype="multipart/form-data"
+                      data-ajax-update='#updateCreateOrEdit'
+                      data-ajax-mode='replace'
+                      data-ajax='true' data-toggle="validator">
+                    <input type="hidden" name="ID" id="ID" value="@Model.ID" />
+                    <input type="hidden" name="IsNew" id="IsNew" value="@Model.IsNew.ToString()" />
+                    <input type="hidden" name="Step" id="Step" value="@Model.Step" />
+                    <div class="wizard-step">
+                        <div class="row">
+                            <div style="width:650px;margin:0 auto">
+
+                                @{
+                                    var inputForName = new HtmlInputItemSpecification()
+                                    {
+                                        ItemID = "Name",
+                                        ItemDisplayName = "店铺名",
+                                        ItemValue = Model.Name,
+                                        PlaceholderString = "请输入店铺名称",
+                                        AutofocusName = "",
+                                        OnfocusFuntion = "clearErrStyle(this.id)",
+                                        OnBlurFunction = ""
+                                    };
+                                    @Html.ShiKeBoorStrapInputForSettled(inputForName);
+
+                                    var inputForAddress = new HtmlInputItemSpecification()
+                                    {
+                                        ItemID = "Address",
+                                        ItemDisplayName = "地址",
+                                        ItemValue = Model.Address,
+                                        PlaceholderString = "请输入地址",
+                                        AutofocusName = "",
+                                        OnfocusFuntion = "clearErrStyle(this.id)",
+                                        OnBlurFunction = ""
+                                    };
+                                    @Html.ShiKeBoorStrapInputForSettled(inputForAddress);
+
+                                    var inputForUserName = new HtmlInputItemSpecification()
+                                    {
+                                        ItemID = "UserName",
+                                        ItemDisplayName = "申请人",
+                                        ItemValue = Model.UserName,
+                                        PlaceholderString = "请输入申请人",
+                                        AutofocusName = "",
+                                        OnfocusFuntion = "clearErrStyle(this.id)",
+                                        OnBlurFunction = ""
+                                    };
+                                    @Html.ShiKeBoorStrapInputForSettled(inputForUserName);
+
+                                    var inputForIDCar = new HtmlInputItemSpecification()
+                                    {
+                                        ItemID = "IDCar",
+                                        ItemDisplayName = "身份证号",
+                                        ItemValue = Model.IDCar,
+                                        PlaceholderString = "请输入申请人身份证号",
+                                        AutofocusName = "",
+                                        OnfocusFuntion = "clearErrStyle(this.id)",
+                                        OnBlurFunction = ""
+                                    };
+                                    @Html.ShiKeBoorStrapInputForSettled(inputForIDCar);
+
+                                    var inputForMobilePhone = new HtmlInputItemSpecification()
+                                    {
+                                        ItemID = "MobilePhone",
+                                        ItemDisplayName = "手机号",
+                                        ItemValue = Model.MobilePhone,
+                                        PlaceholderString = "请输入申请人手机号",
+                                        AutofocusName = "",
+                                        OnfocusFuntion = "clearErrStyle(this.id)",
+                                        OnBlurFunction = ""
+                                    };
+                                    @Html.ShiKeBoorStrapInputForSettled(inputForMobilePhone);
+
+                                    var inputForTelephone = new HtmlInputItemSpecification()
+                                    {
+                                        ItemID = "Telephone",
+                                        ItemDisplayName = "固定电话",
+                                        ItemValue = Model.Telephone,
+                                        PlaceholderString = "请输入固定电话",
+                                        AutofocusName = "",
+                                        OnfocusFuntion = "clearErrStyle(this.id)",
+                                        OnBlurFunction = ""
+                                    };
+                                    @Html.ShiKeBoorStrapInputForSettled(inputForTelephone);
+
+                                    var inputForLicenceID = new HtmlInputItemSpecification()
+                                    {
+                                        ItemID = "LicenceID",
+                                        ItemDisplayName = "营业执照号",
+                                        ItemValue = Model.LicenceID,
+                                        PlaceholderString = "请输入营业执照号",
+                                        AutofocusName = "",
+                                        OnfocusFuntion = "clearErrStyle(this.id)",
+                                        OnBlurFunction = ""
+                                    };
+                                    @Html.ShiKeBoorStrapInputForSettled(inputForLicenceID);
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wizard-step">
+                        <div class="row" id="IdImg_DIV">
+                            <div class="row" style="padding:0 15px 0 15px">
+
+                                <div class="form-group col-xs-6" style="padding:0">
+                                    <label for="FrontIDCar" class="col-xs-3 control-label">身份证正面</label>
+                                    <div class="col-xs-9">
+                                        <input onclick="clearErrStyle('IdImg')" id="input-image-1" name="FrontIDCar" type="file" class="file" multiple accept="image/*">
+                                    </div>
+                                </div>
+                                <div class="form-group col-xs-6" style="padding:0">
+                                    <label for="BackIDCar" class="col-xs-3 control-label">身份证反面</label>
+                                    <div class="col-xs-9">
+                                        <input onclick="clearErrStyle('IdImg')" id="input-image-2" name="BackIDCar" class="file" type="file" multiple accept="image/*">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" id='IdImg_Help'></div>
+                        </div>
+                    </div>
+                    <div class="wizard-step">
+                        <div class="row" id="SettledImg_DIV">
+                            <div class="row" style="padding:0 15px 0 15px">
+
+                                <div class="form-group col-xs-6" style="padding:0">
+                                    <label for="Licence" class="col-xs-3 control-label">营业执照</label>
+                                    <div class="col-xs-9">
+                                        <input onclick="clearErrStyle('SettledImg')" id="input-image-3" name="Licence" type="file" class="file" multiple accept="image/*">
+                                    </div>
+                                </div>
+                                <div class="form-group col-xs-6" style="padding:0">
+                                    <label for="Environment" class="col-xs-3 control-label">店铺环境</label>
+                                    <div class="col-xs-9">
+                                        <input onclick="clearErrStyle('SettledImg')" id="input-image-4" name="Environment" class="file" type="file" multiple accept="image/*">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" id='SettledImg_Help'></div>
+                        </div>
+                    </div>
+                    <div class="wizard-step">
+
+                        <div class="row" style="margin: 20px 100px">
+                            <div class="col-xs-2" style="background-image: url('../../images/ok.png');  width: 150px; height: 150px">
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="row">
+                                    <div class="col-xs-10" style="margin-top: 70px">
+                                        <span style="font-size: 25px">您的信息已提交完成，请耐心等待管理员的审核</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-10">
+                                        <span>以下是您刚刚提交的信息，若发现错误您可以点击下方“返回编辑”以修正信息</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <a href="../../ShopManager/Settled">点击这里查看审核进度</a>，<a href="#" id="wrong-step">信息填写有误？返回编辑</a>
+                                    </div>
+                                    <div class="col-xs-3">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin: 20px 100px">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <div class="row" style="margin:5px 0">
+                                        <div class="col-xs-4" style="padding: 0;">
+                                            <lable>店铺名</lable>
+                                        </div>
+                                        <div class="col-xs-8" style="padding: 0;">
+                                            <span id="shopname"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin:5px 0">
+                                        <div class="col-xs-4" style="padding: 0;">
+                                            <lable>地址</lable>
+                                        </div>
+                                        <div class="col-xs-8" style="padding: 0;">
+                                            <span id="shopaddress"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin:5px 0">
+                                        <div class="col-xs-4" style="padding: 0;">
+                                            <lable>申请人</lable>
+                                        </div>
+                                        <div class="col-xs-8" style="padding: 0;">
+                                            <span id="shopuser"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin:5px 0">
+                                        <div class="col-xs-4" style="padding: 0;">
+                                            <lable>身份证号</lable>
+                                        </div>
+                                        <div class="col-xs-8" style="padding: 0;">
+                                            <span id="useridcar"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin:5px 0">
+                                        <div class="col-xs-4" style="padding: 0;">
+                                            <lable>手机号</lable>
+                                        </div>
+                                        <div class="col-xs-8" style="padding: 0;">
+                                            <span id="usermobilephone"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin:5px 0">
+                                        <div class="col-xs-4" style="padding: 0;">
+                                            <lable>固定电话</lable>
+                                        </div>
+                                        <div class="col-xs-8" style="padding: 0;">
+                                            <span id="shoptelephone"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin:5px 0">
+                                        <div class="col-xs-4" style="padding: 0;">
+                                            <lable>营业执照号</lable>
+                                        </div>
+                                        <div class="col-xs-8" style="padding: 0;">
+                                            <span id="licenceid"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-9">
+                                    <div class="col-xs-3"><div class="file-preview-frame krajee-default  kv-preview-thumb"><img src="#" style="width:150px;height:150px" id="finImg1" /></div></div>
+                                    <div class="col-xs-3"><div class="file-preview-frame krajee-default  kv-preview-thumb"><img src="#" style="width:150px;height:150px" id="finImg2" /></div></div>
+                                    <div class="col-xs-3"><div class="file-preview-frame krajee-default  kv-preview-thumb"><img src="#" style="width:150px;height:150px" id="finImg3" /></div></div>
+                                    <div class="col-xs-3"><div class="file-preview-frame krajee-default  kv-preview-thumb"><img src="#" style="width:150px;height:150px" id="finImg4" /></div></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div id="next-back" style="width:310px;margin:0 auto">
+                <div class="form-group row">
+                    <div class="col-xs-7">
+                        <button type="button" *@ class="btn btn-success" id="next-step" style="width: 180px;background-color:#C72E00;border-color:#C72E00">下一步</button>
+                    </div>
+                    <div class="col-xs-5" style="padding-top:16px">
+                        <a href="#" id="back-step">返回上一步</a>
+                    </div>
+                </div>
+                <div class="form-group row" style="text-align:center">
+                    <input id="ckRead" type="checkbox" /><a href="#">已阅读并同意相关服务条款和隐私政策</a>
+                </div>
+            </div>
+
+
+            <div id="okbtn" style="display:none;width:600px;margin:0 auto">
+                <div style="width:180px;margin:0 auto">
+                    <button type="button" class="btn btn-success" id="OK" style="width: 180px;background-color:#C72E00;border-color:#C72E00">完成</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    $("#input-image-1").fileinput({
+        allowedFileExtensions: ["jpg", "png", "gif"],
+        maxFileCount: 1,
+        uploadUrl: 'URL',
+        enctype: 'multipart/form-data',
+        resizeImage: true,
+        language: 'zh',
+        showUpload: false,
+    });
+
+    $("#input-image-2").fileinput({
+        allowedFileExtensions: ["jpg", "png", "gif"],
+        maxFileCount: 1,
+        uploadUrl: 'URL',
+        enctype: 'multipart/form-data',
+        resizeImage: true,
+        language: 'zh',
+        showUpload: false,
+    });
+    $("#input-image-3").fileinput({
+        allowedFileExtensions: ["jpg", "png", "gif"],
+        maxFileCount: 1,
+        uploadUrl: 'URL',
+        enctype: 'multipart/form-data',
+        resizeImage: true,
+        language: 'zh',
+        showUpload: false,
+    });
+
+    $("#input-image-4").fileinput({
+        allowedFileExtensions: ["jpg", "png", "gif"],
+        maxFileCount: 1,
+        uploadUrl: 'URL',
+        enctype: 'multipart/form-data',
+        resizeImage: true,
+        language: 'zh',
+        showUpload: false,
+    });
+
+
+
+</script>
+<script src="~/js/gwdang-notifier-bdext.js"></script>
+
+<script src="~/js/lib.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+
+        var divtext = document.getElementsByClassName("file-drop-zone-title");
+        divtext.innerHTML = "";
+        divtext[0].innerHTML = "请上传身份证正面，最多一张图片，不可拖拽上传";
+        divtext[1].innerHTML = "请上传身份证反面，最多一张图片，不可拖拽上传";
+        divtext[2].innerHTML = "请上传营业执照，最多一张图片，不可拖拽上传";
+        divtext[3].innerHTML = "请上传店铺环境，最多一张图片，不可拖拽上传";
+
+
+        $(".wizard-step:first").fadeIn(); // show first step
+        bsStep(1);
+
+        var Step = $(".stepactive");
+        Step.next(".spanStep").addClass("purgray");
+
+        // attach backStep button handler
+        // hide on first step
+        $("#back-step").hide().click(function () {
+
+            var $step = $(".wizard-step:visible"); // get current step
+            var cStep = $(".stepactive");
+            if ($step.prev().hasClass("wizard-step")) { // is there any previous step?
+                $step.hide().prev().fadeIn();  // show it and hide current step
+                var num = parseInt($("#Step").val());
+                $("#Step").val((num - 1).toString());
+                
+                bsStep(num);
+                // disable backstep button?
+                if (!$step.prev().prev().hasClass("wizard-step")) {
+                    $("#back-step").hide();
+                }
+            }
+        });
+        $("#wrong-step").click(function () {
+
+            var $step = $(".wizard-step:visible"); 
+            $("#next-back").show();
+            $("#okbtn").hide();
+            $("#back-step").hide();
+            if ($step.prev().hasClass("wizard-step")) { 
+                $step.hide();
+                bsStep(1);
+                $(".wizard-step:first").fadeIn()
+                $("#Step").val("0");
+            }
+        });
+
+        // attach nextStep button handler
+        $("#next-step").click(function () {
+            var imgsrc = document.getElementsByClassName("kv-preview-data");
+            var $step = $(".wizard-step:visible"); // get current step
+            if (!$('#ckRead').is(':checked')) {
+                alert('请阅读服务条款后并勾选"已阅读并同意相关服务条款和隐私政策"项');
+                return;
+            }
+
+            var systemWorkPlaceFormOptions = {
+                dataType: 'json',
+                success: function (validateMessage) {
+                    if (validateMessage.isOK === true) {
+                        $("#IsNew").val("False");
+                        var num = parseInt($("#Step").val());
+                        $("#Step").val((num + 1).toString());
+                        var n = parseInt($("#Step").val());
+                        
+                        if ($step.next().hasClass("wizard-step")) { // is there any next step?
+                            $step.hide().next().fadeIn();  // show it and hide current step
+                            
+                            bsStep(num+2);
+                            $("#back-step").show();   // recall to show backStep button
+                            if (n == 3) {
+                                $('#shopname').html($('#Name').val())
+                                $('#shopaddress').html($('#Address').val())
+                                $('#shopuser').html($('#UserName').val())
+                                $('#useridcar').html($('#IDCar').val())
+                                $('#usermobilephone').html($('#MobilePhone').val())
+                                $('#shoptelephone').html($('#Telephone').val())
+                                $('#licenceid').html($('#LicenceID').val())
+
+                                $("#finImg1").attr("src", imgsrc[0].src)
+                                $("#finImg2").attr("src", imgsrc[2].src)
+                                $("#finImg3").attr("src", imgsrc[4].src)
+                                $("#finImg4").attr("src", imgsrc[6].src)
+
+                                $("#next-back").hide();
+                                $("#okbtn").show();
+                            }
+                        }
+                    }
+                    else {
+                        $.each(validateMessage.validateMessageItems, function (i, item) {
+                            activeErrStatus(item.messageName, item.message);
+                        });
+                    }
+                }
+            };
+            $('#SettledForm').ajaxSubmit(systemWorkPlaceFormOptions);
+        });
+
+    });
+
+</script>
+
+
+
+
+

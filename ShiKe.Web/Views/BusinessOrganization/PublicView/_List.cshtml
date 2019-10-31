@@ -1,0 +1,154 @@
+﻿@model IEnumerable<ShiKe.ViewModels.BusinessOrganization.SK_WM_GoodsVM>
+@{
+    ViewData["Title"] = "商品管理";
+}
+@{
+    var pageGroup = ViewBag.PageGroup as ShiKe.Common.ViewModelComponents.PagenateGroup;
+    var pageParameter = ViewBag.PageParameter as ShiKe.Common.JsonModels.ListPageParameter;
+
+}
+<meta charset="UTF-8">
+<div class="table-responsive">
+    <input type="hidden" id="SelectType" name="type" value="@ViewBag.GoodsType" />
+    <table class="table table-striped" style="text-align:center;">
+        <thead>
+            <tr>
+                <th style="text-align:center;">商品编号</th>
+                <th style="text-align:center;">预览图片</th>
+                <th style="text-align:center;">商品名称</th>
+                <th style="text-align:center;">价格</th>
+                <th style="text-align:center;">分类</th>
+                <th style="text-align:center;">库存</th>
+                <th style="text-align:center;">上架时间</th>
+                <th style="text-align:center;">商品状态</th>
+                <th style="text-align:center;">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var counter = 0;
+                foreach (var sk_wm_Goods in Model)
+                {
+                    counter++;
+                    <tr>
+                        <td>@counter</td>
+                        @if (sk_wm_Goods.AvatarPath == null)
+                        {
+                            <td><img src="~/images/noimage.gif" alt="商品图片" style="width:50px;height:50px"></td>
+
+                        }
+                        else
+                        {
+                            <td><img src="@sk_wm_Goods.AvatarPath" alt="商品图片" style="width:50px;height:50px"></td>
+                        }
+                        
+                        @*<td><img src="@sk_wm_Goods.IMG" alt="商品图片" style="width:50px;height:50px"></td>*@
+                        <td style="width:130px">@sk_wm_Goods.Name</td>
+                        <td>￥@sk_wm_Goods.Price</td>
+                        <td>@sk_wm_Goods.GoodsCategory.DisplayName</td>
+                        <td>@sk_wm_Goods.Stock</td>
+                        <td>@sk_wm_Goods.ShelvesTime</td>
+                        <td>@sk_wm_Goods.State</td>
+                        <td>
+                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                                <button onclick="gotoCreateOrEdit('@sk_wm_Goods.ID')" type="button" class="btn btn-default">编辑信息</button>
+                                <a href="../../BusinessBG/ImagesEdit?id=@sk_wm_Goods.ID" class="btn btn-default">编辑图片</a>
+                                <button type="button" class="btn btn-default" onclick="gotoDetail('@sk_wm_Goods.ID.ToString()')">明细</button>                              
+                                <button type="button" class="btn btn-default"
+                                        onclick="openDeleteModal('@sk_wm_Goods.ID.ToString()','你所选择删除的商品名称是：@sk_wm_Goods.Name，请确认是否继续执行。','deleteGoods')">
+                                    删除
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+                var additionalRowAmount = pageGroup.PageSize - Model.Count();
+                for (int i = 0; i < additionalRowAmount; i++)
+                {
+                    <tr style="height:67px">
+                        <td>　</td>
+                        <td>　</td>
+                        <td>　</td>
+                        <td>　</td>
+                        <td>　</td>
+                        <td>　</td>
+                        <td>　</td>
+                        <td>　</td>
+                        <td>　</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- 处理翻页器 -->
+<div id="pagenateArea">
+    @if (pageGroup.PagenateGroupItem == null)
+    {
+        <div class="center-block"> 根据当前查询的条件，没有任何结果。</div>
+    }
+    else
+    {
+        <nav aria-label="...">
+            <ul class="pagination">
+                @if (pageGroup.PagenateGroupItem.FirstIndex == 1)
+                {
+                    <li class="disabled"><a href="javascript:gotoPage('1')" aria-label="第一页"><span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span></a></li>
+                    <li class="disabled"><a href="#" aria-label="回退一组"><span aria-hidden="true" class="glyphicon glyphicon-backward"></span></a></li>
+                    if (pageGroup.PageIndex >= 2)
+                    {
+                        <li class=""><a href="javascript:gotoPage('@(pageGroup.PageIndex-1)')" aria-label="前一页"><span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span></a></li>
+                    }
+                    else
+                    {
+                        <li class="disabled"><a href="#" aria-label="前一页"><span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span></a></li>
+                    }
+                }
+                else
+                {
+                    <li class=""><a href="javascript:gotoPage('1')" aria-label="第一页"><span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span></a></li>
+                    <li class=""><a href="javascript:gotoPage('@(pageGroup.PagenateGroupItem.FirstIndex-1)')" aria-label="回退一组"><span aria-hidden="true" class="glyphicon glyphicon-backward"></span></a></li>
+                    <li class=""><a href="javascript:gotoPage('@(pageGroup.PageIndex-1)')" aria-label="前一页"><span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span></a></li>
+                }
+                @for (int i = pageGroup.PagenateGroupItem.FirstIndex; i < pageGroup.PagenateGroupItem.LastIndex + 1; i++)
+                {
+                    var activeString = "";
+                    if (i == pageGroup.PageIndex)
+                    {
+                        activeString = "active";
+                    }
+                    <li class="@activeString "><a href="javascript:gotoPage('@i')">@i <span class="sr-only">(current)</span></a></li>
+                }
+                @if (pageGroup.PagenateGroupItem.LastIndex == pageGroup.PageAmount)
+                {
+                    if (pageGroup.PageIndex < pageGroup.PageAmount)
+                    {
+                        <li class=""><a href="javascript:gotoPage('@(pageGroup.PageIndex+1)')" aria-label="下一页"><span aria-hidden="false" class="glyphicon glyphicon-chevron-right"></span></a></li>
+                    }
+                    else
+                    {
+                        <li class="disabled"><a href="#" aria-label="下一页"><span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span></a></li>
+                    }
+                    <li class="disabled"><a href="#" aria-label="向前一组"><span aria-hidden="true" class="glyphicon glyphicon-forward"></span></a></li>
+                    <li class="disabled"><a href="#" aria-label="最后页"><span aria-hidden="true" class="glyphicon glyphicon-fast-forward"></span></a></li>
+                }
+                else
+                {
+                    <li class=""><a href="javascript:gotoPage('@(pageGroup.PageIndex+1)')" aria-label="后一页"><span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span></a></li>
+                    <li class=""><a href="javascript:gotoPage('@(pageGroup.PagenateGroupItem.LastIndex+1)')" aria-label="向前一组"><span aria-hidden="true" class="glyphicon glyphicon-forward"></span></a></li>
+                    <li class=""><a href="javascript:gotoPage('@pageGroup.PageAmount')" aria-label="最后一条"><span aria-hidden="true" class="glyphicon glyphicon-fast-forward"></span></a></li>
+                }
+
+            </ul>
+        </nav>
+    }
+</div>
+
+<script>
+    function gotoPage(pageIndex) {
+        //$('#nncqPageIndex').val(pageIndex);
+        gotoList(pageIndex);
+    }
+</script>

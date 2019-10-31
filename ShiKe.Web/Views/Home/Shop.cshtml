@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ShiKe.ViewModels.BusinessOrganization.SK_WM_GoodsVM>
+@{
+    ViewData["Title"] = "食刻";
+    Layout = "_ShopIndexLayout";
+}
+
+<div class="commIndx" id="IndexTakeOutFood">
+
+    <div class="row">
+        <div class="col-xs-9">
+            @if (Model.Count() != 0)
+            {
+                @foreach (var sk_wm_goods in Model)
+                {
+                    <div class="col-xs-4">
+                        <a href="../../Home/ComDetail?id=@sk_wm_goods.ID" style="text-decoration:none">
+                            <div class="thumbnail">
+                                @*<img src="@sk_wm_goods.IMG" alt="@sk_wm_goods.Name">*@
+
+                                @if (sk_wm_goods.AvatarPath == null)
+                                {
+                                    <div style="height:160px;width: 100%; background:url(/images/noimage.gif);background-size: cover;"></div>
+                                }
+
+                                else
+                                {
+                                    <div style="height:160px;width: 100%; background:url(@sk_wm_goods.AvatarPath);background-size: cover;"></div>
+                                }
+
+                                <div class="caption">
+                                    <h4><strong>@sk_wm_goods.Name</strong></h4>
+                                    <p>@sk_wm_goods.Description</p>
+                                    <p>
+                                        <span>¥<strong>@sk_wm_goods.Price</strong></span>
+                                    </p>
+                                    <p style="position:relative;">
+                                        <span style="font-size:14px;color:#000;">门店价：<del><span>¥</span>@sk_wm_goods.FacadePrice</del></span>
+                                        <span style="font-size:14px;color:#000;position:absolute;top:0;right:0;">已售 @sk_wm_goods.SalesVolume</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class=" text-center panel panel-default">
+                    <h4 style="margin:20px auto;color:red">店铺还没有商品哦</h4>
+                </div>
+            }
+        </div>
+        <div class="col-xs-3">
+            <div class="panel panel-default" id="detail">
+                <div class="panel-heading">
+                    店铺公告
+                </div>
+                <div class="panel-body" style="height: 500px">
+                    <h1>店主外出，暂不接单</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 text-center" style="padding:0;background-color:#eee"><a href="javascript:" style="line-height:48px;width:100%;height:48px;border-radius:0;font-size:14px;color:#666;display:block;text-decoration:none">查看更多商品>></a></div>
+    </div>
+</div>

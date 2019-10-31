@@ -1,0 +1,150 @@
+﻿@model IEnumerable<ShiKe.ViewModels.BusinessOrganization.SK_WM_GoodsVM>
+@{
+    ViewData["Title"] = "全部商品";
+    //Layout = "_AdminDesktopLayout";
+    Layout = "_SellerLayout";
+}
+<meta charset="UTF-8">
+<input type="hidden" id="HiddenID" name="HiddenID" value="" />
+<div id="mainWorkPlaceArea">
+    @Html.Partial("../../Views/BusinessOrganization/PublicView/_List", Model)
+</div>
+
+@Html.Partial("../../Views/BusinessOrganization/PublicView/_ModalForDelete")
+@Html.Partial("../../Views/BusinessOrganization/PublicView/_ModalForCreateOrEdit")
+
+
+<script type="text/javascript">
+    // 列表
+    //function gotoList(keyword) {
+    //    $.ajax({
+    //        cache: false,
+    //        type: 'post',
+    //        async: false,
+    //        url: '../../BusinessBG/List/' + keyword,
+    //        beforeSend: function () {
+    //        }
+    //    }).done(function (data) {
+    //        document.getElementById("mainWorkPlaceArea").innerHTML = data;
+    //    }).fail(function () {
+    //        alert("连接后台失败！");
+    //    }).always(function () {
+    //    });
+    //}
+
+    //// 新建或编辑人员信息
+    //function gotoCreateOrEdit(id) {
+    //    $('#createOrEditModal').modal({
+    //        show: true,
+    //        backdrop: 'static'
+    //    });
+    //    // 访问后台 CreateOrEdit 方法，获取新建或者编辑数据的呈现 imports page 页面内容
+    //    $.ajax({
+    //        cache: false,
+    //        type: 'post',
+    //        async: false,
+    //        url: '../../BusinessBG/EditForGoods/' + id ,
+    //        beforeSend: function () {
+    //            // alert("开始访问");
+    //        }
+    //    }).done(function (data) {
+    //        document.getElementById("createOrEditArea").innerHTML = data;
+    //    }).fail(function () {
+    //        alert("连接后台失败！");
+    //    }).always(function () {
+    //    });
+    //}
+
+    //function postGoodsEditForm() {
+    //    var systemWorkPlaceFormOptions = {
+    //        dataType: 'json',
+    //        success: function (validateMessage) {
+    //            if (validateMessage.isOK === true) {
+    //                $('#createOrEditModal').modal('hide');
+    //                gotoList(validateMessage.validateMessageItems[0].message);
+    //            } else {
+    //                $.each(validateMessage.validateMessageItems, function (i, item) {
+    //                    activeErrStatus(item.messageName, item.message);
+    //                });
+    //            }
+    //        }
+    //    };
+    //    $('#CreateOrEditGoodsForm').ajaxSubmit(systemWorkPlaceFormOptions);
+    //}
+
+    //// 呈现错误消息
+    //function activeErrStatus(idName, msg) {
+    //    document.getElementById(idName + "_DIV").classList.add("has-error", "has-feedback");
+    //    document.getElementById(idName + "_Help").innerHTML = '<span class="help-block small" >' + msg + '</span>';
+    //}
+
+    //// 清理错误消息，输入域失去焦点的时候使用
+    //function clearErrStyle(idName) {
+    //    document.getElementById(idName + "_DIV").classList.remove("has-error", "has-feedback");
+    //    document.getElementById(idName + "_Help").innerHTML = "";
+    //}
+
+    //// 失去焦点的时候进行处理的内容
+    //function checkIfValidate(idName) {
+    //    var result = document.getElementById(idName).value;
+    //    alert(result);
+    //}
+
+
+    // 查看明细信息
+    //function gotoDetail(id) {
+    //    $.ajax({
+    //        cache: false,
+    //        type: 'post',
+    //        async: false,
+    //        url: '../../BusinessBG/Detail/' + id,
+    //        beforeSend: function () {             
+    //        }
+    //    }).done(function (data) {
+    //        document.getElementById("mainWorkPlaceArea").innerHTML = data;
+    //    }).fail(function () {
+    //        alert("连接后台失败！");
+    //    }).always(function () {
+    //    });
+    //}
+
+    // 打开删除操作会话框
+    //function openDeleteModal(id, alertMessage) {
+    //    document.getElementById("goodsID").value = id;
+    //    document.getElementById("deleteModalMessage").innerText = alertMessage;
+
+    //    $('#deleteConfirmModal').modal({
+    //        show: true,
+    //        backdrop: 'static'
+    //    });
+    //}
+
+    // 执行删除操作
+    //function gotoDelete() {
+    //    var pid = document.getElementById("goodsID").value;
+    //    $.ajax({
+    //        cache: false,
+    //        type: 'post',
+    //        async: false,
+    //        url: '../../BusinessBG/Delete/' + pid,
+    //        beforeSend: function () {
+    //        }
+    //    })
+    //        .done(function (data) {
+    //            if (data.isOK == false) {
+    //                $('#deleteConfirmModal').modal('hide');
+    //                gotoList('');
+    //        } else {
+    //            $('#deleteConfirmModal').modal('hide');
+    //            gotoList('');
+    //            //document.getElementById("deleteModalErrMessage").innerText = data.message;
+    //        }
+
+    //        })
+    //    .fail(function () {
+    //        alert("连接后台失败！");
+    //        })
+    //    .always(function () {
+    //        });
+    //}
+</script>

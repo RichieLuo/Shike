@@ -1,0 +1,112 @@
+﻿@model IEnumerable<ShiKe.ViewModels.BusinessOrganization.SK_WM_GoodsVM>
+@{
+    Layout = "_SellerLayout";
+}
+<script src="~/js/Order.js"></script>
+<link href="~/css/BusinessBG/SpecialtyExamine.css" rel="stylesheet" />
+<meta charset="utf-8" />
+<div class="Information">
+    <div class="goods_examine">
+        <div class="se_tabs se_tabs_d2 se_margin" data_se_tabs>
+
+            <ul class="se_avg_sm_2 se_tabs_nav se_nav se_nav_tabs">
+                <li class="se_active"><a>未审核</a></li>
+                <li><a>已审核</a></li>
+
+            </ul>
+            <div class="se_tabs_bd">
+
+                <div class="se_tab_panel se_fade se_active se_in selected" id="tab1">
+                    <div class="order_top">
+
+                        <ul>
+                            <li class="order_li">特产名称</li>
+                            <li class="order_li">特产类别</li>
+                            <li class="order_li">授权状态</li>
+                            <li class="order_li">提示</li>
+                            <li class="order_li">操作</li>
+                        </ul>
+
+                    </div>
+
+                    <div class="order_main">
+                        @foreach (var goods in Model)
+                        {
+                            if (goods.State.ToString() != "已上架")
+                            {
+                                <ul>
+                                    <li class="Specialty_n">
+                                        <span>@goods.Name</span>
+                                    </li>
+                                    <li class="Specialty_n">
+                                        <span>面食</span>
+                                    </li>
+                                    <li class="Specialty_n">
+                                        <span>待审核<a href="../../User/Ceshi" class="li_a">?</a></span>
+                                    </li>
+                                    <li class="Specialty_n">
+                                        <span>授权24小时才能上架</span>
+                                    </li>
+                                    <li class="Specialty_n goods_ns">
+                                        <div class="li_d">
+                                            <a href="../../Home/ComDetail?id=@goods.ID">查看属性</a>
+                                            <a href="../../BusinessBG/Delete/@goods.ID">取消发布</a>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            }
+                        }
+                    </div>
+
+                </div>
+                <div class="se_tab_panel se_fade se_active se_in" id="tab2">
+                    <div class="order_top">
+
+                        <ul>
+                            <li class="order_li">特产名称</li>
+                            <li class="order_li">特产类别</li>
+                            <li class="order_li">授权状态</li>
+                            <li class="order_li">进度说明</li>
+                            <li class="order_li">操作</li>
+                        </ul>
+
+                    </div>
+
+                    <div class="order_main">
+                        @foreach (var goods in Model)
+                        {
+                            if (goods.State.ToString() == "已上架")
+                            {
+                                <ul>
+                                    <li class="Specialty_n">
+                                        <span>@goods.Name</span>
+                                    </li>
+                                    <li class="Specialty_n">
+                                        <span>面食</span>
+                                    </li>
+                                    <li class="Specialty_n">
+
+                                        <span>审核通过<a href="#" class="li_a">√</a></span>
+
+                                    </li>
+                                    <li class="Specialty_n">
+                                        <span>授权24小时才能上架</span>
+                                    </li>
+                                    <li class="Specialty_n goods_ns">
+                                        <div class="li_d">
+                                            <a href="../../Home/ComDetail?id=@goods.ID">查看属性</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            }
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

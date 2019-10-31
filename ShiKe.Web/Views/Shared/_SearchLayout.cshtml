@@ -1,0 +1,80 @@
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+<!DOCTYPE html>
+<html>
+<head>
+    @*<meta name="viewport" content="width=device-width" />*@
+    <meta charset="utf-8">
+    <title>@ViewBag.Title - 美食每刻</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/base.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/fileinput.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/non-responsive.css" rel="stylesheet" />
+    @Html.Raw(JavaScriptSnippet.FullScript)
+</head>
+<body style=" padding: 0px; background-image: url('../images/87h58PICGSf_1024.jpg'); ">
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/for-home-index.js"></script>
+    <script src="~/js/for-Shop-Goods.js"></script>
+    <script src="~/lib/bootstrap/dist/js/fileinput.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/locales/zh.js"></script>
+    <script src="~/lib/jquery/dist/jquery-form.js"></script>
+
+    @Html.Partial("_ForLayoutNav.cshtml")
+    <div class="container disTop">
+        <div class="row" style="height:80px;padding:0px 15px;">
+            <div class="col-xs-3" style="padding:0" ;>
+                <a href="#"><img src="~/images/logo_2.png" style="width:140px;height:60px;" alt="Alternate Text" /></a>
+            </div>
+            <div class="col-xs-6" style="padding:0;text-align:center;">
+                <form action="/" method="post" class="navbar-form" style="width:600px;">
+                    <div class="input-group">
+                        <div class="input-group-addon" style="padding:0;border:0;">
+                            <select class="form-control">
+                                <option>商品</option>
+                                <option>店铺</option>
+                            </select>
+                        </div>
+                        <input type="text" name="name" value="" placeholder="商品/店铺" class="form-control" style="width:300px" />
+                        <button class="btn btn-success" type="submit" style="border-radius:0px;border-color:#c72e00; background-color:#c72e00" id="searchInput" onclick="search()">搜索</button>
+                    </div>
+
+                    <div style="padding-top:5px;overflow:hidden">
+                        <a href="#" style="color:#000;">我是标签</a>
+                        <a href="#" style="color:#000;margin:0px 3px">我是标签</a>
+                        <a href="#" style="color:#000;margin:0px 3px">标签</a>
+                        <a href="#" style="color:#000;margin:0px 3px">标签啊</a>
+                        <a href="#" style="color:#000;margin:0px 3px">我是标签</a>
+                        <a href="#" style="color:#000;margin:0px 3px">我是标签</a>
+                        <a href="#" style="color:#000;">我是标签</a>
+                    </div>
+                </form>
+
+            </div>
+            <div class="col-xs-3" style="padding:0;text-align:right;" ;>
+                <img src="~/images/baozhang1.png" style="width:60px;height:60px;" alt="Alternate Text" />
+                <img src="~/images/baozhang2.png" style="width:60px;height:60px;" alt="Alternate Text" />
+                <img src="~/images/baozhang3.png" style="width:60px;height:60px;" alt="Alternate Text" />
+            </div>
+        </div>
+        <nav class="navbar" role="navigation" style="border-radius:0px;background-color:#c72e00">
+            <div class="navbar-header" style="">
+                <a class="navbar-brand" href="/" style="background-color:transparent; color:#fff">首页</a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li><a href="#" style="background-color:transparent; color:#fff">美食外卖</a></li>
+                    <li><a href="#" style="background-color:transparent; color:#fff">在线超市</a></li>
+                    <li><a href="#" style="background-color:transparent; color:#fff">今日上新</a></li>
+                    <li><a href="#" style="background-color:transparent; color:#fff">推荐店铺</a></li>
+                    <li><a href="#" style="background-color:transparent; color:#fff">身边</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    @RenderBody()
+    <div class="container" style="height:30px"> </div>
+    @Html.Partial("_ForLayoutFooter.cshtml")
+
+</body>
+</html>

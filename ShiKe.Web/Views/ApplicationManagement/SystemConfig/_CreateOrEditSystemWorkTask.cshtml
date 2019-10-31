@@ -1,0 +1,100 @@
+﻿@model ShiKe.ViewModels.ApplicationManagement.SystemWorkTaskVM
+<div id="updateCreateOrEdit_@Model.ID">
+    <div class="nncqDefaultArea" data-text="" id="">
+        <form action="../../SystemConfig/SaveSystemWorkTask"
+              method="post"
+              id="SystemWorkTaskCreateOrEditForm"
+              data-ajax-update='#updateCreateOrEdit_@Model.ID'
+              data-ajax-mode='replace'
+              data-ajax='true'>
+
+            <input type="hidden" id="ID" name="ID" value="@Model.ID" />
+            <input type="hidden" id="IsNew" name="IsNew" value="@Model.IsNew.ToString()" />
+            <input type="hidden" id="ParentItemID" name="ParentItemID" value="@Model.ParentItemID" />
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label for="Name" class="col-sm-3 control-label">归属菜单分区：</label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static">@Model.ParentItem.DisplayName</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Name" class="col-sm-3 control-label">菜单名称：</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="Name" id="Name" placeholder="请输入名称" value="@Model.Name" data-error="不能为空。" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="SortCode" class="col-sm-3 control-label">业务编码：</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="SortCode" id="SortCode" placeholder="请输入业务编码" value="@Model.SortCode" data-error="不能为空。" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="BusinessEntityName" class="col-sm-3 control-label">主业务实体：</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="BusinessEntityName" id="BusinessEntityName" placeholder="请输入主要业务实体名称" value="@Model.BusinessEntityName" data-error="不能为空。" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ControllerName" class="col-sm-3 control-label">控制器名称：</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="ControllerName" id="ControllerName" placeholder="请输入控制器名称" value="@Model.ControllerName" data-error="不能为空。" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ControllerMethod" class="col-sm-3 control-label">控制器方法：</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="ControllerMethod" id="ControllerMethod" placeholder="请输入控制器方法名称" value="@Model.ControllerMethod" data-error="不能为空。" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ControllerMethodParameter" class="col-sm-3 control-label">控制器方法参数：</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="ControllerMethodParameter" id="ControllerMethodParameter" placeholder="请输入控制器方法参数字符串" value="@Model.ControllerMethodParameter" data-error="不能为空。" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="IconName" class="col-sm-3 control-label">菜单图标：</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="IconName" id="IconName" placeholder="请输入菜单图标字符串" value="@Model.IconName" data-error="不能为空。" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="IsUsedInMenu" class="col-sm-3 control-label">是否用于导航：</label>
+                    <div class="col-sm-9">
+                        @{ 
+                            var ostring0101 = "";
+                            var ostring0102 = "";
+                            if (Model.IsUsedInMenu)
+                            {
+                                ostring0101 = "checked";
+                            }
+                            else
+                            {
+                                ostring0102 = "checked";
+                            }
+                        }
+                        <label class="radio-inline">
+                            <input type="radio" name="IsUsedInMenu" id="IsUsedInMenu1" value="true" @ostring0101> 是
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="IsUsedInMenu" id="IsUsedInMenu2" value="false" @ostring0102> 否
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Description" class="col-sm-3 control-label">简要描述：</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" rows="4" name="Description" id="Description">@Model.Description</textarea>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-red" />
+            <div>
+                <button type="button" class="btn" onclick="postSystemWorkTaskCreateOrEditForm()"><span class=""></span> 提交数据</button>
+                <button type="reset" class="btn"><span class=""></span> 重置 </button>
+            </div>
+        </form>
+    </div>
+</div>

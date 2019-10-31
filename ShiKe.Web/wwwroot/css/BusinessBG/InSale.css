@@ -1,0 +1,146 @@
+/*.condition {
+    border: 1px,solid red;
+    width: 1000px;
+    height: 300px;
+}
+.detailed {
+    border: 1px,solid red;
+    width: 1000px;
+    height: 300px;
+}
+
+.choose {
+    margin-top: 20px;
+}
+.buttona {
+    background-color: #FFFFFF;
+    padding: 4px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 8px;
+    border-radius: 8px;
+    width: 84px;
+    color: black;
+    float: right;
+}
+.buttonb {
+    background-color: #FFFFFF;
+    padding: 4px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 6px;
+    border-radius: 8px;
+    /*width: 60px;*/
+    color: black;
+}
+.detailed {
+    margin-top: 6px;
+    border: 1px solid #E7E7E7;
+    background: #F6F6F6;/*背景颜色*/
+    /*height: 30px;
+}*/
+.detaileda {
+    text-align: center; /*居中对齐*/
+    padding-top: 2px;
+    padding-bottom: 2px;
+    /*font-weight: bold;粗体*/
+    font-family: "Microsoft Yahei";
+    font-size: 16px;
+    color: #000;
+}
+.detailedb {
+    width: 350px;
+    float: left;
+}
+.detailedc {
+    width: 150px;
+    float: left;
+}
+
+.detailedd {
+    width: 148px;
+    float: left;
+}
+
+.goodsdetailed{
+    margin-top:10px;
+
+}
+.gooddetailed {
+    border: 1px solid #F0F4FD;
+    background: #F0F4FD; /*背景颜色*/
+    height: 30px;
+}
+
+.gooddetaileda {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    /*font-weight: bold;粗体*/
+    font-family: "Microsoft Yahei";
+    font-size: 16px;
+    color: #000;
+}
+.gooddetailedb {
+    width: 150px;
+    float: left;
+}
+.gooddetailedc {
+    width: 320px;
+    float: left;
+}
+
+.gooddetailedd {
+    width: 100px;
+    float: right;
+    text-align: right; /*居右对齐*/
+    font-size: 16px;
+}
+.waresdetailed {
+    border: 1px solid #E7E7E7;
+    height:110px;
+}
+.waresdetaileda {
+    text-align: center; /*居中对齐*/
+    padding-top: 2px;
+    padding-bottom: 2px;
+    /*font-weight: bold;粗体*/
+    font-family: "Microsoft Yahei";
+    font-size: 16px;
+    color: #000;
+}
+.waresdetailedb {
+    width: 350px;
+    padding: 10px;
+    float: left;
+    word-wrap: break-word; /*自动换行*/
+}
+.waresdetailedc {
+    width: 150px;
+    float: left; 
+    padding:10px;
+}
+.waresdetailedd {
+    width: 148px;
+    float: left;
+    padding: 10px;
+}
+.buttonc {
+    background-color: #FD6D37;
+    padding: 4px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 8px;
+    border-radius: 8px;
+    width: 84px;
+    color: black;
+}
+
+.Xuanzhe {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    float: left;
+}

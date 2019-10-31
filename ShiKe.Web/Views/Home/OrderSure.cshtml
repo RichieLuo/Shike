@@ -1,0 +1,232 @@
+﻿@model IEnumerable<ShiKe.ViewModels.BusinessOrganization.SK_WM_OrderItemVM>
+@{
+    ViewData["Title"] = "我的订单";
+    Layout = "_IndexLayout";
+    var i = 0;
+}
+<div class="container">
+    <!--订单配送地址-->
+    <div class="row addressSure">
+        <div class="addressSureTitle">
+            <h3 class="order-title pull-left">确认收货地址</h3>
+            <a href="###" class="pull-right" style="margin-top: 20px;">管理收货地址</a>
+        </div>
+        <div class="addressForOrder">
+            <a href="###" class="pull-left" style="font-size: 20px;font-weight: bold;text-decoration: none">
+                <img src="../images/marker.png">
+                寄送至：广西壮族自治区柳州市社湾路柳州职业技术学院（二颜 收）
+                <span style="color: grey">15578806785</span>
+            </a>
+            <a class="pull-right" href="###">修改地址</a>
+        </div>
+    </div>
+    <!--订单里的全部商品-->
+    <div class="row">
+        <h3 class="order-title">确认订单信息</h3>
+        <div class="order-title-column">
+            <ul style="padding-left: 0 ">
+                <li style="text-align: center;width: 250px;"><span>店铺商品</span></li>
+                <li style="text-align: center;width: 350px;"><span>商品信息</span></li>
+                <li style="text-align: center;width: 180px;"><span>套餐类型</span></li>
+                <li style="text-align: center;width: 100px;"><span>单价</span></li>
+                <li style="text-align: center;width: 180px;"><span>数量</span></li>
+                <li style="text-align: center;width: 110px;"><span>小计</span></li>
+            </ul>
+        </div>
+    </div>
+    @if (ViewBag.GoodsShop == null)
+    {
+        <div class="row text-center">
+            <h4 style="margin:20px auto;color:red">你暂时没有选择商品加入订单中</h4>
+            <h4 style="margin:20px auto;"><a href="../Home/Index">点击此处前往选购商品</a></h4>
+        </div>
+    }
+    else
+    {
+        var orderItems = ViewBag.GoodsShop as IEnumerable<ShiKe.Entities.BusinessOrganization.SK_WM_OrderItem>;
+        var shopForItemForGoods = from a in orderItems
+                                  group a by a.ShopName into g
+                                  select new { aKey = g.Key, Items = g };
+        <form method="post" id="OrderForm">
+            <!--订单里的商品信息-->
+            @foreach (var item in shopForItemForGoods)
+            {
+                i++;
+                <div class="row orderForGoods">
+
+                    <div class="goodsForShop">
+                        <ul style="list-style: none;padding-left: 12px;">
+                            <li style="line-height: 30px">
+                                <span style="font-weight: bold;">店铺名：</span><span><a href="###">@item.aKey</a></span>
+                                <span style="font-weight: bold;padding-left:30px">卖家：</span><span><a href="###">@item.aKey</a></span>
+                            </li>
+                        </ul>
+                    </div>
+                    @foreach (var orderItem in item.Items)
+                    {
+                        <div class="goodsItem">
+                            <ul>
+                                <li>
+                                    <input type="hidden" Jsonname="GoodsID" value="@orderItem.GoodsID" />
+                                    <img src="@orderItem.ImgPath" alt="@orderItem.GoodsName" style="width:80px;height:80px">
+                                    <a href="../Home/ComDetail?id=@orderItem.GoodsID" title="@orderItem.GoodsName">@orderItem.GoodsName</a>
+                                </li>
+                                <li>@orderItem.Description</li>
+                                <li>套餐类型：单人套餐19.7元(默认静态数据)</li>
+                                <li>￥<span id="@orderItem.ID.ToString()_Price">@Convert.ToDecimal(orderItem.Price)</span></li>
+                                <li>
+                                    <div class="col-xs-12">
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" onclick="Minus('@orderItem.ID')" id="@orderItem.ID.ToString()_minus" type="button">-</button>
+                                            </span>
+                                            <input type="text" id="@orderItem.ID.ToString()_inc" Jsonname="Count" oninput="CountChange('@orderItem.ID.ToString()') this.value=this.value.replace(/^[0]+[0-9]*$/gi,'')" class="form-control" value="@orderItem.Count" min="1">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" onclick="Add('@orderItem.ID')" id="@orderItem.ID.ToString()_add" type="button">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <p>￥<span id="@orderItem.ID.ToString()_TotalPrice" class="tPrice">@orderItem.TotalPrice </span> </p>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                    <!--订单提交结算统计-->
+                    <div class="orderCount">
+                        <div class="orderCount-SelectInfo">
+                            <div class="pull-left selectInfo-one">
+                                给卖家留言：<input type="text" name="" id="" placeholder="选填：对本次交易的说明（建议填写已和卖家协商一致的内容）" style="width: 400px;padding: 0">
+                            </div>
+                            <div class="pull-right selectInfo-two">
+                                <span class="pull-left">运送方式：普通配送</span><span class="pull-right">配送费￥0.00</span>
+                            </div>
+                        </div>
+                        <div class="orderCount-OrderPay">
+                            <p class="pull-right">店铺合计（含配送费）：￥<span style="color: #f40">66.66</span></p>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </form>
+    }
+    <!--订单提交结算统计-->
+    <div class="row orderSure">
+        @if (ViewBag.GoodsShop == null)
+        {
+            <div class=" pull-left orderSure-Info">
+                <p><strong>实付款：<span style="font-size:20px">￥</span></strong><span style="color: #f40;font-size:20px">0.00</span></p>
+                <p>寄送至：广西壮族自治区柳州市柳州职业技术学院</p>
+                <p> 收货人：二颜 15578806785 </p>
+            </div>
+                    <div class="pull-right orderSure-Submit">
+                        <button class="btn disabled">提交订单</button>
+                    </div>
+        }
+        else
+        {
+            <div class=" pull-left orderSure-Info">
+                <p><strong>实付款：<span style="font-size:20px">￥</span></strong><span style="color: #f40;font-size:20px" id="TotalPrice">0.00</span></p>
+                <p>寄送至：广西壮族自治区柳州市社湾路柳州职业技术学院</p>
+                <p> 收货人：二颜 15578806785 </p>
+            </div>
+                    <div class="pull-right orderSure-Submit">
+                        <button class="btn"  onclick="OrderGoToPay()">提交订单</button>
+                    </div>
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+     function Add(id) {
+
+        var price = $("#" + id + "_Price").text();
+
+        //$("#"+id+"_add").click(function () {
+        var num = parseInt($("#" + id + "_inc").val());
+        $("#" + id + "_inc").val((num + 1).toString());
+        var nn = parseInt($("#" + id + "_inc").val()) * price
+        $("#" + id + "_TotalPrice").text(nn.toFixed(2));
+
+        CountTotal() 
+    }
+    function Minus(id) {
+
+        var price = $("#" + id + "_Price").text();
+
+        var num = parseInt($("#" + id + "_inc").val());
+
+        if (num <= 1) {
+            return false;
+        }
+        $("#" + id + "_inc").val((num - 1).toString());
+        var nn = parseInt($("#" + id + "_inc").val()) * price
+        $("#" + id + "_TotalPrice").text(nn.toFixed(2));
+
+        CountTotal() 
+     }
+
+    function CountChange(id) {
+        var price = $("#" + id + "_Price").text();
+        var num = parseInt($("#" + id + "_inc").val());
+        if (isNaN(num)) {
+            num = 0;
+        }
+        var nn = num * price
+
+        $("#" + id + "_TotalPrice").text(nn.toFixed(2));
+        CountTotal()
+    }
+
+    function CountTotal() {
+        var sum = 0;
+        $.each($(".row .tPrice"), function (index, item) {
+
+            sum += parseFloat($.trim($(item).text()));
+
+        });
+
+        $("#TotalPrice").text(sum.toFixed(2))
+        $("#TotalPriceTop").text(sum.toFixed(2))
+    }
+</script>
+
+<script>
+    function OrderGoToPay() {
+        //var systemWorkPlaceFormOptions = {
+        //    dataType: 'json',
+        //    url: "../Home/AddOrderSure",
+        //    success: function (validateMessage) {
+        //        if (validateMessage.isOK === true) {
+        //            ////gotoList(validateMessage.validateMessageItems[0].message);
+        //            //window.location.href = '../../BusinessBG/Index'
+        //            window.location.href = "../Home/OrderSure";
+
+        //        }
+        //        else {
+        //            if (validateMessage.isLogin == false) {
+        //                window.location.href = "../Home/Logon";
+        //            }
+        //        }
+        //    }
+        //};
+        //$('#ShoppingForm').ajaxSubmit(systemWorkPlaceFormOptions);
+        location.href = "../Home/AddOrderSure?orders=" + getShopCarItem()
+    }
+
+    function getShopCarItem() {
+        var list = [];
+        $("#OrderForm .orderForGoods .goodsItem").each(function (i) {
+            var data = new Object();
+            $(this).find("input[Jsonname]").each(function () {
+                var name = $(this).attr("Jsonname");
+                data[name] = $(this).val();
+            });
+            list[i] = data;
+        });
+        return JSON.stringify(list)
+    }
+
+</script>

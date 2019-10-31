@@ -1,0 +1,85 @@
+﻿@model IEnumerable<ShiKe.ViewModels.BusinessOrganization.SK_WM_OrderItemVM>
+@{
+
+    var orderGroup = Model;
+
+    var GroupDemo = from a in orderGroup
+                    orderby a.CreateOrderTime descending
+                    group a by a.ItemForOrder into g
+                    select new { aKey = g.Key, Items = g };
+
+}
+@{
+    ViewData["Title"] = "我的订单";
+    Layout = "_UserLayout";
+}
+@{
+    if (orderGroup.Count() == 0)
+    {
+        <div class="row text-center">
+            <h4 style="margin:20px auto;color:red">你暂时没有选择商品加入订单中</h4>
+            <h4 style="margin:20px auto;"><a href="../Home/Index">点击此处前往选购商品</a></h4>
+        </div>
+    }
+    else
+    {
+        foreach (var items in GroupDemo)
+        {
+            <div class="panel panel-default row" style="margin-left:5px;border-radius: 0px;">
+                <div class="panel-heading" style="border-radius: 0px;">
+                    <span class="glyphicon glyphicon-ok"></span><b> 订单号：@items.aKey.SortCode.Substring(12)</b> <span style="font-size:12px">（订单日期:@items.aKey.CreateOrderTime.ToString("yyyy-MM-dd")）</span>
+                </div>
+                @foreach (var item in items.Items)
+                {
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                            <div class="list-group-item" style="padding:0; margin:0;border-radius: 0px;">
+                                <ul style="height: 150px;border-bottom: 1px solid #eee;padding-left:10px">
+
+                                    <li class="col-xs-2" style="width:150px;text-align: center;border-right: 1px solid #eeeeee;line-height: 150px"><img width="120px" height="120px" src="@item.ImgPath" alt="商品"></li>
+                                    <li class="col-xs-2" style="padding-top:10px; width:150px;border-right: 1px solid #eeeeee;height: 150px"><span>@item.GoodsName</span></li>
+                                    <li class="col-xs-2" style="padding-top:10px; width:150px;border-right: 1px solid #eeeeee;height: 150px"><span>套餐类型:默认</span></li>
+                                    <li class="col-xs-1" name="ID" style="padding-top:10px; width:120px;text-align: center;border-right: 1px solid #eeeeee;height: 150px">  <p> 单价:</p><p>@item.Price</p></li>
+                                    <li class="col-xs-2" style="padding-top:10px; width:140px;text-align: center;border-right: 1px solid #eeeeee;height: 150px">
+                                        收货人信息
+                                    </li>
+                                    <li class="col-xs-2" style="padding-top:10px; width:130px;text-align: center;border-right: 1px solid #eeeeee;height: 150px">
+                                        <p>数量:</p>
+                                        <p>@item.Count</p>
+                                        <p>应付款:</p>
+                                        <p>@item.TotalPrice</p>
+                                    </li>
+                                    <li class="col-xs-1" style="padding-top:10px; width:95px;cursor:pointer;height: 150px;font-size:12px">
+                                        @if (item.State == "待付款"&&item.HasGoods == false)
+                                        {
+                                            <p>商品已下架</p>
+                                        }
+                                        else if (item.State == "待付款")
+                                        {
+                                            <p><a href="../Home/AddOrderSure?ordersID=@item.ItemForOrder.ID">待付款</a></p>
+                                        }
+                                        else if (item.State == "待发货")
+                                        {
+                                            <p><a href="###">待发货</a></p>
+                                        }
+                                        else if (item.State == "待收货")
+                                        {
+                                            <p><a href="###">待收货</a></p>
+                                        }
+                                        
+                                        <p><a href="#">联系卖家</a></p>
+                                        <p><a href="#">取消订单</a></p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="panel-footer" style="border-radius: 0px;">
+
+                </div>
+            </div>
+        }
+    }
+}

@@ -1,0 +1,152 @@
+﻿.Information .CollectionTitle {
+    font-family: tahoma,tarial,"Lantinghei SC","Microsoft Yahei";
+    font-size: 18px;
+    color: #000;
+    font-weight: 100;
+    padding: 0 0 10px 30px;
+    border-bottom: 2px solid #fd6d37;
+}
+
+.Information .CollectionTitle span
+{
+    font-size:14px;
+}
+
+.commodityList {
+    padding:10px 0px;
+    overflow: hidden;
+}
+
+.commodity_an {
+    width: 20%;
+    float: left;
+   
+}
+
+.commodity_an .commodity_an_one {
+    position: relative;
+    margin: 0px 8px 10px 8px;
+    background: #FFF none repeat scroll 0% 0%;
+    border: 1px solid #E4EAEE;
+    color: #595959;
+    overflow: hidden;
+    min-height: 120px;
+}
+
+    .commodity_an .commodity_an_one a {
+        display: inline-block;
+        color: #FFF;
+        font-size: 12px;
+        font-weight:100;
+    }
+
+    .commodity_an .commodity_an_one .an_a {
+        padding-bottom: 0px;
+        border-bottom: 1px solid #eee;
+    }
+        .commodity_an .commodity_an_one .an_a img {
+        height:110px;
+        }
+/*商品信息*/
+.commodity_an .commodity_an_one .s_pic {
+    padding:10px 4px;
+}
+
+ /*.commodity_an .commodity_an_one .s_pic s_price_box
+ {
+
+ }*/
+
+ .commodity_an .commodity_an_one .s_pic a {
+    font-size: 14px;
+    color: #000;
+    height: 18px;
+    overflow: hidden;
+    line-height: 20px;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+    .commodity_an .commodity_an_one .s-price-box {
+        height: 14px;
+        line-height: 16px;
+        margin: 5px 5px;
+        bottom: 5px;
+        position: absolute;
+        overflow: hidden;
+
+    }
+.commodity_an .commodity_an_one .s_pic .s_price {
+    font-size:15px;
+    margin-right:20px;
+    vertical-align:bottom;
+    color:#F40;
+}
+
+.commodity_an .commodity_an_one .s_pic .s_price .s_price_sign {
+    font-family:Arial;
+    margin-right:4px;
+}
+
+.commodity_an .commodity_an_one .s_pic .s_price .s_value {
+    font-family: Verdana;
+    font-weight:700;
+}
+
+.commodity_an .commodity_an_one .s_histiry_price {
+    font-size:12px;
+    vertical-align:bottom;
+    color:#999;
+}
+
+.commodity_an .commodity_an_one .s_histiry_price .s_price_sign{
+font-family:Arial;
+margin-right:4px;
+}
+
+.commodity_an .commodity_an_one .s_histiry_price .s_value {
+    font-family: Verdana;
+    text-decoration:line-through;
+    font-weight:400;
+}
+
+/*好评*/
+    .commodity_an .commodity_an_one .s_extra_box {
+        font-size: 14px;
+        height: 22px;
+        line-height: 18px;
+        color: #9C9C9C;
+        border-top: 1px solid #eee;
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+        padding-top: 4px
+    }
+
+.ShopcartAndDelete {
+    display: inline-block;
+    height: 20px;
+    width: 100%;
+    background-color:none;
+    opacity: 0.6;
+}
+
+.ShopcartAndDelete .sh_de{
+    display:inline-block;
+    height:100%;
+    width:49%;
+    text-align:center;
+    line-height:20px;
+   background: rgba(0, 0, 0, 0.8) none repeat scroll 0% 0%;
+    color:#fff;
+}
+
+.ShopcartAndDelete .delete_left
+{
+    float:left;
+}
+
+.ShopcartAndDelete .shopcart_right
+{
+    float:right;
+}

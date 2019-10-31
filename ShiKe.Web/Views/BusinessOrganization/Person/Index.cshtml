@@ -1,0 +1,105 @@
+﻿@model IEnumerable<ShiKe.ViewModels.BusinessOrganization.PersonVM>
+@{
+    Layout = "_AdminDesktopLayout";
+}
+
+<div id="personWorkPlace">
+    @Html.Partial("../../Views/BusinessOrganization/Person/_List", Model)
+</div>
+
+<div class="modal fade" id="deleteConfirmModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">删除确认</h4>
+            </div>
+            <div class="modal-body">
+                <p id="deleteModalMessage"></p>                         <!--这是一个空的文字段落标签，用于显示所需要的提示信息-->
+                <p id="deleteModalErrMessage" style="color:red"></p>   <!--这是一个空的文字段落标签，用于显示数据删除操作是否成功-->
+                <input type="hidden" name="personID" id="personID" />   <!--这是一个隐藏的数据标签，用于转移待删除对象的ID-->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" onclick="gotoDelete()">确认</button>
+            </div>
+        </div><!-- /.会话框的内容 -->
+    </div><!-- /.会话框形式 -->
+</div><!-- /.modal -->
+
+<script type="text/javascript">
+    // 人员列表
+    function gotoList(keyword) {
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../Person/List/' + keyword,
+            beforeSend: function () {
+            }
+        }).done(function (data) {
+            document.getElementById("personWorkPlace").innerHTML = data;
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+
+    // 新建或编辑人员信息
+    function gotoCreateOrEdit(id) {
+        // TBD
+    }
+
+    // 查看人员明细信息
+    function gotoDetail(id) {
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../Person/Detail/' + id,
+            beforeSend: function () {
+                // alert("开始访问");
+            }
+        }).done(function (data) {
+            document.getElementById("personWorkPlace").innerHTML = data;
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+
+    // 打开删除人员操作会话框
+    function openDeleteModal(id, alertMessage) {
+        document.getElementById("personID").value = id;
+        document.getElementById("deleteModalMessage").innerText = alertMessage;
+
+        $('#deleteConfirmModal').modal({
+            show: true,
+            backdrop: 'static'
+        });
+    }
+
+    // 执行删除人员操作
+    function gotoDelete() {
+        var pid = document.getElementById("personID").value;
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../Person/Delete/' + pid,
+            beforeSend: function () {
+            }
+        }).done(function (data) {
+            if (data.isOK == true) {
+                $('#deleteConfirmModal').modal('hide')
+                gotoList('');
+            } else {
+                document.getElementById("deleteModalErrMessage").innerText = data.message;
+            }
+
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+</script>

@@ -1,0 +1,55 @@
+﻿@model ShiKe.Entities.BusinessOrganization.SK_WM_Shop
+@{
+    Layout = "_SellerLayout";
+}
+<link href="~/css/BusinessBG/SpecialtyCheck.css" rel="stylesheet" />
+<link href="~/css/BusinessBG/ShopInformation.css" rel="stylesheet" />
+
+<div class="Information">
+    <h3 class="CollectionTitle">店铺信息<span>/ ShopInformation</span></h3>
+    <div class="commodityList">
+        <div class="Info_top">
+            <span>店铺信息</span>
+            <ul>
+                <li class="ul_am_2">
+                    <label>成交订单：@ViewBag.numorder</label>
+                </li>
+                <li class="ul_am_2">
+                    <label>产品数量：@ViewBag.NumGoods</label>
+                </li>
+            </ul>
+        </div>
+        <hr style="border-top:1px solid #fd6d37" />
+        <div class="detailed">
+            <div class="Sp_info">
+                <ul>
+                    <li class="Info_li">
+                        <label>名称：</label><span>@Model.Name</span>
+                    </li>
+                    <li class="Info_li">
+                        <label>店铺电话：</label><span>@Model.Telephone</span>
+                    </li>
+                    <li class="Info_li">
+                        <label>店铺地址：</label><span>@Model.Adress</span>
+                    </li>
+                    <li class="Info_li">
+                        <label>店铺描述：</label><span>@Model.Description</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr style="border-top:1px solid #fd6d37" />
+        <div class="photo_left">
+            <div class="photo_one">
+                <img src="@ViewBag.imgshopBanner" />
+            </div>
+            <ul class="phone_Small">
+                <li class="photo_li"><img src="@ViewBag.imgshopAvatar" /></li>
+            </ul>
+        </div>
+
+        <div class="Operation">
+            <a href="../../BusinessBG/ShopSet/@Model.ID">更改信息</a>
+        </div>
+    </div>
+</div>

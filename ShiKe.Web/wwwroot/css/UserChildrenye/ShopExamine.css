@@ -1,0 +1,165 @@
+/*审核进度*/
+.commodityList {
+    width: 900px;
+    height: auto;
+    border: 1px solid #5cb85c;
+    margin: 40px auto 0;
+    overflow: hidden;
+    padding: 0px 10px;
+}
+
+.Icon_a1 {
+    display: inline-block;
+    width: 118px;
+    height: 118px;
+    padding: 10px;
+    padding-top: 30px;
+}
+
+.Icon_a1 i
+{
+    font-size:100px;
+    z-index:2;
+}
+.ExamineInformation
+{
+    display: inline-block;
+    width:740px;
+    height:100% ;
+    padding:30px 0;
+    margin-left:20px;
+    float:right;
+}
+
+.Information_a1
+{
+    width:auto;
+    height:auto;
+    overflow:hidden;
+}
+
+.ExamineInformation .title_a1
+{
+    display:inline-block;
+    color:#000;
+    font-weight:bold;
+    font-size:26px;
+    margin-right:28px;
+}
+
+.ExamineInformation .Reason_a1
+{
+    display:inline-block;
+    color:red;
+    font-weight: bold;
+}
+
+.Prompt
+{
+    font-size:18px;
+}
+.OneContact {
+    width: 80%;
+    height: auto;
+    padding: 30px 0 30px 20px;
+    background-color: #ffe699;
+}
+
+.OneContact p{
+    font-size:16px;
+}
+
+.OneContact p em
+{
+    color:#666;
+}
+.Read_Rule
+{
+    margin-top:20px;
+}
+    .Read_Rule p {
+        padding-left: 20px;
+        
+    }
+.Read_Rule p i
+{
+    display:inline-block;
+    padding:3px;
+    background-color:#666;
+    border-radius:50%;
+    margin-right:8px;
+}
+
+.Read_Rule p a
+{
+    color:#2f5597;
+}
+
+.sch_div {
+    position: absolute;
+    WIDTH: 120PX;
+    height: 80px;
+    top: 10px;
+    left: -60px;
+    text-align: center
+}
+
+.sch_div_02
+{
+    left:173px;
+}
+
+.sch_div_03 {
+    left: 407px;
+}
+
+.sch_div_04 {
+    left: 640px;
+}
+
+    .sch_div .sch_sp {
+        position: absolute;
+        top: 40px;
+        left: 0;
+        display: block;
+        width: 120px;
+    }
+
+.round_d {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #DCDCDC;
+    text-align-last: center;
+    background-color: #DCDCDC;
+    border-radius: 50%;
+    text-align:center;
+    line-height:32px;
+}
+.sch_div .schedule-one-roundbigone
+{
+    left:0px;
+}
+.schedule-one .schedule-one-line {
+    width: 100%;
+    margin: auto;
+    margin-top: 25px;
+}
+.schedule_roundsmallone {
+    display: inline-block;
+    width: 24px;
+    line-height: 24px;
+    height: 24px;
+    border: 1px solid #DCDCDC;
+    border-radius: 100px;
+    font-size: 16px;
+    text-align: center;
+    background-color: #eee;
+    color: #b5adad;
+}
+
+.schedule_roun_green {
+    background: #27C37C;
+    color:#FFF;
+}
+

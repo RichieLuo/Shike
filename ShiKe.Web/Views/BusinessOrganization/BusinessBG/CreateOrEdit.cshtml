@@ -1,0 +1,217 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model ShiKe.ViewModels.BusinessOrganization.SK_WM_GoodsVM
+@using ShiKe.CustomMvcCoreExtension;
+@using ShiKe.Common.ViewModelComponents.ForMvcHelper
+@{
+    ViewData["Title"] = "添加编辑商品";
+    Layout = "_SellerLayout";
+}
+
+<meta charset="utf-8">
+
+<form class="form-horizontal" id="CreateOrEditGoodsForm" action="../BusinessBG/Save" 
+      method="post" 
+      enctype="multipart/form-data" 
+      data-ajax-update='#updateCreateOrEdit_@Model.ID'
+      data-ajax-mode='replace'
+      data-ajax='true' data-toggle="validator">
+    <input type="hidden" name="ID" id="ID" value="@Model.ID" />
+    <input type="hidden" name="IsNew" id="IsNew" value="@Model.IsNew.ToString()" />
+    <input type="hidden" name="ShelvesTime" id="ShelvesTime" value="@Model.ShelvesTime" />
+    <div class="form-group">
+        <label class="col-sm-2 control-label">分类:</label>
+        <div class="col-sm-10">
+            <div class="input-group-addon" style="width: 150px; padding:0;border:0;">
+                <select name="GoodsCategoryID" class="form-control">
+                    @foreach (var sItem in Model.GoodsCategoryCollection)
+                    {
+                        if (sItem.ID == Model.GoodsCategoryID)
+                        {
+                            <option value="@sItem.ID" selected>@sItem.DisplayName</option>
+                        }
+                        else
+                        {
+                            <option value="@sItem.ID">@sItem.DisplayName</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">商品状态:</label>
+        <div class="col-sm-10">
+            <div class="input-group-addon" style="width: 150px; padding:0;border:0;">
+                <select name="State" class="form-control">
+                    <option>已上架</option>
+                    <option>已下架</option>
+                </select>
+            </div>
+            <label class="control-label">当前状态:@Model.State</label>
+        </div>
+    </div>
+    @{
+        var inputForName = new HtmlInputItemSpecification()
+        {
+            ItemID = "Name",
+            ItemDisplayName = "商品名称",
+            ItemValue = Model.Name,
+            PlaceholderString = "请输入商品名称",
+            AutofocusName = "",
+            OnfocusFuntion = "clearErrStyle(this.id)",
+            OnBlurFunction = ""
+        };
+        @Html.ShiKeBoorStrapInputForGoods(inputForName);
+
+        var inputForDescription = new HtmlInputItemSpecification()
+        {
+            ItemID = "Description",
+            ItemDisplayName = "商品描述",
+            ItemValue = Model.Description,
+            PlaceholderString = "请输入商品描述",
+            AutofocusName = "",
+            OnfocusFuntion = "clearErrStyle(this.id)",
+            OnBlurFunction = ""
+        };
+        @Html.ShiKeBoorStrapInputForArea(inputForDescription);
+
+        var inputForPrice = new HtmlInputItemSpecification()
+        {
+            ItemID = "Price",
+            ItemDisplayName = "商品售价",
+            ItemValue = Convert.ToString(Model.Price),
+            PlaceholderString = "请输入商品售价",
+            AutofocusName = "",
+            OnfocusFuntion = "clearErrStyle(this.id)",
+            OnBlurFunction = ""
+        };
+        @Html.ShiKeBoorStrapInputForGoods(inputForPrice);
+
+
+        var inputForFacadePrice = new HtmlInputItemSpecification()
+        {
+            ItemID = "FacadePrice",
+            ItemDisplayName = "门店售价",
+            ItemValue = Convert.ToString(Model.FacadePrice),
+            PlaceholderString = "请输入门店售价",
+            AutofocusName = "",
+            OnfocusFuntion = "clearErrStyle(this.id)",
+            OnBlurFunction = ""
+        };
+        @Html.ShiKeBoorStrapInputForGoods(inputForFacadePrice);
+
+
+        var inputForUnit = new HtmlInputItemSpecification()
+        {
+            ItemID = "Unit",
+            ItemDisplayName = "商品单位",
+            ItemValue = Model.Unit,
+            PlaceholderString = "请输入商品单位",
+            AutofocusName = "",
+            OnfocusFuntion = "clearErrStyle(this.id)",
+            OnBlurFunction = ""
+        };
+        @Html.ShiKeBoorStrapInputForGoods(inputForUnit);
+
+
+        var inputForStock = new HtmlInputItemSpecification()
+        {
+            ItemID = "Stock",
+            ItemDisplayName = "商品库存",
+            ItemValue =Convert.ToString(Model.Stock),
+            PlaceholderString = "请输入商品库存",
+            AutofocusName = "",
+            OnfocusFuntion = "clearErrStyle(this.id)",
+            OnBlurFunction = ""
+        };
+        @Html.ShiKeBoorStrapInputForGoods(inputForStock);
+    }    
+   
+    <div class="form-group">
+        <label for="input-image-1" class="col-sm-2 control-label">商品图片：</label>
+        <div class="col-sm-10">
+            <input id="input-image-1" name="input-image" type="file" multiple class="file-loading" accept="image/*">
+        </div>
+    </div>
+    @*<div class="form-group">
+            <label for="SortCode" class="col-sm-2 control-label">商品标签：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Label" id="Label" placeholder="请输入标签" value="@Model.Label">
+            </div>
+        </div>*@    
+    
+</form>
+<div class="col-xs-12" style="height: 70px; padding-top: 20px">
+    <p>
+        <button class="btn btn-lg btn-primary" style="float:right" onclick="postGoodsCreateOrEditForm()">立即上架</button>
+    </p>
+</div>
+<script type="text/javascript">
+
+    $("#input-image-1").fileinput({
+        allowedFileExtensions: ["jpg", "png", "gif"],
+        maxFileCount: 4,
+            
+            enctype: 'multipart/form-data',
+            resizeImage: true,
+            language: 'zh',
+        });
+
+    /*
+     * 使用 ajaxSubmit 方法提交在 _CreateApplicationUser.cshtml 中定义的表单：ApplicationUserCreateForm
+     */
+    function postGoodsCreateOrEditForm() {
+        var systemWorkPlaceFormOptions = {
+            dataType: 'json',
+            success: function (validateMessage) {
+                if (validateMessage.isOK === true) {
+                    //gotoList(validateMessage.validateMessageItems[0].message);
+                    window.location.href = '../../BusinessBG/Index'
+                }
+                else {
+                    $.each(validateMessage.validateMessageItems, function (i, item) {
+                        activeErrStatus(item.messageName, item.message);
+                    });
+                }
+            }
+        };
+        $('#CreateOrEditGoodsForm').ajaxSubmit(systemWorkPlaceFormOptions);
+    }
+
+
+    // 呈现错误消息
+    function activeErrStatus(idName, msg) {
+        document.getElementById(idName + "_DIV").classList.add("has-error","has-feedback");
+        document.getElementById(idName + "_Help").innerHTML = '<span class="help-block small" >'+msg+'</span>';
+    }
+
+    // 清理错误消息，输入域失去焦点的时候使用
+    function clearErrStyle(idName) {
+        document.getElementById(idName + "_DIV").classList.remove("has-error", "has-feedback");
+        document.getElementById(idName + "_Help").innerHTML = "";
+    }
+
+    // 失去焦点的时候进行处理的内容
+    function checkIfValidate(idName) {
+        var result = document.getElementById(idName).value;
+        alert(result);
+    }
+
+    $("#input-image-1").fileinput({
+        allowedFileExtensions: ["jpg", "png", "gif"],
+        maxFileCount: 1,
+        uploadUrl: 'URL',
+        enctype: 'multipart/form-data',
+        resizeImage: true,
+        language: 'zh',
+        showUpload: false,
+    });
+
+
+</script>
+
+
+
+
+
+

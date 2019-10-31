@@ -1,0 +1,84 @@
+﻿@charset "utf-8";
+/* CSS Document */
+a:hover
+{
+    text-decoration:none;
+}
+
+.sidebar-left {
+    margin-left: 10px;
+    margin-right: -10px;
+    padding: 0px 8px;
+    font-size: 14px;
+    background: #fff;
+}
+
+    .sidebar-left a {
+        display: block;
+        overflow: hidden;
+        text-decoration: none;
+        line-height: 28px;
+        color: #000;
+        height: 28px;
+    }
+
+    .sidebar-left li {
+        text-align: center;
+    }
+
+        .sidebar-left li.active a {
+            color: #F03726;
+            font-weight: 600;
+        }
+
+li.person {
+    border-bottom: 1px solid #bdc8db;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+    li.person:first-child {
+        border-bottom: 3px solid #fd6d37;
+        position: relative;
+    }
+
+        li.person:first-child a {
+            font-size: 16px;
+            line-height: 32px;
+            font-weight: 700;
+        }
+
+            li.person:first-child a i {
+                position: absolute;
+                left: 10px;
+                font-size: 15px;
+            }
+
+    li.person p {
+        position: relative;
+        height: 28px;
+        line-height: 28px;
+        font-size: 14px;
+    }
+
+        li.person p i {
+            position: absolute;
+            left: 0px;
+            font-size: 15px;
+            color: #fd6d37;
+            width: 28px;
+        }
+
+.person ul {
+    padding-left: 0px;
+    border: none;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin: 0px auto;
+    font-size: 12px;
+}
+
+    .person ul li a {
+        color: #999;
+        font-size: 12px;
+    }

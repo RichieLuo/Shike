@@ -1,0 +1,165 @@
+﻿@model IEnumerable<ShiKe.ViewModels.BusinessOrganization.SK_WM_ShopVM>
+@{
+    var pageGroup = ViewBag.PageGroup as ShiKe.Common.ViewModelComponents.PagenateGroup;
+    var pageParameter = ViewBag.PageParameter as ShiKe.Common.JsonModels.ListPageParameter;
+
+}
+    <meta charset="utf-8" />
+    <div>       
+        <div class="input-group pull-right" style="width:250px">
+            <input id="inputKeyWord" type="text" class="form-control" placeholder="输入关键词..." value="">
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="button" onclick="gotoSearch()">查询</button>
+            </span>
+        </div>
+        <h2 class="sub-header">全部店铺管理</h2>
+    </div>
+    <div class="table-responsive">
+        <input type="hidden" id="SelectType" name="type" value="@ViewBag.GoodsType" />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center" width="50px;">编号</th>                    
+                    <th class="text-center" width="100px">店铺名称</th>
+                    <th class="text-center">店主</th>
+                    <th class="text-center" width="100px">店铺LOGO</th>
+                    <th class="text-center">店铺描述</th>
+                    <th class="text-center" width="100px">店铺电话</th>
+                    <th class="text-center" width="150px">入驻时间</th>
+                    <th class="text-center" width="150px">店铺地址</th>
+                    <th class="text-center" style="width:250px">店铺操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                var counter = 0;
+                foreach (var shop in Model)
+                {
+                    counter++;
+                    <tr>
+                        <td class="text-center">@counter</td>
+                        <td class="text-center">@shop.Name</td>
+                        @if (shop.ShopForUser!=null)
+                        {
+                            <td class="text-center">@shop.ShopForUser.UserName</td>
+                        }
+                        else
+                        {
+                            <td class="text-center">默认数据 无店主</td>
+                        }
+                       
+                        @if (shop.ShopAvatarPath==null)
+                        {
+                            <td class="text-center"><img src="~/images/noimage.gif" alt="店铺LOGO" style="width:100px;height:50px" /></td>
+                        }
+                        else
+                        {
+                            <td class="text-center"><img src="@shop.ShopAvatarPath" alt="店铺LOGO" style="width:100px;height:50px" /></td>
+                        }
+                       
+                        <td>@shop.Description</td>
+                        <td class="text-center">@shop.Telephone</td>
+                        <td class="text-center">@shop.SettledDateTime</td>
+                        <td>@shop.Adress</td>
+                        <td class="text-center" style="width:250px">
+                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                                <a href="../../Home/Shop/@shop.ID" type="button" class="btn btn-default">查看店铺</a>                               
+                                <button type="button" class="btn btn-default" onclick="Unfinished()">店铺信息</button>
+                                <button type="button" class="btn btn-default"
+                                         onclick="gotoExecuteIllegal('@shop.ID.ToString()')">
+                                    店铺处理
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+
+                    var additionalRowAmount = pageGroup.PageSize - Model.Count();
+                    for (int i = 0; i < additionalRowAmount; i++)
+                    {
+                        <tr style="height:67px">
+                            <td>　</td>
+                            <td>　</td>
+                            <td>　</td>
+                            <td>　</td>
+                            <td>　</td>
+                            <td>　</td>
+                            <td>　</td>
+                            <td>　</td>
+                            <td>　</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+<!-- 处理翻页器 -->
+<div id="pagenateArea">
+    @if (pageGroup.PagenateGroupItem == null)
+    {
+        <div class="center-block"> 根据当前查询的条件，没有任何结果。</div>
+    }
+    else
+    {
+        <nav aria-label="...">
+            <ul class="pagination">
+                @if (pageGroup.PagenateGroupItem.FirstIndex == 1)
+                {
+                    <li class="disabled"><a href="javascript:gotoPage('1')" aria-label="第一页"><span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span></a></li>
+                    <li class="disabled"><a href="#" aria-label="回退一组"><span aria-hidden="true" class="glyphicon glyphicon-backward"></span></a></li>
+                    if (pageGroup.PageIndex >= 2)
+                    {
+                        <li class=""><a href="javascript:gotoPage('@(pageGroup.PageIndex-1)')" aria-label="前一页"><span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span></a></li>
+                    }
+                    else
+                    {
+                        <li class="disabled"><a href="#" aria-label="前一页"><span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span></a></li>
+                    }
+                }
+                else
+                {
+                    <li class=""><a href="javascript:gotoPage('1')" aria-label="第一页"><span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span></a></li>
+                    <li class=""><a href="javascript:gotoPage('@(pageGroup.PagenateGroupItem.FirstIndex-1)')" aria-label="回退一组"><span aria-hidden="true" class="glyphicon glyphicon-backward"></span></a></li>
+                    <li class=""><a href="javascript:gotoPage('@(pageGroup.PageIndex-1)')" aria-label="前一页"><span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span></a></li>
+                }
+                @for (int i = pageGroup.PagenateGroupItem.FirstIndex; i < pageGroup.PagenateGroupItem.LastIndex + 1; i++)
+                {
+                    var activeString = "";
+                    if (i == pageGroup.PageIndex)
+                    {
+                        activeString = "active";
+                    }
+                    <li class="@activeString "><a href="javascript:gotoPage('@i')">@i <span class="sr-only">(current)</span></a></li>
+                }
+                @if (pageGroup.PagenateGroupItem.LastIndex == pageGroup.PageAmount)
+                {
+                    if (pageGroup.PageIndex < pageGroup.PageAmount)
+                    {
+                        <li class=""><a href="javascript:gotoPage('@(pageGroup.PageIndex+1)')" aria-label="下一页"><span aria-hidden="false" class="glyphicon glyphicon-chevron-right"></span></a></li>
+                    }
+                    else
+                    {
+                        <li class="disabled"><a href="#" aria-label="下一页"><span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span></a></li>
+                    }
+                    <li class="disabled"><a href="#" aria-label="向前一组"><span aria-hidden="true" class="glyphicon glyphicon-forward"></span></a></li>
+                    <li class="disabled"><a href="#" aria-label="最后页"><span aria-hidden="true" class="glyphicon glyphicon-fast-forward"></span></a></li>
+                }
+                else
+                {
+                    <li class=""><a href="javascript:gotoPage('@(pageGroup.PageIndex+1)')" aria-label="后一页"><span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span></a></li>
+                    <li class=""><a href="javascript:gotoPage('@(pageGroup.PagenateGroupItem.LastIndex+1)')" aria-label="向前一组"><span aria-hidden="true" class="glyphicon glyphicon-forward"></span></a></li>
+                    <li class=""><a href="javascript:gotoPage('@pageGroup.PageAmount')" aria-label="最后一条"><span aria-hidden="true" class="glyphicon glyphicon-fast-forward"></span></a></li>
+                }
+
+            </ul>
+        </nav>
+    }
+</div>
+
+<script>
+    function gotoPage(pageIndex) {
+        //$('#nncqPageIndex').val(pageIndex);
+        gotoShopList(pageIndex);
+    }
+</script>
+

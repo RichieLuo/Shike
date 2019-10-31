@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ShiKe.ViewModels.ApplicationOrganization.ApplicationRoleVM>
+@{
+    Layout = "_RoleAndUserLayout";
+}
+
+<div id="createOrEditArea">
+    @Html.Partial("../../Views/ApplicationOrganization/ApplicationRoleAndUser/_CreateOrEdit", Model.FirstOrDefault())
+</div>
+
+
+<script type="text/javascript">
+    function gotoCreateOrEdit(id) {
+        // 访问后台 CreateOrEdit 方法，获取新建或者编辑数据的呈现 imports page 页面内容
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../ApplicationRoleAndUser/CreateOrEditForApplicationRole/' + id,
+            beforeSend: function () {
+                // alert("开始访问");
+            }
+        }).done(function (data) {
+            document.getElementById("createOrEditArea").innerHTML = data;
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+
+    function postApplicationRoleCreateOrEditForm() {
+        var applicationRoleFormOptions = {
+            target:'#createApplicationUser',
+            // dataType: 'json',
+            success: function (data) {
+                //document.getElementById("createApplicationUser").innerHTML = data;
+                //if (saveStatus.saveOk === true) {
+                //    window.location.href = saveStatus.statusMessage;
+                //}
+            }
+        };
+        $('#ApplicationRoleCreateOrEditForm').ajaxSubmit(applicationRoleFormOptions);
+    }
+
+</script>
+

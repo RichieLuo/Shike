@@ -1,0 +1,557 @@
+.user_orderinfo 
+{    
+    min-width: 850px;
+    height: auto;
+    background-color: #fff;
+    font-size:14px;
+    overflow: hidden;
+    display:block;
+}
+.user_orderinfo img {
+    width: 100%;
+}
+    .user_orderinfo a:link, a:visited {
+        text-decoration: none;
+        outline: none;
+        color: #337ab7;
+    }
+    .user_orderinfo .info_little {
+        display: none;
+    }
+/*布局*/
+    .user_orderinfo .order_top {
+        display: none;
+        width: 100%;
+        overflow: hidden;
+        padding: 10px 0px;
+        border: 1px solid #EEE;
+    }
+    .user_orderinfo .th, .td {
+        float: left;
+        text-align: center;
+    }
+    .user_orderinfo .item_list {
+        position: relative;
+        overflow: hidden;
+    }
+    .user_orderinfo .td_price {
+        position: static;
+        top: 0px;
+        right: 5px;
+        width: 10%;
+        text-align: center;
+    }
+    .user_orderinfo .td_number {
+        position: static;
+        top: 20px;
+        right: 5px;
+        width: 5%;
+        text-align: center;
+    }
+    .user_orderinfo .td_operation {
+        position: static;
+        top: 40px;
+        right: 5px;
+        width: 15%;
+        text-align: center;
+    }
+
+/*编号*/
+    .user_orderinfo .dd_num {
+        width: 50%;
+        float: left;
+        max-width: 500px;
+    }
+    .user_orderinfo .order_title {
+        overflow: hidden;
+        padding: 10px 0px;
+    }
+        .user_orderinfo .order_title span {
+            display: none;
+        }
+
+/*商品信息*/
+    .user_orderinfo .item_pic {
+        width: 80px;
+        height: 80px;
+        border: 1px solid #EEE;
+        float: left;
+        overflow: hidden;
+        margin-top: 20px;
+        margin-left: 3px;
+    }
+
+    .user_orderinfo .item_info {
+        margin: 0px 0px 0px 91px;
+        padding-right: 25px;
+    }
+    .user_orderinfo .item_basic_info {
+        padding-top: 20px;
+        text-align: left;
+    }
+    .user_orderinfo .td_price, .td_number, .td_operation {
+        margin-top: 20px;
+    }
+
+    .user_orderinfo .move_right .confirmbtn {
+        font-size: 14px;
+        color: #FFF;
+        background-color: #FF4F00;
+        border-color: #FF4F00;
+        display: inline-block;
+        padding: 0.5em 1em;
+        font-weight: normal;
+        text-align: center;
+        white-space: nowrap;
+        border: 1px solid transparent;
+        cursor: pointer;
+        user-select: none;
+    }
+        .user_orderinfo .confirmbtn:hover {
+            background-color: #FF4400;
+        }
+    .user_orderinfo .info_little {
+        color: #9C9C9C;
+    }
+
+/*右侧操作定位*/
+    .user_orderinfo .order_content {
+        position: relative;
+    }
+    .user_orderinfo .order_left ul {
+        width: 100%;
+        overflow: hidden;
+    }
+    .user_orderinfo .order_right {
+        width: 100%;
+        overflow: hidden;
+    }
+
+        .user_orderinfo .order_right .td_amount {
+            width: 100%;
+            text-align: right;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 10px 5px;
+        }
+            .user_orderinfo .order_right .td_amount p {
+                display: inline;
+                font-weight: 100;
+            }
+    .user_orderinfo .td_status p.Mystatus {
+        position: absolute;
+        top: -25px;
+        right: 0px;
+        color: #DD514C;
+    }
+    .user_orderinfo .td_status p.order_info {
+        height: 32px;
+        line-height: 32px;
+        border: 1px solid #E4EAEE;
+        padding: 0px 5px;
+    }
+
+/*退货管理*/
+    .user_orderinfo .move_right {
+        float: right;
+    }
+/*修改布局*/
+    .user_orderinfo .td_status p.order_info {
+        float: left;
+        margin-right: 5px;
+    }
+
+/*订单详情*/
+/*进度条*/
+ .order_progress {
+        margin: 0px auto 10px;
+        margin-top: 40px;
+        border: 0px;
+        height: 60px;
+        max-width: 700px;
+        font-size: 14px;
+        font: inherit;
+        box-sizing: border-box;
+        vertical-align: baseline;
+        font-family: tahoma,tarial,"Lantinghei SC","Microsoft Yahei";
+    }
+.order_progress_list {
+        height: 66px;
+        font-size: 0px;
+        text-align: justify; /*两端对齐*/
+    }
+
+/*步骤背景*/
+ .order_progress_list .step {
+            display: inline-block;
+            width: 60px;
+            text-align: center;
+            color: #999;
+            letter-spacing: -5px;
+            font-size: 14px;
+            font: inherit;
+        }
+ .order_progress_list .stage_name {
+            padding-top: 10px;
+            font-size: 12px;
+            line-height: 14px;
+            letter-spacing: normal;
+            word-spacing: normal;
+        }
+ .op_stage_icon_bg {
+        position: relative;
+        display: inline-block;
+        background-image: url(../../images/UserChildren/sprite01.png);
+        background-position: -45px -135px;
+        width: 29px;
+        height: 29px;
+    }
+
+/*变换的背景*/
+ .op_stage_icon_inner .icon_bg {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+    }
+ .step_1 .op_stage_icon_inner .icon_bg {
+        background-image: url(../../images/UserChildren/sprite01.png);
+        background-position: -79px -135px;
+        width: 19px;
+        height: 19px;
+    }
+ .step_2 .op_stage_icon_inner .icon_bg {
+        background-position: -103px -135px;
+        width: 19px;
+        height: 19px;
+    }
+ .op_stage_icon_inner {
+        position: relative;
+        z-index: 20;
+        display: inline-block;
+        width: 19px;
+        height: 19px;
+        line-height: 19px;
+        vertical-align: top;
+        margin-top: 5px;
+        margin-left: -24px;
+        color: #B5B5B5;
+        font-size: 12px;
+        letter-spacing: normal;
+        word-spacing: normal;
+    }
+ .u_progress_placeholder {
+        display: inline-block;
+        width: 100%;
+        height: 0px;
+        font-size: 0px;
+        line-height: 0px;
+        overflow: hidden;
+    }
+ .u_progress_bar {
+        margin: -56px 40px 0px;
+        background-color: #DCDCDC;
+        height: 5px;
+        font-size: 0px;
+        padding: 2px 0px;
+    }
+ .u_progress_bar_inner {
+        position: relative;
+        z-index: 10;
+        width: 0px;
+        height: 5px;
+        transition: width 1s .5s linear;
+        background-color: #23C279;
+    }
+
+/*物流信息*/
+ .order_logistics {
+        position: relative;
+        font-size: 14px;
+        padding: 10px 40px;
+        border-top: 1px solid #E4EAEE;
+    }
+ .latest_logistics {
+        margin-left: 30px;
+        margin-right: 15px;
+    }
+    .user_orderinfo .order_logistics .icon_log {
+        position: absolute;
+        top: 50%;
+        margin-top: -9px;
+        margin-left: 24px;
+        width: 22px;
+        left: 10px;
+    }
+    .user_orderinfo .order_logistics span.icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        margin-top: -10px;
+    }
+
+/*收货地址*/
+    .user_orderinfo .order_addresslist {
+        font-size: 14px;
+        width: 100%;
+        padding: 10px;
+        border-top: 1px solid #E4EAEE;
+        position: relative;
+    }
+    .user_orderinfo .icon_add {
+        background: url(../../images/UserChildren/addicon.png) 4px 3px no-repeat;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 50%;
+        margin-top: -10px;
+    }
+    .user_orderinfo .new_delivery, .new-tit.new_p_re {
+        padding: 2px 0px 2px 30px;
+        display: block;
+    }
+.user_orderinfo .order_title,.user_orderinfo .td_status p.Mystatus
+{
+    display:none;
+}
+    .user_orderinfo .td_status p.Mystatus {
+        right: 0;
+    }
+
+
+@media only screen and (min-width:640px)
+{
+    .user_orderinfo .order_top {
+        display: block;
+    }
+    .user_orderinfo .dd_num {
+        width: 50%;
+        padding-left: 10px;
+    }
+    .user_orderinfo .order_title span {
+        display: inline;
+    }
+    .user_orderinfo .th {
+        line-height: 16px;
+    }
+    /*订单信息*/
+    .user_orderinfo .order_infomain .order_status3 .item_status {
+        margin-top: -8px;
+    }
+    .user_orderinfo .order_infomain .order_status4 .item_status {
+        margin-top: 0px;
+    }
+    .user_orderinfo .item_amount {
+        font-size: 14px;
+        font-family: "Microsoft Yahei";
+    }
+    /*布局*/
+    .user_orderinfo .td_price, .td_number {
+        margin-top: 23px;
+    }
+    .user_orderinfo .th_item, .td_item {
+        width: 67%;
+        overflow: hidden;
+    }
+    .user_orderinfo .th_price, .td_price {
+        position: static;
+        width: 10%;
+        text-align: center;
+    }
+    .user_orderinfo .th_number, .td_number {
+        position: static;
+        width: 8%;
+        text-align: center;
+    }
+    .user_orderinfo .th_operation, .td_operation {
+        position: static;
+        width: 15%;
+        text-align: center;
+    }
+    .user_orderinfo .th_amount, .th_status, .th_change {
+        display: none;
+    }
+    .user_orderinfo .td_amount {
+        font-size: 16px;
+    }
+    .user_orderinfo .td_status p.Mystatus {
+        color: #d2364c;
+        text-align: center;
+        width: 15%;
+        top: -30px;
+    }
+
+    /*退货管理*/
+    .user_orderinfo .change.move_right {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 10%;
+        text-align: center;
+    }
+    .user_orderinfo .order_title,.user_orderinfo .td_status p.Mystatus
+    {
+        display:block;
+    }
+    .user_orderinfo p.Mystatus {
+        display: block;
+    }
+}
+@media only screen and (min-width:1025px) 
+{
+    /*布局*/
+    .user_orderinfo .th_item, .td_item {
+        width: 40%;
+        overflow: hidden;
+    }
+
+    .user_orderinfo .th_price, .td_price {
+        width: 10%
+    }
+
+    .user_orderinfo .th_number, .td_number {
+        width: 5%
+    }
+
+    .user_orderinfo .th_operation, .td_operation {
+        width: 15%
+    }
+
+    .user_orderinfo .th_amount, .th_status, .th_change {
+        display: block;
+        width: 10%
+    }
+    /*右侧操作定位*/
+    .user_orderinfo .order_content {
+        position: relative;
+        overflow: hidden;
+        padding: 5px;
+    }
+    .user_orderinfo .order_left {
+        border: 1px solid #E4EAEE;
+        padding: 5px;
+    }
+        .user_orderinfo .order_left ul {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .user_orderinfo .order_content .order_right {
+        width: 30%;
+        position: absolute;
+        top: 38%;
+        margin-top: -16px;
+        right: 0;
+        overflow: visible;
+    }
+
+    .user_orderinfo .order_right .td {
+        width: 33.33%;
+        float: left;
+        text-align: center;
+        position: static;
+        padding: 0px 0px;
+    }
+
+    .user_orderinfo .order_right .td_amount {
+        font-size: 12px;
+    }
+
+        .user_orderinfo .order_right .td_amount p {
+            display: block;
+        }
+
+    .user_orderinfo .order_right .td_status p.Mystatus {
+        position: static;
+        width: 100%;
+        /*color: #000;*/
+    }
+
+    .user_orderinfo .order_right .td_status p.order_info {
+        height: 16px;
+        line-height: 16px;
+        border: none;
+        padding: 0px 0px;
+    }
+
+    .user_orderinfo .move_right {
+        float: none;
+    }
+
+    /*退换货管理*/
+    .user_orderinfo .td_moneystatus {
+        width: 100%;
+    }
+
+    .user_orderinfo .change.move_right {
+        position: absolute;
+        top: 0;
+        right: 30%;
+    }
+
+    /*修改布局*/
+    .user_orderinfo .td_status p.order_info {
+        float: none;
+        margin-right: 0px;
+    }
+
+    .user_orderinfo .order_status3 .item_status {
+        margin-top: -16px;
+    }
+
+    .user_orderinfo .order_status4 .item_status, .order_status5 .item_status {
+        margin-top: -8px;
+    }
+
+    .user_orderinfo .order_status0 .item_status {
+        margin-top: 8px;
+    }
+
+    /*修改订单详情*/
+    .user_orderinfo .order_infoaside {
+        margin: 20px 0px;
+        overflow: hidden;
+        max-width: 900px;
+    }
+
+    .user_orderinfo .order_logistics {
+        float: right;
+        width: 65%;
+        border: none;
+        height: 170px;
+        position: relative;
+    }
+
+    .user_orderinfo .order_addresslist {
+        float: left;
+        border: none;
+        width: 280px;
+        height: 170px;
+        padding-left: 60px;
+    }
+
+    .user_orderinfo .order_address {
+        width: 252px;
+        background: url(../../images/UserChildren/peraddbg.png)no-repeat scroll 0% 0%;
+        height: 151px;
+        margin: 0px auto;
+        padding: 10px;
+    }
+
+    .user_orderinfo .order_logistics .icon_log {
+        top: 0px;
+        margin-top: 12px
+    }
+    .user_orderinfo .icon_add {
+        top: 0px;
+        margin-top: 57px
+    }
+    .user_orderinfo .inquire {
+        display: block;
+        position: absolute;
+        bottom: 50px;
+    }
+
+    .user_orderinfo .order_logistics span.icon {
+        display: none;
+    }
+}

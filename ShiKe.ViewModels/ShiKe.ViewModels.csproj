@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShiKe.Common\ShiKe.Common.csproj" />
+    <ProjectReference Include="..\ShiKe.DataAccess\ShiKe.DataAccess.csproj" />
+    <ProjectReference Include="..\ShiKe.Entities\ShiKe.Entities.csproj" />
+  </ItemGroup>
+
+</Project>

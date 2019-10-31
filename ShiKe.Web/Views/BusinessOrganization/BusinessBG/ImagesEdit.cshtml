@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ShiKe.ViewModels.Attachments.BusinessImageVM>
+@{
+    ViewData["Title"] = "编辑图片";
+    Layout = "_SellerLayout";
+}
+
+
+<div class="col-xs-12">
+    <div class="row">
+       
+        <h5 class="sub-header">当前正在编辑 @ViewBag.Goods.Name 的图片</h5>
+    </div>
+    <div class="row">
+        @foreach (var img in Model)
+        {
+            <div class="col-xs-4" id="@img.ID.ToString()_box">
+
+                <div class="file-preview-frame krajee-default  kv-preview-thumb">
+                    <div class="kv-file-content">
+                        @if (img.IsForTitle == true)
+                        {
+                            <div id="@img.ID.ToString()_DIV" class="IsTitle"></div>
+                        }
+                        else
+                        {
+                            <div id="@img.ID.ToString()_DIV" class=""></div>
+                        }
+                        <img class="file-preview-image kv-preview-data rotate-64709 is-portrait-gt4" style="width: 240px; height: 160px; margin-top: 0px;" src="@img.UploadPath" alt="@*@img.DisplayName*@">
+                    </div>
+                    <div class="file-thumbnail-footer" style="height:40px;width:240px">
+                        <button type="button" class="btn btn-default" onclick="saveCover('@img.ID.ToString()')">设为封面</button>
+                        <button type="button" class="btn btn-default"
+                                onclick="openDeleteModal('@img.ID.ToString()','确认要删除该图片吗','deleteImg')">
+                            删除
+                        </button>
+                    </div>
+                </div>
+                <div id="@img.ID.ToString()_Help"></div>
+            </div>
+        }
+    </div>
+    <div class="row">
+        <div class="col-xs-10">
+            <form class="text-center" action="../../BusinessBG/SaveImg" method="post" enctype="multipart/form-data" id="uploadFilesForm">
+
+                <input id="input-image-1" name="input-image" type="file" multiple class="file" accept="image/*">
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("../../Views/BusinessOrganization/PublicView/_ModalForDelete")
+<script>
+        $("#input-image-1").fileinput({
+            allowedFileExtensions: ["jpg", "png", "gif"],
+            maxFileCount: 4,
+            uploadUrl: '../../BusinessBG/SaveImg?id=@ViewBag.Goods.ID',
+            enctype: 'multipart/form-data',
+            resizeImage: true,
+            language: 'zh',
+            showUpload: true,
+        });
+
+</script>
+
+
+
+
+
+

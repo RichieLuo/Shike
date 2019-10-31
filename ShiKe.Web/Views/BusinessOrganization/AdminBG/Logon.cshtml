@@ -1,0 +1,224 @@
+﻿
+@{
+    ViewData["Title"] = "系统管理员登录 - 食刻后台管理系统";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+    <title>系统管理员登录 - 食刻后台管理系统</title>
+
+    <style type="text/css">
+        #bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+            #bg img {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: auto;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+            }
+
+        .logon-page {
+            width: 400px;
+            padding: 260px 0 0 0;
+            margin: auto;
+        }
+
+        .form {
+            position: relative;
+            z-index: 1;
+            background: rgba(255,255,255,1);
+            max-width: 400px;
+            margin: 0 auto 20px;
+            padding: 20px 45px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        }
+
+            .form .logon-form {
+                position: relative;
+            }
+
+            .form h3 {
+                color: #222;
+                font-weight: bold;
+                margin-bottom: 20px;
+                margin-top:5px;
+            }
+
+            .form > p {
+                padding-top: 20px;
+            }
+
+            .form p a {
+                color: #fff;
+            }
+
+            .form input {
+                font-family: "Roboto", sans-serif;
+                outline: 0;
+                background: #f2f2f2;
+                width: 100%;
+                border: 0;
+                margin: 0 0 15px;
+                padding: 15px;
+                box-sizing: border-box;
+                font-size: 14px;
+                padding-left: 12px;
+
+            }
+
+            .form button {
+                font-family: "Microsoft YaHei","Roboto", sans-serif;
+                border: 0;
+                border-radius: 0;
+                width: 100%;
+                padding: 10px;
+                cursor: pointer;
+                margin-top: 20px;
+            }
+
+                .form button:hover, .form button:active, .form button:focus {
+                    background: #43A047;
+                }
+
+
+        body {
+            /*background: url(../images/adbg.jpg);
+            background-size:100%;*/
+            font-family: "Microsoft YaHei", "Roboto", sans-serif;
+        }
+
+        #userICO {
+            position: absolute;
+            top: 18px;
+            left: 20px;
+            color: #5F6265;
+        }
+          
+
+        #passICO {
+            position: absolute;
+            top: 83px;
+            left: 20px;
+            color: #5F6265;
+        }
+
+        #codeICO {
+            position: absolute;
+            top: 150px;
+            left: 20px;
+            color: #5F6265;
+            z-index:1;
+        } 
+        #UserName {
+            padding-left: 50px;
+        }
+
+        #Password {
+            padding-left: 50px;
+        }
+
+        #codeValidValue {
+            padding-left: 50px;
+            margin-bottom: 0;
+        }
+
+        #code {
+            font-family: Arial;
+            font-style: italic;
+            font-weight: bold;
+            border: 0;
+            letter-spacing: 2px;
+            color: #5cb85c;
+            width: 85px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0);
+            margin-bottom: 0;
+            font-size: 16px;
+        }
+
+        .copyright {
+            position: absolute;
+            left: 0;
+            bottom: 0px;
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            color:#fff;
+            background:rgba(0,0,0,.2);
+            padding:10px 0;
+        }
+            .copyright p {
+            margin:0 !important;
+            }
+            .copyright a {
+              text-decoration:none;
+              color:#fff;
+            }
+
+        #logonModalErrMessage {
+            margin: 15px 0;
+            margin-bottom: 0;
+            color:red;
+        }
+            #logonModalErrMessage a {
+                text-decoration:none;
+                color:blue;
+            }
+    </style>
+
+</head>
+<body>
+    <div id="bg">
+        <img src="~/images/Admin/login_bg_ad.jpg" />
+    </div>
+    <div class="htmleaf-container">
+        <div id="wrapper" class="logon-page">
+            <div id="logon_form" class="form">
+                <h3>食客后台管理系统</h3>
+                <form class="logon-form" id="LogonForm" method="post"
+                      data-ajax-mode='replace'
+                      data-ajax='true' data-toggle="validator">
+                    <span class="glyphicon glyphicon-user" id="userICO" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-lock" id="passICO" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-bookmark" id="codeICO" aria-hidden="true"></span>
+                    <input type="text" placeholder="用户名" id="UserName" name="UserName" />
+                    <input type="password" placeholder="密码" id="Password" name="Password" />
+                    <div class="input-group">
+                        <input type="text" placeholder="验证码" id="codeValidValue" />
+                        <span class="input-group-addon" style="padding: 0;border: 0;border-radius: 0;">
+                            <input type="button" id="code" onclick="createCode()" value="">
+                        </span>
+                    </div>
+                    <p id="logonModalErrMessage"></p>     <!--这是一个空的文字段落标签，用于显示登录操作状态 -->
+                    <button type="button" class="btn btn-success" onclick="Logon();">登　录</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="copyright text-center">
+        <p>Power By 柳职院2018届毕业生作品展示 Copyright&copy;2017&nbsp;<a href="###">食客-美食美客网</a>&nbsp;All Right Reserved </p>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/for-admin-logon.js"></script>
+</body>
+</html>

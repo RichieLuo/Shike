@@ -1,0 +1,19 @@
+﻿<!-- 用于处理业务数据新增或者编辑数据的弹出会话框 -->
+
+<div class="modal fade" id="createOrEditModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="createOrEditModalTitle">编辑用户数据</h4>
+            </div>
+            <div class="modal-body" id="createOrEditArea">
+                <!-- 内容 -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" onclick="postApplicationUserEditForm()"><span class=""></span> 提交数据</button>
+                <div id="errorMessage" style="margin-top:12px"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+.Info_top
+{
+    width:100%;
+    height:auto;
+    background:#eee;
+    padding:8px 6px;
+    margin-bottom:20px;
+}
+
+.Info_top span
+{
+    color:#000;
+    font:18px;
+    font-weight:bold;
+}
+.Info_top ul
+{
+    display:inline-block;
+    margin:0;
+}
+
+    .Info_top .ul_am_2
+    {
+        display:inline-block;
+        width:110px;
+        height:100%;
+        margin:0 20px;
+    }
+.detailed
+{
+    width:100%;
+    height:auto;
+    background:#eee;
+}

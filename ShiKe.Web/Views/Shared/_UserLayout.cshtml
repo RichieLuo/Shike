@@ -1,0 +1,136 @@
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+<!DOCTYPE html>
+<html>
+<head>
+    @*<meta name="viewport" content="width=device-width" />*@
+    <meta charset="utf-8">
+    <title>@ViewBag.Title - 美食每刻</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/base.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/fileinput.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/non-responsive.css" rel="stylesheet" />
+    <link href="~/css/Index/indexFooter.css" rel="stylesheet" />
+
+    <link href="~/css/ChildrenLayout/ChildrenLayout.css" rel="stylesheet" />
+    <link href="~/css/UserChildrenye/Safety.css" rel="stylesheet" />
+    <link href="~/css/UserChildrenye/Collection.css" rel="stylesheet" />
+    <link href="~/css/UserChildrenye/Evaluate.css" rel="stylesheet" />
+    <link href="~/css/UserChildrenye/order.css" rel="stylesheet" />
+    <link href="~/css/UserChildrenye/Personal.css" rel="stylesheet" />
+    <link href="~/css/UserChildrenye/OrderInfo.css" rel="stylesheet" />
+    <link href="~/css/UserChildrenye/Addressmt.css" rel="stylesheet" />
+    @Html.Raw(JavaScriptSnippet.FullScript)
+</head>
+<body style="padding:0px;background-color: #F5F8FA;">
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/for-home-index.js"></script>
+    <script src="~/js/for-Shop-Goods.js"></script>
+    <script src="~/lib/bootstrap/dist/js/fileinput.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/locales/zh.js"></script>
+    <script src="~/lib/jquery/dist/jquery-form.js"></script>
+    <script src="~/js/ChildrenJS/PCASClass.js"></script>
+    @Html.Partial("_ForLayoutNav.cshtml")
+    <div class="disTop">
+        <div class="row" style="height:80px;padding:0px 15px;width: 1200px;margin: 0 auto;">
+            <div class="col-xs-3" style="padding:0" ;>
+                <a href="#"><img src="~/images/logo-For-User.png" style="width:220px;height:60px;" alt="Alternate Text" /></a>
+            </div>
+
+        </div>
+        <nav class="navbar" role="navigation" style="border-radius:0px;background-color:#C72E00">
+            <div style="width:1200px;margin:0 auto;">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/" style="background-color:transparent; color:#fff">首页</a>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="../../Home/Unfinished" style="background-color:transparent; color:#fff">规则中心</a></li>
+                        <li><a href="../../Home/Unfinished" style="background-color:transparent; color:#fff">安全中心</a></li>
+                        <li><a href="../../Home/Unfinished" style="background-color:transparent; color:#fff">食刻大学</a></li>
+                        <li><a href="../../Home/Unfinished" style="background-color:transparent; color:#fff">消费者论坛</a></li>
+                        <li><a href="../../Home/Unfinished" style="background-color:transparent; color:#fff">服务中心</a></li>
+                        <li><a href="../../Home/Feedback" style="background-color:transparent; color:#fff">问题反馈</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="container" style="padding:30px 0;">
+
+        <div class="col-xs-2 sidebar" style="padding-left:0;">
+            <ul class="sidebar-left">
+                <li class="person active" style="">
+                    <a href="###"><i class="am-icon-user"></i>个人中心</a>
+                </li>
+                <li class="person">
+                    <p><i class="am-icon-newspaper-o"></i>个人资料</p>
+                    <ul style="padding-left:0">
+                        <li> <a href="../../Account/Personal">个人信息</a></li>
+                        <li> <a href="../../Account/Safety">安全设置</a></li>
+                        <li> <a href="../../Account/Addressmt">地址管理</a></li>
+                    </ul>
+                </li>
+                <li class="person">
+                    <p><i class="am-icon-balance-scale"></i>我的交易</p>
+                    <ul>
+                        <li><a href="../../Account/Order">订单管理</a></li>
+                    </ul>
+                </li>
+                <li class="person">
+                    <p><i class="am-icon-dollar"></i>我的资产</p>
+                    <ul>
+                        <li> <a href="../..//Home/Unfinished">我的积分</a></li>
+                        <li> <a href="../..//Home/Unfinished">优惠券 </a></li>
+                        <li> <a href="../..//Home/Unfinished">账单明细</a></li>
+                    </ul>
+                </li>
+
+                <li class="person">
+                    <p><i class="am-icon-tags"></i>我的收藏</p>
+                    <ul>
+                        <li> <a href="../Account/Collection">收藏</a></li>
+                        <li> <a href="..//Home/Unfinished">足迹</a></li>
+                    </ul>
+                </li>
+                <li class="person" style="border:none">
+                    <p><i class="am-icon-qq"></i>在线客服</p>
+                    <ul>
+                        <li> <a href="../../Home/Unfinished">商品咨询</a></li>
+                        <li> <a href="../../Home/Unfinished">意见反馈</a></li>
+                        <li> <a href="../../Home/Unfinished">我的消息</a></li>
+                    </ul>
+                </li>
+            </ul>
+            @*<div class="list-group">
+                    <span class="list-group-item active text-center" style="background-color: #c72e00;border:0; border-radius: 0;height: 50px;font-size: 20px;padding-top: 12px"> 会员中心 </span>
+                    <a href="../../Account/EditProfile" class="list-group-item" style="border-radius: 0"> 我的资料 </a>
+                    <a href="../../Home/Unfinished" class="list-group-item" style="border-radius: 0"> 实名认证 </a>
+                    <a href="../../Home/Unfinished" class="list-group-item" style="border-radius: 0"> 基本信息修改</a>
+                    <a href="../../Home/Unfinished" class="list-group-item" style="border-radius: 0"> 我的收货地址 </a>
+                    <a href="../../Home/MyCollection" class="list-group-item" style="border-radius: 0"> 收藏的商品 </a>
+                    <a href="../../Home/Unfinished" class="list-group-item" style="border-radius: 0"> 系统消息 </a>
+                </div>
+                <div class="list-group">
+                    <span class="list-group-item active text-center" style="background-color: #c72e00;border:0; border-radius: 0;height: 50px;font-size: 20px;padding-top: 12px"> 交易管理 </span>
+                    <a href="../../Home/MyOrder" class="list-group-item" style="border-radius: 0"> 所有订单 </a>
+                    <a href="../../Home/Unfinished" class="list-group-item" style="border-radius: 0"> 待收货 </a>
+                    <a href="../../Home/Unfinished" class="list-group-item" style="border-radius: 0"> 待发货</a>
+                    <a href="../../Home/Unfinished" class="list-group-item" style="border-radius: 0"> 待评价</a>
+                </div>
+                <div class="list-group">
+                    <span class="list-group-item active text-center" style="background-color: #c72e00;border:0; border-radius: 0;height: 50px;font-size: 20px;padding-top: 12px"> 安全管理 </span>
+                    <a href="../../Home/Unfinished" class="list-group-item" style="border-radius: 0"> 修改密码</a>
+                    <a href="../../Home/Unfinished" class="list-group-item" style="border-radius: 0"> 修改绑定手机/邮箱 </a>
+                </div>*@
+        </div>
+        <div class="col-xs-10 main">
+
+            @RenderBody()
+
+        </div>
+    </div>
+    @Html.Partial("_ForLayoutFooter.cshtml")
+
+</body>
+</html>

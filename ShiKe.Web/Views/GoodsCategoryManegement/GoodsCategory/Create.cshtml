@@ -1,0 +1,33 @@
+﻿@model ShiKe.ViewModels.BusinessOrganization.SK_WM_GoodsCategoryVM
+@{
+    ViewData["Title"] = "添加商品类别";
+    Layout = "_SystemLayout";
+}
+<meta charset="utf-8">
+<div>
+    <h2 class="sub-header">添加商品类别</h2>
+</div>
+
+<form class="form-horizontal" asp-action="Save" id="personEditor" data-toggle="validator" role="form">
+    <input type="hidden" name="ID" id="ID" value="@Model.ID" />
+    <input type="hidden" name="IsNew" id="IsNew" value="@Model.IsNew.ToString()" />
+    <div class="form-group">
+        <label for="Name" class="col-sm-2 control-label">类别名称</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="Name" id="Name" placeholder="请输入类别名称" value="@Model.Name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Description" class="col-sm-2 control-label">类别描述</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" rows="4" name="Description" id="Description">@Model.Description</textarea>
+        </div>
+    </div>
+    <div class="col-md-12" style="height: 70px; padding-top: 20px">
+        <p>
+            <button class="btn btn-lg btn-primary" style="float:right" type="submit">立即添加</button>
+        </p>
+    </div>
+</form>
+
+

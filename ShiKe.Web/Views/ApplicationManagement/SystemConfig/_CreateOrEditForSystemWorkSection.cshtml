@@ -1,0 +1,47 @@
+﻿@model ShiKe.ViewModels.ApplicationManagement.SystemWorkSectionVM
+<div id="updateCreateOrEdit_@Model.ID">
+    <div class="nncqDefaultArea" data-text="" id="">
+        <form action="../../SystemConfig/SaveSystemWorkSection"
+              method="post"
+              id="SystemWorkSectionCreateOrEditForm"
+              data-ajax-update='#updateCreateOrEdit_@Model.ID'
+              data-ajax-mode='replace'
+              data-ajax='true'>
+
+            <input type="hidden" id="ID" name="ID" value="@Model.ID" />
+            <input type="hidden" id="IsNew" name="IsNew" value="@Model.IsNew.ToString()" />
+            <input type="hidden" id="ParentItemID" name="ParentItemID" value="@Model.ParentItemID" />
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label for="Name" class="col-sm-3 control-label">归属主菜单：</label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static">@Model.ParentItem.DisplayName</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Name" class="col-sm-3 control-label">名称：</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="Name" id="EntityVM_Name" placeholder="请输入名称" value="@Model.Name" data-error="不能为空。" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Description" class="col-sm-3 control-label">简要描述：</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" rows="4" name="Description" id="EntityVM_Description">@Model.Description</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="SortCode" class="col-sm-3 control-label">业务编码：</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="SortCode" id="EntityVM_SortCode" placeholder="请输入业务编码" value="@Model.SortCode" data-error="不能为空。" required>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-red" />
+            <div>
+                <button type="button" class="btn" onclick="postSystemWorkSectionCreateOrEditForm()"><span class=""></span> 提交数据</button>
+                <button type="reset" class="btn"><span class=""></span> 重置 </button>
+            </div>
+        </form>
+    </div>
+</div>

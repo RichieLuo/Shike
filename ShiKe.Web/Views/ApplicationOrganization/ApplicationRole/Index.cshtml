@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ShiKe.ViewModels.ApplicationOrganization.ApplicationRoleVM>
+@{
+    Layout = "_RoleAndUserLayout";
+}
+
+<div id="createOrEditArea">
+    @Html.Partial("../../Views/ApplicationOrganization/ApplicationRole/_CreateOrEdit", Model.FirstOrDefault())
+</div>
+
+
+<script type="text/javascript">
+    function gotoCreateOrEdit(id) {
+        // 访问后台 CreateOrEdit 方法，获取新建或者编辑数据的呈现 imports page 页面内容
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../ApplicationRole/CreateOrEdit/' + id,
+            beforeSend: function () {
+                // alert("开始访问");
+            }
+        }).done(function (data) {
+            document.getElementById("createOrEditArea").innerHTML = data;
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+
+    function postApplicationRoleCreateOrEditForm() {
+        var applicationRoleFormOptions = {
+            dataType: 'json',
+            success: function (data) {
+                if (data.saveOk == true){
+                    gotoList();
+                }
+                else {
+
+                }
+            }
+        };
+        $('#ApplicationRoleCreateOrEditForm').ajaxSubmit(applicationRoleFormOptions);
+    }
+
+    function gotoList() {
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../ApplicationRole/List',
+            beforeSend: function () {
+                // alert("开始访问");
+            }
+        }).done(function (data) {
+            document.getElementById("businessDataTab").innerHTML = data;
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+
+    }
+
+</script>
+

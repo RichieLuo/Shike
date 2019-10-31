@@ -1,0 +1,71 @@
+﻿@model ShiKe.ViewModels.ApplicationOrganization.ApplicationUserVM
+@{
+    ViewData["Title"] = "个人中心";
+    Layout = "_UserLayout";
+}
+@*<style>
+    .parallelogram {
+        width: 25%;
+        height: 50px;
+        border-bottom: 50px solid #c72e00;
+        border-right: 36px solid transparent;
+        text-align: center;
+        color: #fff;
+        font-size: 20px;
+        line-height: 50px;
+    }
+</style>*@
+
+        <div class="row" style="padding:0px">
+            <div style="width: 100%;height: 50px;background-color: #F7F7F7;border:1px solid #ddd;box-sizing:border-box;">
+                <div class="parallelogram" style="">个人信息</div>
+            </div>
+            <div class="row" style="padding: 20px 0px;background-color:#fff;margin:0;height: 632px;border: 1px solid #ddd;border-top: 0;">
+                <div class="col-xs-3" id="userAvatarArea">
+                    @Html.Partial("../../Views/Account/_AvatorPartial", Model)
+                </div>
+                <div class="col-xs-9" style="padding-left: 36px;padding-top: 15px;">
+                    <p class="sub-header" style="font-weight: bold">您好，@Model.Name (@Model.UserName)</p>
+                    <p class="sub-header">会员等级：<a href="###" title="查看等级权限" style="color: #2abbeb;text-decoration: none">普通会员</a></p>
+                    <p class="sub-header">安全等级：<span>低</span><a href="###" style="color:red;text-decoration: none">（立即提升）</a></p>
+                    <p class="sub-header">注册时间：<span>2017-06-26</span></p>
+                </div>
+            </div>
+        </div>
+
+<script type="text/javascript">
+        // 上传文件操作执行
+    function uploadSimpleFiles() {
+        var uploadFilesFormOptions = {
+            //dataType: 'json',   // 将整个Form回传，不需要转换为 json,由服务端处理相应的 Request 即可。
+            success: function (data) {
+                if (data.isOK === true) {
+                    document.getElementById("uploadTips").innerHTML = "共上传了" + data.fileCount+" 个文件。";
+                    //refreshSimpleFile();
+                }
+                else {
+                    document.getElementById("uploadTips").innerHTML = data.serverPath;
+                }
+            }
+        };
+        $('#uploadFilesForm').ajaxSubmit(uploadFilesFormOptions);
+    }
+
+    // 刷新上传的结果
+    function refreshSimpleFile(){
+            $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../Account/RefreshAvatar',
+            beforeSend: function () {
+            }
+        }).done(function (data) {
+            document.getElementById("userAvatarArea").innerHTML = data;
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+
+</script>

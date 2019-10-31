@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewData["Title"] = "商家管理";
+    Layout = "_SystemLayout";
+}
+<div>
+    <div class="input-group pull-right" style="width:250px">
+        <input id="inputKeyWord" type="text" class="form-control" placeholder="输入关键词..." value="">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" type="button" onclick="gotoSearch()">查询</button>
+        </span>
+    </div>
+    <h2 class="sub-header">商家管理</h2>
+</div>
+<div id="mainWorkPlaceArea">
+    @if (ViewBag.Business != null)
+    {
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-center" width="50px;">编号</th>
+                        <th class="text-center">店主名称</th>
+                        <th class="text-center">店铺名称</th>
+                        <th class="text-center" width="100px">联系电话</th>
+                        <th class="text-center">入驻时间</th>
+                        <th class="text-center" style="width:250px">店铺操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var counter = 0;
+                        foreach (var business in ViewBag.Business)
+                        {
+                            counter++;
+                            <tr>
+                                <td class="text-center">@counter</td>
+                                <td class="text-center">@business.UserName</td>
+                                <td class="text-center">@business.Name</td>
+                                <td class="text-center">@business.ShopForUser.MobileNumber</td>
+                                <td class="text-center">@business.ShelvesTime</td>
+                                <td class="text-center" style="width:250px">
+                                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                                        <button type="button" class="btn btn-default" onclick="Unfinished()">商家明细</button>
+                                        <button type="button" class="btn btn-default" onclick="Unfinished()">他的店铺</button>
+                                        <button type="button" class="btn btn-default" onclick="Unfinished()">点击处理</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <h3 style="margin:120px auto;width:210px;color:gray;height:250px">暂无已入驻的商家</h3>
+                            </div>
+
+
+                        }
+</div>

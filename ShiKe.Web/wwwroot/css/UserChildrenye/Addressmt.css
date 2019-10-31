@@ -1,0 +1,159 @@
+.new {
+    width: 100%;
+    height: 400px;
+    /*border: 1px solid red;*/
+    float:left;
+    margin:0 30px;
+}
+
+.new-one {
+    width: 1000px;
+    height: 40px;
+    float: left;
+}
+
+.new-one span{
+    display:inline-block;
+    width:100px;
+    padding-right:10px;
+    text-align:right;
+}
+
+.new-fonts {
+    width: 120px;
+    height: 40px;
+    padding:5px 10px 0 0px ;
+    font-family: "Microsoft Yahei";
+    font-size: 14px;
+    font-weight: bold;
+    color: #FC6210;
+    float:left;
+}
+
+.new-fonts-one {
+    position: absolute;
+    width: 350px;
+    height: 40px;
+    padding: 5px 10px 0 10px;
+    font-family: "Microsoft Yahei";
+    font-size: 14px;
+    font-weight: bold;
+    float: left;
+}
+
+.new-detailed {
+    width: 700px;
+    height: 40px;
+    float: left;
+}
+
+.new-detailed span
+{
+    display:inline-block;
+    width:100px;
+    padding-right:10px;
+    text-align:right;
+}
+
+.new-default {
+    width: 700px;
+    height: 40px;
+    padding-left:100px;
+    float: left;
+}
+
+.new-save {
+    width: 700px;
+    height: 60px;
+    padding-left: 100px;
+    float: left;
+}
+
+.new-save span button {
+    /*background-color: #FF4001;*/
+    font-size: 12px;
+    width:150px;
+    /*box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);*//*“ı”∞*/
+    }
+
+.new-save span button:hover {
+    /*background-color: #FF4001;*/
+    /*box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);*/
+    }
+
+.text {
+    width: 500px;
+    height: 25px;
+}
+
+.text-one {
+    width: 200px;
+    height: 25px;
+}
+
+.text-two {
+    width: 80px;
+    height: 25px;
+}
+
+.address {
+    height: 500px;
+    margin:20px;
+    float: left;
+    margin: 0 30px;
+}
+.address-fonts {
+    width: 120px;
+    height: 30px;
+    padding: 5px 10px 0 0px;
+    font-family: "Microsoft Yahei";
+    font-size: 14px;
+    font-weight: bold;
+    color: #FC6210;
+    float: left;
+}
+.address span {
+    width: 100%;
+    height: 30px;
+    padding-top: 20px;
+    margin-bottom:20px;
+    float:left;
+}
+.address-one {
+    width: 100%;
+    height: 300px;
+    float: left;
+}
+.table {
+    margin-bottom: 0;
+}
+.table-th-one {
+    width: 120px;
+    height: 40px;
+    text-align: center;
+}
+.table-th-two {
+    width: 380px;
+    height: 40px;
+    text-align: center;
+}
+.table-th-three {
+    width: 240px;
+    height: 40px;
+    text-align: center;
+}
+.table-th-four {
+    width: 100px;
+    height: 40px;
+    text-align: center;
+}
+.table-th-five {
+    width: 150px;
+    height: 40px;
+    text-align: center;
+}
+.table-th-six {
+    width: 120px;
+    height: 40px;
+    text-align: center;
+}

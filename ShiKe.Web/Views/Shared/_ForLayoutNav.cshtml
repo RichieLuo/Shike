@@ -1,0 +1,111 @@
+﻿<style>
+    .navbar-fixed-top .navbar-nav > li > a {
+        color: gray;
+    }
+</style>
+<nav class="navbar navbar-default navbar-fixed-top" style="min-height:30px;line-height:30px;background-color:#f8f8f8;border:0;z-index: 99999;">
+    <div class="container" style="padding:0px;">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav" id="topNav" style="color: #000 !important">
+                <li style="height:30px" class="navbar-left"><a href="javascript:" onclick="AddFavorite()" style="padding-left:0px;">收藏食刻</a></li>
+                <li style="width:410px;height:30px;" class="navbar-left">
+                    <div id="userLogonInfo">
+                        @if (ViewBag.UserLogonInformation == null)
+                        {
+                            <a href="../../Home/Logon" style="padding:0 5px;color:#000">登录</a><a href="../../Home/Register" style="padding:0 5px;color:#000">注册</a>
+                        }
+                        else
+                        {
+                            <a href="../../Account/Personal" style="padding:0 5px;color:#000"> 欢迎你：@ViewBag.UserLogonInformation</a> <a href="../../Account/LogOut" style="color:#000">注销</a>
+                        }
+                    </div>
+                </li>
+                @if (ViewBag.UserLogonInformation != null)
+                {
+                    <li style="height:30px"><a href="../../Account/Order">我的订单</a></li>
+                }
+                <li class="dropdown navbar-right">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">更多<span class="caret"></span></a>
+                    <ul class="dropdown-menu">                       
+                        <li><a href="javascript:alert('功能正在完善中...')">关于食刻</a></li>                      
+                    </ul>
+                </li>
+                <li class="dropdown navbar-right">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">后台<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        @if (ViewBag.UserLogonInformation == null)
+                        {
+                            <li><a href="../../Admin/Logon">系统管理员登录</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="../../AdminBG/Index">系统管理员后台</a></li>
+                        }
+
+                        <li><a href="../../Account/EditProfile">用户后台管理</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown navbar-right">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">代理招募<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:alert('功能正在完善中...')">餐饮代理招募</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown navbar-right">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我是商家<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../../Home/ShopForBusiness">我的店铺首页</a></li>                      
+                        <li><a href="../../BusinessBG/Index">我的商家中心</a></li>                       
+                    </ul>
+                </li>
+                <li class="dropdown navbar-right">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">联系客服<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:alert('功能正在完善中...')">申请退款</a></li>
+                        <li><a href="javascript:alert('功能正在完善中...')">申请退款换货</a></li>
+                        <li><a href="../../Home/Feedback" target="_blank">常见问题反馈</a></li>
+                    </ul>
+                </li>
+                @if (ViewBag.UserLogonInformation != null)
+                {
+                    <li style="height:30px" class="dropdown navbar-right">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../Account/Order">我的订单</a></li>
+                            <li><a href="../../Account/Collection">我的收藏</a></li>
+                            <li><a href="javascript:alert('功能正在完善中...')">我的评价</a></li>
+                            <li><a href="javascript:alert('功能正在完善中...')">我的余额</a></li>
+                            <li><a href="javascript:alert('功能正在完善中...')">账户设置</a></li>
+                        </ul>
+                    </li>
+                }
+                <li style="height:30px" class="dropdown navbar-right"><a href="../../Home/Shoppingcar"><span class="glyphicon glyphicon-shopping-cart" style="padding-right:2px;"></span>购物车</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<script>
+
+    function AddFavorite() {
+        var currURL = window.location.href;
+        var sTitle = "食刻";
+        try {
+            window.external.addFavorite(currURL, sTitle);
+        }
+        catch (e) {
+            try {
+                window.sidebar.addPanel(sTitle, currURL, "");
+            }
+            catch (e) {
+                alert("加入收藏失败，请使用Ctrl D进行添加");
+            }
+        }
+    }
+        //function AddMyFavorite() {
+        //    var currURL = window.location.href;
+        //    javascript:window.external.AddFavorite(currURL, '食刻');
+        //}       
+  
+</script>

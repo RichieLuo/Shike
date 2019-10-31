@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ShiKe.ViewModels.BusinessOrganization.SK_WM_ShopSttledVM>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th width="50px">编号</th>
+                <th>店铺名称</th>
+                <th>申请人姓名</th>
+                <th>申请人手机号</th>
+                <th>申请的用户名</th>
+                <th>申请时间</th>           
+                <th class="text-center">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var count = 0;
+                foreach (var settled in Model)
+                {
+                    count++;
+                    <tr>
+                        <td>@count</td>
+                        <td>@settled.Name</td>
+                        <td>@settled.UserName</td>
+                        <td>@settled.MobilePhone</td>
+                        <td>@settled.ShopForUser.UserName</td>
+                        <td>@settled.ShelvesTime</td>
+                        <td>
+                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                                <a href="../../AdminBG/Unfinished" type="button" class="btn btn-default">查看详细信息</a>
+                                <button type="button" class="btn btn-default" onclick="opensConfirmModal('@settled.ShopForUser.Id','您要操作的店铺名称是：【@settled.Name】 &nbsp;&nbsp; 申请人姓名：【@settled.UserName】')">确认通过</button>
+                                <button type="button" class="btn btn-default" onclick="Unfinished()">直接驳回</button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

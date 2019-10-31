@@ -1,0 +1,101 @@
+﻿
+@{
+    Layout = "_ChildrenLayout";
+}
+<script src="~/js/amazeui.js"></script>
+@*<h2>Refund  退换货</h2>*@
+<meta charset="utf-8" />
+<link href="~/css/UserChildrenye/Refund.css" rel="stylesheet" />
+
+<div class="Information">
+    <div>
+        <h3 class="CollectionTitle">退换货申请<span>/My Refund</span></h3>
+        <div class="refund">
+            <div class="schedule">
+                <div class="schedule-one">
+                    <div class="schedule-one-line"></div>
+                    <div class="schedule-one-roundtextone">买家申请退款 </div>
+                    <div class="schedule-one-roundbigone">
+                        <i class="schedule-one-roundsmallone sch_01">1</i>
+                    </div>
+                    <div class="schedule-one-roundtexttwo">商家处理退款申请 </div>
+                    <div class="schedule-one-roundbigone schedule-one-roundbigtwo ">
+                        <i class="schedule-one-roundsmallone">2</i>
+
+                    </div>
+                    <div class="schedule-one-roundtexthree">款项成功退回</div>
+                    <div class="schedule-one-roundbigone schedule-one-roundbigthree">
+                        <i class="schedule-one-roundsmallone">3</i>
+                    </div>
+                </div>
+            </div>
+            <div class="refund-detailed">
+                <div class="details">
+                    <div class="details-one">
+                        <div class="details-one-picture">图片</div>
+                        <div class="details-one-cmyname"><a><p>美康粉黛醉美唇膏 持久保湿滋润防水不掉色</p></a></div>
+                        <div class="details-one-color"><span>颜色：洛阳牡丹</span><p><span>包装：裸装</span></p></div>
+                    </div>
+                    <div class="details-two">
+                        <div class="details-two-id"><span>订单编号：</span>&nbsp;<span>1474784641639947</span></div>
+                        <div class="details-two-price"><span>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：</span>&nbsp;<span>19.88元 ×1(数量)</span></div>
+                        <div class="details-two-subtotal"><span>小&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;计：</span>&nbsp;<span>19.88元</span></div>
+                        <div class="details-two-freight"><span>运&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;费：</span>&nbsp;<span>10.00元</span></div>
+                        <div class="details-two-total"><span>总&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;计：</span>&nbsp;<span>29.88元</span></div>
+                        <div class="details-two-time"><span>成交时间：</span>&nbsp;<span>2015-12-12 17:07</span></div>
+                    </div>
+                </div>
+                <div class="application">
+
+                    <div class="refund-main">
+                        <div class="item-comment">
+                            <div class="am-form-group">
+                                <label for="refund-type" class="am-form-label">退款类型</label>
+                                <div class="am-form-content">
+                                    <select>
+                                        <option value="a" selected>仅退款</option>
+                                        <option value="b">退款/退货</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="refund-reason" class="am-form-label">退款原因</label>
+                                <div class="am-form-content">
+                                    <select>
+                                        <option value="a" selected>请选择退款原因</option>
+                                        <option value="b">不想要了</option>
+                                        <option value="c">买错了</option>
+                                        <option value="d">没收到货</option>
+                                        <option value="e">与说明不符</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="refund-money" class="am-form-label">退款金额<span></span></label>
+                                <div class="am-form-content">
+                                    <input type="text" id="refund-money" readonly="readonly" placeholder="19.88">
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="refund-info" class="am-form-label">退款说明<span></span></label>
+                                <div class="am-form-content">
+                                    <textarea placeholder="请输入退款说明（可不填）"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Photos">
+                        <div class="Upload">
+                            <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+                        </div>
+                        <div class="desc">上传凭证&nbsp;最多三张</div>
+                        <button class="button">确定</button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

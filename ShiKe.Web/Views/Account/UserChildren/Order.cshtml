@@ -1,0 +1,323 @@
+﻿@model IEnumerable<ShiKe.ViewModels.BusinessOrganization.SK_WM_OrderVM>
+@using ShiKe.Entities.BusinessOrganization
+@{
+    ViewData["Title"] = "订单管理";
+    Layout = "_UserLayout";
+
+}
+<meta charset="utf-8" />
+<link href="~/css/UserChildrenye/order.css" rel="stylesheet" />
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/Order.js"></script>
+<div class="Information">
+    <h3 class="CollectionTitle">订单管理 <span>/ Order</span></h3>
+    <div class="commodityList">
+        <div class="order_daohang">
+            <ul class="order_ul or_u">
+                <li class="order_ul-item order_ul_li"><a href="#">所有订单</a></li>
+                <li class="order_ul-item"><a href="#">待付款</a></li>
+                <li class="order_ul-item"><a href="#">待收货</a></li>
+                <li class="order_ul-item"><a href="#">退款中</a></li>
+                <li class="order_ul-item"><a href="#">已交易</a></li>
+            </ul>
+            <div class="products">
+                <div class="order_dahezi selected or_d">
+                    <div class="order_zhuangtailan">
+                        <div class="shangpin">商品</div>
+                        <div class="danjia">单价</div>
+                        <div class="shuliang">数量</div>
+                        <div class="shangpincaozuo">商品操作</div>
+                        <div class="heji">合计</div>
+                        <div class="jiaoyizhuangtai">交易状态</div>
+                        <div class="jiaoyicaozuo">交易操作</div>
+                    </div>
+                    @*<div>
+                        <div class="shangpinbianhao">
+                            <div class="shangpinbianhaoa">订单编号：424s53f4sd34f53sd4</div>
+                            <div class="shangpinbianhaob">交易时间：2015-12-10</div>
+                        </div>
+                        <div class="shangpinxiangxi">
+                            <div class="shangpin_1">
+                                <a href="../../Home/Unfinished" class="shangpin_1_tupian">
+                                    <img src="~/images/goodsImg/34f76645-b46d-4f60-baad-6c0bbcd82b40_lyf.jpg" />
+                                </a>
+                                <div class="shangpin_1_xinxi">
+                                    <ul>
+                                        <li class="shangpin_1_xinxi_1"><a href="###">商品名称：NNN</a></li>
+                                        <li>净含量：2500g</li>
+                                        <li>包装：散装</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="danjia_1">
+                                <span>66</span>
+                            </div>
+                            <div class="shuliang_1">
+                                <span>66</span>
+                            </div>
+                            <div class="shangpincaozuo_1">
+                                <a href="../../UserChildren/Refund">退款退货</a>
+                            </div>
+                            <div class="heji_1">666</div>
+                            <div class="jiaoyizhuangtai_1">
+                                <p><a href="../../User/Ceshi">收货</a> </p>
+                                <p><a href="../../UserChildren/Evaluate">评价</a> </p>
+                                <p><a href="../../ShopManagerView/Logistics">查看物流</a></p>
+
+                            </div>
+                            <div class="jiaoyicaozuo_1">
+
+                                <button class="btn btn-default">联系卖家</button>
+
+                            </div>
+                        </div>
+                    </div>*@
+
+                    @foreach (var Order in Model)
+                    {
+                        <div>
+                            <div class="shangpinbianhao">
+                                <div class="shangpinbianhaoa">订单编号：@Order.SortCode</div>
+                                <div class="shangpinbianhaob">交易时间：@Order.CreateOrderTime</div>
+                            </div>
+                            <div class="shangpinxiangxi">
+                                <div class="shangpin_1">
+                                    <a href="../../Home/ComDetail?id=@Order.Goods.ID" class="shangpin_1_tupian">
+                                        <img src="@Order.Goods.GoodsIMG.UploadPath" />
+                                    </a>
+                                    <div class="shangpin_1_xinxi">
+                                        <ul>
+                                            <li class="shangpin_1_xinxi_1"><a href="../../Home/ComDetail?id=@Order.Goods.ID">商品名称：@Order.Name</a></li>
+                                            <li>含量：2两</li>
+                                            <li>包装：盒子</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="danjia_1">
+                                    <span>@Order.Goods.Price</span>
+                                </div>
+                                <div class="shuliang_1">
+                                    <span>@Order.Count</span>
+                                </div>
+                                <div class="shangpincaozuo_1">
+                                    <a href="../../UserChildren/Refund">退款退货</a>
+                                </div>
+                                <div class="heji_1">@Convert.ToDouble(@Convert.ToDouble(Order.Goods.Price) * @Convert.ToDouble(Order.Count))</div>
+                                <div class="jiaoyizhuangtai_1">
+                                    <p><a href="../../User/Ceshi">收货</a> </p>
+                                    <p><a href="../../UserChildren/Evaluate">评价</a> </p>
+                                    <p><a href="../../ShopManagerView/Logistics">查看物流</a></p>
+
+                                </div>
+                                <div class="jiaoyicaozuo_1">
+
+                                    <button class="btn btn-default">联系卖家</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                @for (int i = 0; i < 5; i++)
+                {
+                    <div class="order_dahezi or_d">
+                        <div class="order_zhuangtailan">
+                            <div class="shangpin">商品</div>
+                            <div class="danjia">单价</div>
+                            <div class="shuliang">数量</div>
+                            <div class="shangpincaozuo">商品操作</div>
+                            <div class="heji">合计</div>
+                            <div class="jiaoyizhuangtai">交易状态</div>
+                            <div class="jiaoyicaozuo">交易操作</div>
+                        </div>
+
+
+                        @foreach (var Order in Model)
+                        {
+                            @if (Order.State.ToString() == (SK_WM_OrderState.Orderstate.待付款).ToString() && i == 0)
+                            {
+                                <div>
+                                    <div class="shangpinbianhao">
+                                        <div class="shangpinbianhaoa">订单编号：@Order.SortCode</div>
+                                        <div class="shangpinbianhaob">交易时间：@Order.CreateOrderTime</div>
+                                    </div>
+                                    <div class="shangpinxiangxi">
+                                        <div class="shangpin_1">
+                                            <a href="../../Home/Unfinished" class="shangpin_1_tupian">
+                                                <img src="@Order.Goods.GoodsIMG.UploadPath" />
+                                            </a>
+                                            <div class="shangpin_1_xinxi">
+                                                <ul>
+                                                    <li class="shangpin_1_xinxi_1"><a href="###">商品名称：@Order.Name</a></li>
+                                                    <li>含量：2两</li>
+                                                    <li>包装：盒子</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="danjia_1">
+                                            <span>@Order.Goods.Price</span>
+                                        </div>
+                                        <div class="shuliang_1">
+                                            <span>@Order.Count</span>
+                                        </div>
+                                        <div class="shangpincaozuo_1">
+                                            <a href="../../UserChildren/Refund">退款退货</a>
+                                        </div>
+                                        <div class="heji_1">@Convert.ToDouble(@Convert.ToDouble(Order.Goods.Price) * @Convert.ToDouble(Order.Count))</div>
+                                        <div class="jiaoyizhuangtai_1">
+                                            <p><a href="../../User/Ceshi">收货</a> </p>
+                                            <p><a href="../../UserChildren/Evaluate">评价</a> </p>
+                                            <p><a href="../../ShopManagerView/Logistics">查看物流</a></p>
+
+                                        </div>
+                                        <div class="jiaoyicaozuo_1">
+
+                                            <button class="btn btn-default">联系卖家</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @if (Order.State.ToString() == (SK_WM_OrderState.Orderstate.待收货).ToString() && i == 1)
+                            {
+                                <div>
+                                    <div class="shangpinbianhao">
+                                        <div class="shangpinbianhaoa">订单编号：@Order.SortCode</div>
+                                        <div class="shangpinbianhaob">交易时间：@Order.CreateOrderTime</div>
+                                    </div>
+                                    <div class="shangpinxiangxi">
+                                        <div class="shangpin_1">
+                                            <a href="../../Home/Unfinished" class="shangpin_1_tupian">
+                                                <img src="@Order.Goods.GoodsIMG.UploadPath" />
+                                            </a>
+                                            <div class="shangpin_1_xinxi">
+                                                <ul>
+                                                    <li class="shangpin_1_xinxi_1"><a href="###">商品名称：@Order.Name</a></li>
+                                                    <li>含量：2两</li>
+                                                    <li>包装：盒子</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="danjia_1">
+                                            <span>@Order.Goods.Price</span>
+                                        </div>
+                                        <div class="shuliang_1">
+                                            <span>@Order.Count</span>
+                                        </div>
+                                        <div class="shangpincaozuo_1">
+                                            <a href="../../UserChildren/Refund">退款退货</a>
+                                        </div>
+                                        <div class="heji_1">@Convert.ToDouble(@Convert.ToDouble(Order.Goods.Price) * @Convert.ToDouble(Order.Count))</div>
+                                        <div class="jiaoyizhuangtai_1">
+                                            <p><a href="../../User/Ceshi">收货</a> </p>
+                                            <p><a href="../../UserChildren/Evaluate">评价</a> </p>
+                                            <p><a href="../../ShopManagerView/Logistics">查看物流</a></p>
+
+                                        </div>
+                                        <div class="jiaoyicaozuo_1">
+
+                                            <button class="btn btn-default">联系卖家</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @if (Order.State.ToString() == (SK_WM_OrderState.Orderstate.退款中).ToString() && i == 2)
+                            {
+                                <div>
+                                    <div class="shangpinbianhao">
+                                        <div class="shangpinbianhaoa">订单编号：@Order.SortCode</div>
+                                        <div class="shangpinbianhaob">交易时间：@Order.CreateOrderTime</div>
+                                    </div>
+                                    <div class="shangpinxiangxi">
+                                        <div class="shangpin_1">
+                                            <a href="../../Home/Unfinished" class="shangpin_1_tupian">
+                                                <img src="@Order.Goods.GoodsIMG.UploadPath" />
+                                            </a>
+                                            <div class="shangpin_1_xinxi">
+                                                <ul>
+                                                    <li class="shangpin_1_xinxi_1"><a href="###">商品名称：@Order.Name</a></li>
+                                                    <li>含量：2两</li>
+                                                    <li>包装：盒子</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="danjia_1">
+                                            <span>@Order.Goods.Price</span>
+                                        </div>
+                                        <div class="shuliang_1">
+                                            <span>@Order.Count</span>
+                                        </div>
+                                        <div class="shangpincaozuo_1">
+                                            <a href="../../UserChildren/Refund">退款退货</a>
+                                        </div>
+                                        <div class="heji_1">@Convert.ToDouble(@Convert.ToDouble(Order.Goods.Price) * @Convert.ToDouble(Order.Count))</div>
+                                        <div class="jiaoyizhuangtai_1">
+                                            <p><a href="../../User/Ceshi">收货</a> </p>
+                                            <p><a href="../../UserChildren/Evaluate">评价</a> </p>
+                                            <p><a href="../../ShopManagerView/Logistics">查看物流</a></p>
+
+                                        </div>
+                                        <div class="jiaoyicaozuo_1">
+
+                                            <button class="btn btn-default">联系卖家</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @if (Order.State.ToString() == (SK_WM_OrderState.Orderstate.已完成).ToString() && i == 3)
+                            {
+                                <div>
+                                    <div class="shangpinbianhao">
+                                        <div class="shangpinbianhaoa">订单编号：@Order.SortCode</div>
+                                        <div class="shangpinbianhaob">交易时间：@Order.CreateOrderTime</div>
+                                    </div>
+                                    <div class="shangpinxiangxi">
+                                        <div class="shangpin_1">
+                                            <a href="../../Home/Unfinished" class="shangpin_1_tupian">
+                                                <img src="@Order.Goods.GoodsIMG.UploadPath" />
+                                            </a>
+                                            <div class="shangpin_1_xinxi">
+                                                <ul>
+                                                    <li class="shangpin_1_xinxi_1"><a href="###">商品名称：@Order.Name</a></li>
+                                                    <li>含量：2两</li>
+                                                    <li>包装：盒子</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="danjia_1">
+                                            <span>@Order.Goods.Price</span>
+                                        </div>
+                                        <div class="shuliang_1">
+                                            <span>@Order.Count</span>
+                                        </div>
+                                        <div class="shangpincaozuo_1">
+                                            <a href="../../UserChildren/Refund">退款退货</a>
+                                        </div>
+                                        <div class="heji_1">@Convert.ToDouble(@Convert.ToDouble(Order.Goods.Price) * @Convert.ToDouble(Order.Count))</div>
+                                        <div class="jiaoyizhuangtai_1">
+                                            <p><a href="../../User/Ceshi">收货</a> </p>
+                                            <p><a href="../../UserChildren/Evaluate">评价</a> </p>
+                                            <p><a href="../../ShopManagerView/Logistics">查看物流</a></p>
+
+                                        </div>
+                                        <div class="jiaoyicaozuo_1">
+
+                                            <button class="btn btn-default">联系卖家</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+
+
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

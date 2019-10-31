@@ -1,0 +1,192 @@
+﻿@model ShiKe.ViewModels.BusinessOrganization.SK_WM_ShopVM
+@{
+    ViewData["Title"] = "商家中心";
+    Layout = "_SellerLayout";
+}
+<div class="FloatBar">
+    <a href="#" class="FloatBarItem">
+        <i class="glyphicon glyphicon-menu-up"></i>
+        <span>返回顶部</span>
+    </a>
+    <a href="#" class="FloatBarItem">
+        <i class="glyphicon glyphicon-edit"></i>
+        <span>问卷调查</span>
+    </a>
+    <a href="#" class="FloatBarItem">
+        <i class="glyphicon glyphicon-question-sign"></i>
+        <span>帮助中心</span>
+    </a>
+    <a href="#" class="FloatBarItem">
+        <i class=" glyphicon glyphicon-pencil"></i>
+        <span>意见反馈</span>
+    </a>
+</div>
+<div class="row" style="margin:0;border:1px solid #ddd;box-shadow: 0 1px 4px 0 #d7d7d7;background-color:white">
+    <div class="col-xs-6" style="">
+        <h2>@Model.Name</h2>
+        <h6>@Model.Description</h6>
+    </div>
+    <div class="col-xs-6" style="">
+
+    </div>
+</div>
+<div class="row" style="margin:20px 0 0 ">
+    <div class="col-xs-2" style="height:90px;background-color:#DC3300;color:white; margin:0 10px 0 35px;box-shadow: 0 1px 4px 0 #d7d7d7;"><a href="../BusinessBG/OrderList?selectObject=待付款" style="color:white;text-decoration:none"><h3>待付款</h3><span>@Model.waitPay</span></a></div>
+    <div class="col-xs-2" style="height:90px;background-color:#DC3300;color:white; margin:0 10px 0;box-shadow: 0 1px 4px 0 #d7d7d7;">     <a href="../BusinessBG/OrderList?selectObject=待发货" style="color:white;text-decoration:none"><h3>待发货</h3><span>@Model.waitSend</span></a></div>
+    <div class="col-xs-2" style="height:90px;background-color:#DC3300;color:white; margin:0 10px 0;box-shadow: 0 1px 4px 0 #d7d7d7;">     <a href="../BusinessBG/OrderList?selectObject=待收货" style="color:white;text-decoration:none"><h3>待收货</h3><span>@Model.waitReceipt</span></a></div>
+    <div class="col-xs-2" style="height:90px;background-color:#DC3300;color:white; margin:0 10px 0;box-shadow: 0 1px 4px 0 #d7d7d7;"><h3>售后处理</h3><span>9999</span></div>
+    <div class="col-xs-2" style="height:90px;background-color:#DC3300;color:white; margin:0 10px 0;box-shadow: 0 1px 4px 0 #d7d7d7;"><h3>宝贝数量</h3><span>9999</span></div>
+</div>
+<div class="row" style="margin:20px 0;height: auto;">
+    <div class="col-xs-7">
+        <div class="panel panel-default row">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-bullhorn"></span><b>我的消息</b>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <ul style="padding:0; margin:0">
+                        @for (int i = 0; i <= 2; i++)
+                        {
+                            <li class="list-group-item"><a href="../../Home/Unfinished">您有新的消息，请注意查收</a><span class="badge" style="background-color: #f00;">新</span></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel-footer">
+
+            </div>
+        </div>
+        <div class="panel panel-default row">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-list-alt"></span><b>卖家讲堂</b>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <ul style="padding:0; margin:0">
+                        @for (int i = 0; i <= 5; i++)
+                        {
+                            <li class="list-group-item"><a href="../../Home/Unfinished">震惊！原来饭可以这样吃！99%的人不知道！</a><span class="badge" style="background-color: #f00;">新</span></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel-footer">
+
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-5">
+        <div class="row" style="margin:10px 0 ">
+            <div id="dayechart" style="height: 250px"></div>
+        </div>
+        <div class="row" style="margin:10px 0 ">
+            <div id="monthechart" style="height: 250px"></div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+<script type="text/javascript">
+    var dom = document.getElementById("dayechart");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+    option = {
+        title: {
+            text: '近7日销售额'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['近7日销售额']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+
+            {
+                name: '销售额',
+                type: 'line',
+                stack: '总量',
+                data: [220, 182, 191, 234, 290, 330, 310]
+            }
+        ]
+    };
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+</script>
+<script type="text/javascript">
+    var dom = document.getElementById("monthechart");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+    option = {
+        title: {
+            text: '近半年销售额'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['近半年销售额']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['一月', '二月', '三月', '四月', '五月', '六月']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+
+            {
+                name: '销售额',
+                type: 'line',
+                itemStyle: {
+                    normal: {
+                        color: 'green'
+                    }
+                },
+                stack: '总量',
+                data: [60511, 11504, 15200, 23400, 29001, 33200]
+            }
+        ]
+    };
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+</script>

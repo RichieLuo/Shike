@@ -1,0 +1,879 @@
+/*顶部CSS*/
+
+
+.top_I {
+    width: 100%;
+    height: 570px;
+    position: relative;
+    font-family: arial,"Lantinghei SC","Microsoft Yahei";
+}
+
+.filter {
+    height: 546px;
+    width: 180px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: red;
+}
+
+
+
+
+ .filter ul {
+    margin:0;
+    background-color:#2b2b2b;
+   
+}
+
+
+.filter li {
+    margin: 0;
+    font-size: 16px;
+    height:39px;
+    line-height: 39px;
+    cursor: pointer;
+    position:relative;
+    color:#fff;
+    font-family:arial,"Lantinghei SC","Microsoft Yahei";
+    z-index: 113;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #252525;
+}
+
+.filter .filter_info
+{
+    display:inline-block;
+    height:100%;
+    width:100%;
+    padding:4px 10px;
+    overflow:hidden;
+    line-height:29px;
+    text-align:center;
+    color:#fff;
+}
+.filter .filter_info:hover
+{
+    color:#000;
+    background:#FFF;
+}
+
+
+.filter .filter_info h3
+{
+    display:inline-block;
+    height:100%;
+    width:100%;
+    line-height:29px;
+    text-align:center;
+    position:relative;
+}
+
+.filter .filter_info h3 .Ic
+{
+    display:inline-block;
+    height:25px;
+    width:25px;
+   position:absolute;
+   top:-1px;
+   left:3px;
+}
+
+
+
+.filter .filter_info h3 .Ic img
+{
+    display:inline-block;
+    height:25px;
+    width:25px;
+}
+
+.filter .filter_info h3 span
+{
+
+    font-size:14px;
+}
+
+.filter .filter_info h3 .Ia{
+    font-size:10px;
+    position:absolute;
+    top:8.5px;
+    right:2px;
+}
+
+
+
+.top_extra {
+    position: absolute;
+    top: 6px;
+    right: 0px;
+    font-size: 16px;
+    color: #fcff00;
+    line-height: 34px;
+    height: 34px;
+    width: 160px;
+    text-align: center;
+    background-color: #d2364c;
+}
+.top_cont .top_extra a {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    color: #fcff00;
+    line-height: 34px;
+    text-align: center;
+    padding-right: 6px;
+}
+.top_extra a i
+{
+    height:100%;
+     line-height:34px;
+    font-size:10px;
+    float:right;
+}
+
+.top_extra  span
+{
+    display:inline-block;
+    position:absolute;
+    top:-8px;
+    left:-17px;
+    height:50px;
+    width:50px;
+    border-radius:25px;
+    background:#fff;
+    line-height:54px;
+    text-align:center;
+    font-size:20px;
+}
+.top_extra span .ex_i
+{
+    display:inline-block;
+    height:34px;
+    width:34px;
+    border-radius:17px;
+    background:#000;
+    line-height:34px;
+    text-align:center;
+    color:#fff;
+    cursor:pointer;
+}
+
+
+.top_r {
+    position: relative;
+    height: 546px;
+    width: 1012px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    top:0px;
+}
+
+.Carousel_Figure {
+height:320px;
+width:760px;
+position:absolute;
+top:0;
+left:0;
+overflow:hidden;
+}
+
+    .Carousel_Figure .item img {
+        display: inline-block;
+        height: 320px;
+        width: 760px;
+    }
+
+ .Carousel_Figure .item .The_Dishes
+ {
+     display:inline-block;
+     height:40px;
+     width:140px;
+     font-size:20px;
+     position:absolute;
+     bottom:20px;
+     right:30px;
+     font-weight:bold;
+     color:#f76120;
+ }
+
+.rest {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding:10px;
+    height: 320px;
+    width: 242px;
+    border: 1px solid #dddddd;
+    background-color: #f8f8f8;
+}
+
+.News_Flash {
+    display: inline-block;
+    height: 46%;
+    margin-bottom: 6%;
+    width: 100%;
+    padding: 10px;
+}
+.News_Flash h4{
+    margin:0 0 10px;
+    padding:0 0 10px;
+    border-bottom: 1px solid #eee;
+    color:#d2364c;
+ 
+}
+
+.News_Flash .news {
+    overflow: hidden
+    
+}
+
+ .News_Flash .news a {
+     font-size:14px;
+     color:#000;
+     display:inline-block;
+     width:100%;
+     height:22px;
+     line-height:22px;
+     overflow:hidden;
+}
+
+
+ .News_Flash .news a:hover
+ {
+     color:#d2364c
+ }
+
+.Personal_Data {
+    display: inline-block;
+    height: 48%;
+    width: 100%;
+    padding: 10px;
+    border-top: 1px solid #dddddd;
+}
+
+.Personal_Data img{
+    height:110px;
+    width:110px;
+    border-radius:55px;
+    margin-right:30px;
+}
+
+.Personal_Data .material {
+    float:right;
+    height:110px;
+    width:120px;
+}
+
+.Recommend {
+height:210px;
+width:100%;
+position:absolute;
+bottom:0;
+right:0px;
+
+}
+
+.Recommend ul
+{
+    height:100%;
+    width:100%;
+}
+
+ .Recommend ul .Arrow {
+        /*display: inline-block;*/
+        height: 100%;
+        width: 250px;
+        background-color: gray;
+        margin-right: 4px;
+        float: left;
+    }
+.Recommend ul .Arrow_R
+{
+    margin:0px;
+}
+
+
+
+
+
+/*商品展示区样式*/
+.Exhibition {
+    width: 100%;
+    height:auto;
+    margin-top: 30px;
+}
+
+/*爆款特卖*/
+.am_container {
+    width:100%;
+    margin-bottom:10px;
+}
+
+
+.am_container .sele_mt
+{
+    width:100%;
+    overflow: hidden;
+    background: #ffd800;
+    position:relative;
+}
+.am_container .sele_mt i
+{
+    float: left;
+    display: block;
+    width: 380px;
+    height: 93px;
+    background-image: url('../../../images/sale-t.jpg');
+    background-repeat:no-repeat;
+}
+
+
+.am_container .sele_mt .s_time
+{
+    float: right;
+    width: 160px;
+    height: 39px;
+    position: relative;
+    margin-top: 24px;
+    margin-right: 18px;
+    background-image: url('../../../images/icon-sale.png');
+}
+
+.am_container .sele_mt .s_time span
+{
+    width: 39px;
+    height: 39px;
+    line-height: 39px;
+    font-size: 24px;
+    color: #ffeee0;
+    text-align: center;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    display: block;
+}
+
+.am_container .sele_mt .s_time .mm{
+    left:61px;
+}
+
+.am_container .sele_mt .s_time .ss{
+    left:121px;
+}
+
+.am_g {
+    margin:0px;
+    width: 100%;
+    height: auto;
+    background-color: #ffd800;
+    padding:6px 6px;
+}
+
+.am_g .am_detail
+{
+    /*display:inline-block;*/
+    width:293px;
+    height:320px;
+    background-color:#fff;
+    float:left;
+    margin:0 2px;
+}
+
+.am_g .am_detail .am_image
+{
+    display:inline-block;
+    width:100%;
+    height:240px;
+    padding:30px;
+}
+.am_g .am_detail .am_image img
+{
+    display:inline-block;
+    width:100%;
+    height:100%;
+}
+
+.am_g .am_detail .a_info
+{
+    display:inline-block;
+    width:100%;
+    height:80px;
+    padding:10px 30px;
+}
+
+.am_g .am_detail .a_info a
+{
+    display:inline-block;
+    color:#000;
+}
+
+.am_g .am_detail .a_info a:hover
+{
+    color:#F40;
+}
+.am_g .am_detail .a_info  .s_price
+{
+    width: 100%;
+    text-align: left;
+    position: relative;
+    display: block;
+    height: 40px;
+    font-size: 24px;
+    color: #f52e1f;
+    margin-top: 10px;
+}
+
+.am_g .am_detail .a_info  .s_price i
+{
+    font-size:14px;
+}
+
+.am_g .am_detail .a_info  .s_price a
+{
+    position:absolute;
+    top:0;
+    right:0;
+    display:inline-block;
+    height:30px;
+    width:60px;
+    background-color:#f52e1f;
+    color:#fff;
+    font-size:14px;
+    text-align:center;
+    line-height:30px;
+}
+.am_g .am_detail .a_info  .s_price a:hover
+{
+    color:#000;
+}
+
+
+/*产品列表*/
+
+
+
+Navigation {
+ width:auto;
+ height:auto;
+}
+
+.Navigation_E {
+    display: block;
+    clear: both;
+    overflow: hidden;
+    padding: 10px;
+    padding-bottom:0;
+    border-bottom: 2px solid #68937f;
+    position:relative;
+}
+
+.Navigation_E i
+{
+    display:inline-block;
+    height: 30px;
+    width: 38px;
+    background-color:yellowgreen;
+    line-height:30px;
+    text-align:center;
+}
+
+.Navigation_E a {
+        float: left;
+        height: 30px;
+        line-height: 30px;
+        font-size: 20px;
+        color: #666;
+ }
+    .Navigation_E span {
+        background: #fff7d1;
+        padding: 5px;
+        margin-top: 7px;
+        color: #977a6f;
+        float: left;
+        margin-left: 10px;
+        display: block;
+        font-size: 14px;
+        line-height: 12px;
+        margin-bottom: 5px;
+    }
+
+    .Navigation_E em {
+        position: absolute;
+        left: 130px;
+        top: 22px;
+        color: #fff7d1;
+        font-size: 24px;
+        display: inline-block;
+        border-color: #fff7d1;
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-right: 10px solid #fff7d1;
+    }
+
+.Navigation .Commodity_Exhibition {
+    width:100%;
+    height:auto;
+}
+
+.Commodity_Exhibition .div_all {
+    float:left;
+    /*display:inline-block;*/
+}
+
+
+.Commodity_List {
+    width: 18.75%;
+    text-align: center;
+    margin: 0px 0px;
+    height: 400px;
+    position: relative;
+}
+.Commodity_List .word
+{
+    padding:20px 0 30px;
+   
+}
+
+.Commodity_List .word .outer {
+    display:inline-block;
+    width: 57px;
+    margin: 0 5px 10px 0;
+    border-radius: 0;
+    height: auto;
+   color: #2f2f2f;
+   font-weight:100;
+}
+
+.Commodity_List .word .outer:hover
+{
+    color:yellowgreen;
+}
+
+.Commodity_List img {
+    position: absolute;
+    top: 210px;
+    left: 22px;
+    bottom: 8%;
+    width: 80%;
+   
+}
+.Commodity_Exhibition .Commodity_List a {
+    display:inline-block;
+    width:auto;
+    height:auto;
+
+}
+
+.Commodity_Exhibition .Commodity_List .photograph {
+    transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    height: 180px;
+}
+.Commodity_Exhibition .Commodity_List .photograph:hover {
+    top:200px;
+    left:9%;
+    width: 86%
+}
+
+.Commodity_List .outer_con {
+    top: 28% !important;
+    width: 100%;
+    left: 0;
+    text-align: center !important;
+    margin-top:0px;
+}
+
+.Commodity_List .outer_con h3 {
+    font-size: 16px;
+    color: #F03726 !important;
+    font-weight: 600;
+}
+
+.Commodity_List .outer_con span {
+    font-size: 12px;
+    color: #666;
+}
+
+.Ex_1 {
+    /*颜色过度*/
+    background: linear-gradient(#6bdea7,#68937f);
+    position: relative;
+  
+}
+
+
+
+.Exhibition_1 {    
+    display:inline-block;
+    width: 25%;
+    height: 390px;
+    border: none;
+   
+}
+
+ .Exhibition_1 .outer_con
+{
+     display:inline-block;
+    top: 10% ;
+    left: 2%;
+    width: 100%;
+    text-align: center;
+    margin-top:30px;
+}
+.Exhibition_1 .outer_con h3
+{
+    font-size: 18px;
+    color: #fff;
+    font-weight: 600;
+    line-height: 21px;
+}
+
+ .outer_con span
+{
+    color: #fff;
+    line-height: 24px;
+}
+
+
+.Commodity_Exhibition .Exhibition_1 .photograph {
+    position: absolute;
+    top: 75px;
+    left: 0px;
+    display: inline-block;
+    width: 100%;
+    height: 300px;
+    transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+}
+
+.Commodity_Exhibition .Exhibition_1 .photograph:hover {
+    top: 70px;
+    left: -8px;
+    width: 104%;
+    height: 310px;
+}
+
+.Commodity_Exhibition .Exhibition_1 img {
+   
+    width: 100%;
+    height:100%
+}
+
+.Exhibition_1 .outer_con img {
+    left: 5%;
+    width: 100%;
+    bottom: 5%;
+    margin: 0px 0px;
+    position: absolute;
+}
+
+.Commodity_Ul {
+    position:relative;
+    display:inline-block;
+    height:400px;
+    width:675px;
+}
+
+.com_div {
+    /*display: inline-block;*/
+    width: 224px;
+    text-align: center;
+    margin: 0px 0px;
+    height: 200px;
+    position: relative;
+    float: left;
+    border-top: 1px solid #eee;
+    border-left: 1px solid #eee;
+}
+
+
+
+.com_div .outer_con
+{
+    position:absolute;
+    top:8px;
+    left: 2%;
+    width: 96%;
+    bottom: 5px;
+    text-align: center;
+    z-index: 4;
+    float:left;
+}
+.com_div .outer_con h3
+{
+    font-size:14px;
+    line-height: 22px;
+    color: #fff;
+}
+.com_div .outer_con span
+{
+    font-size: 12px;
+    color: #666;
+}
+.com_div .outer_1
+{
+    display:inline-block;
+    width:auto;
+    height:auto;
+    z-index:0;
+}
+.com_div img
+{
+    display:inline-block;
+    /*padding:30px;*/
+    z-index:0;
+    height: 199px;
+}
+
+
+.Com_tow {
+    position: absolute;
+    top: 200px;
+    left:0;
+}
+
+.Com_three {
+    height:100%;
+    width:227px;
+}
+
+.Com_three .outer_con
+{
+    top:100px;
+    height:40px;
+}
+.Com_three img
+{
+    position:absolute;
+    left: 10%;
+    width: 80%;
+    bottom: 18%;
+    margin: 140px 0px 0px;
+}
+
+
+.Com_transition {
+    display:inline-block;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    z-index:999;
+}
+
+.Com_transition .Com_t_top
+{
+    display:inline-block;
+    width:100%;
+    height:10px;
+    background-color:#FFF;
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+.Com_transition .Com_t_bottom
+{
+    display:inline-block;
+    width:100%;
+    height:10px;
+    background-color:#FFF;
+    position:absolute;
+    bottom:0;
+    left:0;
+}
+.Com_transition .Com_t_left
+{
+    /*display:inline-block;*/
+    width:10px;
+    height:100%;
+    background-color:#FFF;
+    float:left;
+}
+.Com_transition .Com_t_right
+{
+    /*display:inline-block;*/
+    width:10px;
+    height:100%;
+    background-color:#FFF;
+    float:right;
+}
+    .Com_transition:hover {
+        box-shadow: -2px -2px 10px rgba(0, 0, 0, 0.4), 0 0 60px rgba(0, 0, 0, 0.3) inset;
+        -webkit-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4), 0 0 60px #fff inset;
+        top:-2px;
+        left: -6px;
+        width: 104%;
+        height: 104%;
+        z-index:9999;
+    }
+
+
+.nav_u {
+float:right;
+line-height:30px;
+}
+
+.nav_u .nav-pills_li
+{
+    height:100%;
+    width:auto;
+    margin:0;
+    line-height:30px;
+    text-align:center;
+    float:left;
+}
+
+    .nav_u .nav-pills_li a {
+        font-size: 14px;
+        text-align: center;
+        margin: 0 6px;
+        padding: 0;
+        color: #000;
+    }
+
+.nav_u .nav-pills_li .notborder {
+    margin-top:5px;
+        display: inline-block;
+        height: 20px;
+        color: #FFF;
+        background: #F72862;
+        line-height: 20px;
+        padding: 0px 10px;
+        border-radius: 10px;
+        font-size: 14px;
+    }
+
+.nav_u .nav-pills_li a:hover
+{
+    color:yellowgreen;
+}
+
+.nav_u .nav-pills_li .not_i
+{
+    border:1px solid #fff;
+    background-color:#fff;
+    font-size:6px;
+    height:10px;
+    width:10px;
+    line-height:10px;
+    
+}
+
+
+
+
+

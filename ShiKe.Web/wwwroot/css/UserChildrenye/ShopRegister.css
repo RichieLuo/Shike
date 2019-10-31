@@ -1,0 +1,303 @@
+/*商家入驻*/
+a:hover
+{
+    text-decoration:none;
+}
+.Information {
+    width: 1050px;
+    float: left;
+    margin-top: 15px;
+    margin-left: 20px;
+    background: #fff;
+    min-height: 736px;
+}
+
+.Information .commodityList 
+{
+    width:100%;
+    height:100%;
+    padding:0px 50px;
+    position:relative;
+    border:none;
+}
+
+
+.Information .CollectionTitle {
+    font-family: tahoma,tarial,"Lantinghei SC","Microsoft Yahei";
+    font-size: 18px;
+    color: #000;
+    font-weight: 100;
+    padding: 0 0 10px 30px;
+    border-bottom: 2px solid #fd6d37;
+    margin-top:20px;
+}
+
+    .Information .CollectionTitle span {
+        font-size: 14px;
+    }
+
+.rule_d {
+    width: auto;
+    height: 550px;
+    border: 1px solid #8cc051;
+    margin-left: 0px;
+    padding: 20px 20px 0 20px;
+}
+.rule_d p{
+    margin:20px;
+}
+.rule_d_color{
+    color:red;
+}
+.ShopInformation {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    display: none;
+    text-align: center;
+}
+
+.ShopInformation_01 {
+    width: 100%;
+    padding-left: 25%;
+    padding-right: 25%;
+}
+.s_a1
+{
+    color:#666;
+    padding:0 50px;
+    margin:8px;
+}
+
+
+.MyInfo
+{
+    width:100%;
+    height:auto;
+    /*border:1px solid red;*/
+}
+
+.MyInfo ul
+{
+    width:auto;
+    height:auto;
+    overflow:hidden;
+}
+
+.TagArrow {
+    width: 273px;
+    height: 80px;
+    background-color: #E4F0FD;
+    display: inline-block;
+    position:relative;
+}
+
+.TagArrow_01 {
+    background: #75B0DF;
+}
+    .TagArrow .con_T {
+        width: 86%;
+        height: 100%;
+        margin-left: 14%;
+        display: inline-block;
+        text-align: left;
+        position: relative;
+    }
+
+.TagArrow .con_T span
+{
+    font-size: 45px;
+    position: absolute;
+    top: 10px;
+    z-index: 2;
+    color:#666;
+}
+
+.TagArrow .con_T h3
+{
+    display:inline-block;
+    position:absolute;
+    left:45px;
+    width: 100px;
+    height: 30px;
+    font-size:20px;
+    margin-top: 20px;
+}
+
+.TagArrow .con_T p
+{
+    display:inline-block;
+    position:absolute;
+    width:auto;
+    left:45px;
+    top:50px;
+    color:#818181;
+    font-size:12px;
+}
+
+.tow_T:after {
+    content: '';
+    position: absolute;
+    right: -24px;
+    top: 0;
+    z-index: 1;
+    border-top: 40px solid transparent;
+    border-bottom: 40px solid transparent;
+    border-left: 24px solid #E4F0FD;
+}
+
+
+
+.tow_T01:after {
+    content: '';
+    position: absolute;
+    right: -24px;
+    top: 0;
+    z-index: 1;
+    border-top: 40px solid transparent;
+    border-bottom: 40px solid transparent;
+    border-left: 24px solid #75B0DF;
+}
+
+.one_T
+{
+    margin-left:26px;
+}
+
+    .one_T:before {
+        content: attr(data-content);
+        position: absolute;
+        left: -24px;
+        top: 0;
+        z-index: 1;
+        border-top: 40px solid #E4F0FD;
+        border-bottom: 40px solid #E4F0FD;
+        border-left: 24px solid transparent;
+    }
+
+
+.one_T01 {
+    margin-left: 26px;
+}
+.one_T01:before {
+    content: attr(data-content);
+    position: absolute;
+    left: -24px;
+    top: 0;
+    z-index: 1;
+    border-top: 40px solid #75B0DF;
+    border-bottom: 40px solid #75B0DF;
+    border-left: 24px solid transparent;
+}
+
+.OneData {
+    width: 880px;
+    height: auto;
+    background-color: #f2faee;
+    border: 1px solid #8cc051;
+    padding-bottom:10px;
+}
+
+    .OneData p {
+        text-align: left;
+        font-size: 18px;
+        margin: 10px 0 0 20px;
+        color: #666;
+    }
+
+     .OneData p a
+     {
+         margin-left:10px;
+     }
+
+.Shopdata {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    margin: 18px 0;
+}
+
+.Shopdata label {
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    line-height: 48px;
+    margin: 0;
+    font-weight: 100;
+    height: 50px;
+    border: 1px solid #999;
+    border-right:none;
+    float: left;
+}
+
+.Shopdata input
+{
+    width:300px;
+    height: 50px;
+    padding: 10px 0 10px 10px;
+}
+.ShopPicture {
+    height: auto;
+    width: 100%;
+    display:block;
+    display:none;
+}
+
+.userName_1
+{
+    width:100%;
+    padding:30px 20px;
+}
+
+.file-preview
+{
+    width: 91%;
+}
+
+.krajee-default.file-preview-frame .kv-file-content {
+    height: 160px;
+}
+
+.file-input .kv-file-content img {
+    width: 156px;
+    
+}
+
+.krajee-default .file-actions {
+    margin:0;
+}
+.krajee-default .file-footer-caption {
+    width: auto;
+    height: 22px;
+    margin: 0;
+    width:160px;
+}
+
+.krajee-default.file-preview-frame .file-thumbnail-footer {
+   height:auto;
+}
+
+.S_I_d {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom:50px;
+    
+}
+
+.S_I_d .Submit_Information {
+    display: inline-block;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    background-color: #0085D7;
+    font-size: 24px;
+    color: #fff;
+}
+    .S_I_d .Submit_Information:hover {
+        color: #fff;
+        background-color: #1170BC;
+        text-decoration: none;
+    }

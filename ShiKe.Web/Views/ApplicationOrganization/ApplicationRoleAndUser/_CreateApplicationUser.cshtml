@@ -1,0 +1,165 @@
+﻿@model ShiKe.ViewModels.ApplicationOrganization.ApplicationUserVM
+@using ShiKe.CustomMvcCoreExtension;
+@using ShiKe.Common.ViewModelComponents.ForMvcHelper
+
+<div>
+    <h2 class="sub-header">新建 @Model.Name 数据</h2>
+</div>
+<div id="createApplicationUser">
+    <div class="ShiKeDefaultArea" data-text="" id="">
+        <form action="../../ApplicationRoleAndUser/SaveCreateApplicationUser" 
+              method="post"  
+              id="ApplicationUserCreateForm"   
+              data-ajax-update='#updateCreateOrEdit_@Model.ID'
+              data-ajax-mode='replace'
+              data-ajax='true' data-toggle="validator" >
+
+            <input type="hidden" id="ID" name="ID" value="@Model.ID" />
+            <input type="hidden" id="IsNew" name="IsNew" value="@Model.IsNew.ToString()" />
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label for="RoleItemIDCollection" class="col-sm-3 control-label">关联角色组：</label>
+                    <div class="col-sm-9">
+                        @foreach (var item in Model.RoleItemColection)
+                        {
+                            var checkString = "";
+                            if (Model.RoleItemIDCollection.Contains(item.ID))
+                            {
+                                checkString = "checked";
+                            }
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="RoleItemIDCollection" id="inlineCheckbox1" value="@item.ID" @checkString> @item.DisplayName
+                            </label>
+                        }
+                    </div>
+                </div>
+                <div class='form-group' id='UserName_DIV'>
+                    <label for='UserName' class='col-sm-3 control-label'>用户名：</label>
+                    <div class='col-sm-9'>
+                        <div class="input-group">
+                            <input type='text' class='form-control' name='UserName' id='UserName' placeholder='请输入用户名' value='@Model.UserName' onfocus='clearErrStyle(this.id)' onBlur='' autofocus="autofocus">
+                            <span class="input-group-btn">
+                                <button onclick="checkIfValidate('UserName')" type="button" class="btn btn-default">重名？</button>
+                            </span>
+                        </div>
+                        <div id='UserName_Help'></div>
+                    </div>
+
+                </div>
+
+                @{
+
+                    var inputForName = new HtmlInputItemSpecification()
+                    {
+                        ItemID = "Name",
+                        ItemDisplayName = "显示名",
+                        ItemValue = Model.Name,
+                        PlaceholderString = "请输入显示名",
+                        AutofocusName = "",
+                        OnfocusFuntion = "clearErrStyle(this.id)",
+                        OnBlurFunction = ""
+                    };
+                    @Html.ShiKeBoorStrapInputValidate(inputForName)
+
+                    var inputForMobileNumber = new HtmlInputItemSpecification()
+                    {
+                        ItemID = "MobileNumber",
+                        ItemDisplayName = "手机号码",
+                        ItemValue = Model.MobileNumber,
+                        PlaceholderString = "请输入手机号码",
+                        AutofocusName = "",
+                        OnfocusFuntion = "clearErrStyle(this.id)",
+                        OnBlurFunction = ""
+                    };
+                    @Html.ShiKeBoorStrapInputValidate(inputForMobileNumber)
+
+                    var inputForMobileEMail = new HtmlInputItemSpecification()
+                    {
+                        ItemID = "EMail",
+                        ItemDisplayName = "电子邮件",
+                        ItemValue = Model.EMail,
+                        PlaceholderString = "请输入电子邮件地址",
+                        AutofocusName = "",
+                        OnfocusFuntion = "clearErrStyle(this.id)",
+                        OnBlurFunction = ""
+                    };
+                    @Html.ShiKeBoorStrapInputValidate(inputForMobileEMail)
+
+                    var inputForMobilePassword = new HtmlInputItemSpecification()
+                    {
+                        ItemID = "Password",
+                        ItemDisplayName = "密码",
+                        ItemValue = Model.Password,
+                        PlaceholderString = "请输入密码，密码长度大于6个字符",
+                        AutofocusName = "",
+                        OnfocusFuntion = "clearErrStyle(this.id)",
+                        OnBlurFunction = ""
+                    };
+                    @Html.ShiKeBoorStrapInputPassword(inputForMobilePassword)
+
+                    var inputForMobileConfirmPassword = new HtmlInputItemSpecification()
+                    {
+                        ItemID = "ConfirmPassword",
+                        ItemDisplayName = "重复密码",
+                        ItemValue = Model.ConfirmPassword,
+                        PlaceholderString = "请重复输入与上面密码相同的内容。",
+                        AutofocusName = "",
+                        OnfocusFuntion = "clearErrStyle(this.id)",
+                        OnBlurFunction = ""
+                    };
+                    @Html.ShiKeBoorStrapInputPassword(inputForMobileConfirmPassword)
+
+                }
+                <div class="form-group">
+                    <label for="Description" class="col-sm-3 control-label">简要描述：</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" rows="4" name="Description" id="EntityVM_Description">@Model.Description</textarea>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-red" />
+            <div>
+                <button type="button"  class="btn" onclick="postApplicationUserCreateForm()"><span class=""></span> 提交数据</button>   @*onclick="postApplicationUserCreateForm()"*@
+                <button type="reset" class="btn"><span class=""></span> 重置 </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+@*<div class="form-group" id="Name_DIV">
+        <label for="Name" class="col-sm-3 control-label">显示名称：</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" name="Name" id="Name" placeholder="请输入显示名" value="@Model.Name" onfocus="clearErrStyle(this.id)">
+            <div id="Name_Help"></div>
+        </div>
+    </div>*@
+@*<div class="form-group" id="MobileNumber_DIV">
+        <label for="MobileNumber" class="col-sm-3 control-label">手机号码：</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" name="MobileNumber" id="MobileNumber" placeholder="请输入手机号码" value="@Model.MobileNumber" onfocus="clearErrStyle(this.id)">
+            <div id="MobileNumber_Help"></div>
+        </div>
+    </div>*@
+@*<div class="form-group" id="EMail_DIV">
+        <label for="EMail" class="col-sm-3 control-label">电子邮件：</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" name="EMail" id="EMail" placeholder="请输入电子邮件" value="@Model.EMail" onfocus="clearErrStyle(this.id)">
+            <div id="EMail_Help"></div>
+        </div>
+    </div>*@
+@*<div class="form-group" id="Password_DIV">
+        <label for="Password" class="col-sm-3 control-label">密码：</label>
+        <div class="col-sm-9">
+            <input type="password" class="form-control" name="Password" id="Password" placeholder="请输入密码" value="@Model.Password" onfocus="clearErrStyle(this.id)">
+            <div id="Password_Help"></div>
+        </div>
+    </div>
+    <div class="form-group" id="ConfirmPassword_DIV">
+        <label for="ConfirmPassword" class="col-sm-3 control-label">重复密码：</label>
+        <div class="col-sm-9">
+            <input type="password" class="form-control" name="ConfirmPassword" id="ConfirmPassword" placeholder="请重复输入密码" value="@Model.ConfirmPassword">
+            <div id="ConfirmPassword_Help"></div>
+        </div>
+    </div>*@

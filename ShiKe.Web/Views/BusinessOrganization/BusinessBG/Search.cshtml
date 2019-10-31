@@ -1,0 +1,134 @@
+﻿@model IEnumerable<ShiKe.ViewModels.BusinessOrganization.SK_WM_GoodsVM>
+@{
+    ViewData["Title"] = "搜索结果";
+    Layout = "_IndexLayout";
+}
+<div class="container commIndx" id="IndexTakeOutFood" style="background-color:#fff">
+    <!--分类别-->
+    <div class="row" style="border: 1px solid #eee;margin-bottom: 10px;height: 120px;box-sizing: border-box">
+        <div class="col-xs-12" style="background-color: #f5f5f5;height: 40px;line-height: 40px">
+            <span style="font-size: 16px;color: #2bb8aa ;font-weight:bold;">所有分类</span>
+            <a href="../../Home/Unfinished" class="pull-right" style="text-decoration: none;color: #2bb8aa ;font-size: 14px">对查询结果不满意？</a>
+        </div>
+        <div class="col-xs-12" style="height: 40px;line-height: 40px;box-sizing: border-box;padding-left: 25px">
+            <span style="float: left">分类：</span>
+            <ul class="pSearch">
+                <li class="searchValCate" title="全部">全部</li>
+                @foreach (var item in ViewBag.GoodsCategory)
+                {
+                    <li class="searchValCate" title="@item.Name">@item.Name</li>
+                }
+                <li class="searchValCateMore" title="更多">更多></li>
+            </ul>
+        </div>
+        <hr style="width: 96%;padding: 0;margin: 0 auto">
+        <div class="col-xs-12" style="height: 40px;line-height: 40px;padding-left: 25px">
+            <span style="float: left">区域：</span>
+            <ul class="pSearch">
+                <li class="searchValArea" title="全部">全部</li>
+                <li class="searchValArea" title="城中区">城中区</li>
+                <li class="searchValArea" title="柳南区">柳南区</li>
+                <li class="searchValArea" title="柳北区">柳北区</li>
+                <li class="searchValArea" title="鱼峰区">鱼峰区</li>
+                <li class="searchValAreaMore" title="其他">其它</li>
+            </ul>
+        </div>
+    </div>
+
+    <!--大家都在找-->
+    <div class="row" style="height: 40px;border: 1px solid #eee;margin-bottom: 10px;line-height: 40px">
+        <div class="col-xs-12" style="">
+            <span style="float: left">大家都在找：</span>
+            <ul class="pSearch">
+                @{
+                    var count = 0;
+                    foreach (var item in ViewBag.HotSearch)
+                    {
+                        if (count < 6)
+                        {
+                            <li class="searchValGoods" title="@item.Name">@item.Name</li>
+                        }
+                        count++;
+                    }
+                }
+                @*<li class="searchValGoods">螺蛳粉</li>
+                    <li class="searchValGoods">老友粉</li>
+                    <li class="searchValGoods">烧烤烤肉</li>
+                    <li class="searchValGoods">叉烧饭</li>
+                    <li class="searchValGoods">卤肉饭</li>
+                    <li class="searchValGoods">烤鱼</li>
+                    <li class="searchValGoods">汉堡</li>*@
+            </ul>
+        </div>
+    </div>
+
+    <!--排序查询-->
+    <div class="row sort-row">
+        <div class="col-xs-4">
+            <div class="row sort">
+                <div class="sortItem text-center col-xs-3 searchActive" style="border-left: 0">
+                    <a href="#">综合排序</a>
+                </div>
+                <div class="sortItem text-center col-xs-2"><a href="../../Home/Unfinished">人气</a></div>
+                <div class="sortItem text-center col-xs-2"><a href="../../Home/Unfinished">销量</a></div>
+                <div class="sortItem text-center col-xs-2"><a href="../../Home/Unfinished">评价</a></div>
+                <div class="sortItem text-center col-xs-2"><a href="../../Home/Unfinished">价格</a></div>
+            </div>
+        </div>
+        <div class="col-xs-8" style="height: 40px"></div>
+    </div>
+
+    <!--查询结果说明-->
+    <div class="row"
+         style="height: 40px;background-color: #FFF1DC;border: 1px solid #FFE3B8;margin-bottom: 20px;line-height: 40px">
+        <div class="col-xs-12">
+            @if (ViewBag.Keyword != null)
+            {
+                <p>您好 ，“@ViewBag.Keyword” 相关的商品 共找到 @Model.Count() 件</p>
+            }
+            else
+            {
+                <p>您好 ，“没有输入关键词”本次搜索 共找到 @Model.Count() 件</p>
+            }
+        </div>
+    </div>
+
+    <!--查询的结果-->
+    <div class="row IndexRow">
+        @foreach (var sk_wm_goods in Model)
+        {
+            <div class="col-xs-3">
+                <a href="../Home/ComDetail?id=@sk_wm_goods.ID">
+                    <div class="thumbnail">
+                        @if (sk_wm_goods.AvatarPath == null)
+                        {
+                            <img src="~/images/noimage.gif" alt="@sk_wm_goods.Name">
+                        }
+                        else
+                        {
+                            <img src="@sk_wm_goods.AvatarPath" alt="@sk_wm_goods.Name">
+                        }
+                        <div class="caption">
+                            <h4><strong>@sk_wm_goods.Name</strong></h4>
+                            <p>@sk_wm_goods.Description</p>
+                            <p>
+                                <span>¥<strong>@sk_wm_goods.Price</strong></span>
+                            </p>
+                            <p style="position:relative;">
+                                <span style="font-size:14px;color:#000;">门店价：<del><span>¥</span>@sk_wm_goods.FacadePrice</del></span>
+                                <span style="font-size:14px;color:#000;position:absolute;top:0;right:0;">已售 @sk_wm_goods.SalesVolume</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+    @if (Model.Count() >= 9)
+    {
+        <div class="row">
+            <div class="col-xs-12 text-center" style="padding:0;box-shadow: 0 2px 10px 0 #d7d7d7;background-color: rgba(255, 255, 255, 0.94);"><a href="../../Home/Unfinished" style="line-height:48px;width:100%;height:48px;border-radius:0;font-size:14px;color:#666;display:block;text-decoration:none">查看更多商品>></a></div>
+        </div>
+    }
+
+</div>

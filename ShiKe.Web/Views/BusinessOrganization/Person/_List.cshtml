@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ShiKe.ViewModels.BusinessOrganization.PersonVM>
+
+<div>
+    <a href="../Person/CreateOrEdit/@Guid.NewGuid().ToString()" type="button" class="btn btn-success pull-right">新建数据</a>
+    <div class="pull-right" style="width:10px"></div>
+    <div class="input-group pull-right" style="width:250px">
+        <input type="text" class="form-control" placeholder="输入关键词...">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" type="button">查询</button>
+        </span>
+    </div>
+    <h2 class="sub-header">管理系统人员数据</h2>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th width="50px">编号</th>
+                <th width="200px">归属单位</th>
+                <th width="100px">姓名</th>
+                <th width="60px">性别</th>
+                <th width="120px">移动电话</th>
+                <th>电子邮件</th>
+                <th width="150px">数据操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var person in Model)
+                {
+                    <tr>
+                        <td>@person.OrderNumber</td>
+                        <td>@person.ParentItem.DisplayName</td>
+                        <td>@person.Name</td>
+                        <td>@person.SexString</td>
+                        <td>@person.MobileNumber</td>
+                        <td>@person.Email</td>
+                        <td>
+                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                                <a href="../Person/CreateOrEdit/@person.ID" type="button" class="btn btn-default">编辑</a>
+                                <button type="button" class="btn btn-default" onclick="gotoDetail('@person.ID.ToString()')">明细</button>
+                                <button type="button" class="btn btn-default"
+                                        onclick="openDeleteModal('@person.ID.ToString()','你所选择删除的员工是：@person.Name（@person.SortCode），请确认是否继续执行。')">
+                                    删除
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li>
+            <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li>
+            <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>

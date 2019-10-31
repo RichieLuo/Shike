@@ -1,0 +1,116 @@
+﻿@model ShiKe.ViewModels.BusinessOrganization.SK_WM_GoodsVM
+@{
+    ViewData["Title"] = "商品明细";
+}
+
+<meta charset="UTF-8">
+<h3>商品明细查看<a href="#" onclick="gotoList()" type="button" class="btn btn-success pull-right">返回商品列表</a></h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @if (ViewBag.imgCount == 0)
+        {
+            <img style="height: 250px;float:left; width:300px;" src="~/images/noimage.gif" alt="商品图片" class="img-thumbnail">
+        }
+        else if (ViewBag.imgCount == 1)
+        {          
+            @foreach (var item in ViewBag.DetailImgs)
+            {
+                <img style="height: 250px;float:left; width:300px;" src="@item.UploadPath" alt="商品图片" class="img-thumbnail">
+            }
+        }
+        else
+        {
+            var count = 1;
+            @foreach (var item in ViewBag.DetailImgs)
+            {
+                if (count < 5)
+                {
+                    <img style="height: 130px;float:left; width:150px;" src="@item.UploadPath" alt="商品图片" class="img-thumbnail">
+                }
+                count++;
+            }
+        }
+
+
+        @*<img style="height: 130px;float:left; width:150px;" src="@Model.AvatarPath" alt="">
+            <img style="height: 130px;float:left; width:150px;" src="@Model.AvatarPath" alt="">
+            <img style="height: 130px;float:left; width:150px;" src="@Model.AvatarPath" alt="">*@
+    </div>
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-12">
+                <label style="text-align:right" for="firstname" class="col-sm-3 control-label">商品名称：</label>
+                <label for="firstname" class="col-sm-9 control-label">@Model.Name</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label style="text-align:right" for="lastname" class="col-sm-3  control-label">上架时间：</label>
+                <label for="lastname" class="col-sm-9 control-label">@Model.ShelvesTime</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label style="text-align:right" for="lastname" class="col-sm-3 control-label">商品修改时间：</label>
+                <label for="lastname" class="col-sm-9 control-label">@Model.ModifyTime</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label style="text-align:right" for="lastname" class="col-sm-3  control-label">商品描述：</label>
+                <label for="lastname" class="col-sm-9 control-label">@Model.Description</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label style="text-align:right" for="lastname" class="col-sm-3  control-label">商品单位：</label>
+                <label for="lastname" class="col-sm-9 control-label">@Model.Unit</label>
+            </div>
+        </div>
+        @*<div class="row">
+                <div class="col-md-12">
+                    <label style="text-align:right" for="lastname" class="col-sm-3  control-label">商品标签：</label>
+                    <label for="lastname" class="col-sm-9 control-label">@Model.Label</label>
+                </div>
+            </div>*@
+        <div class="row">
+            <div class="col-md-12">
+                <label style="text-align:right" for="lastname" class="col-sm-3  control-label">商品分类：</label>
+                <label for="lastname" class="col-sm-9 control-label">@Model.GoodsCategory.DisplayName</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label style="text-align:right" for="lastname" class="col-sm-3 control-label">商品库存：</label>
+                <label for="lastname" class="col-sm-9 control-label">@Model.Stock</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label style="text-align:right" for="lastname" class="col-sm-3 control-label">门店价：</label>
+                <label for="lastname" class="col-sm-9 control-label">@Model.FacadePrice</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label style="text-align:right" for="lastname" class="col-sm-3 control-label">售价：</label>
+                <label for="lastname" class="col-sm-9 control-label">@Model.Price</label>
+            </div>
+        </div>
+        @*<div class="row">
+                <div class="col-md-12">
+                    <label style="text-align:right" for="lastname" class="col-sm-3 control-label">商品购买上限：</label>
+                    <label for="lastname" class="col-sm-9 control-label">@Model.BuyUpperLimit</label>
+                </div>
+            </div>*@
+        <div class="row">
+            <div class="col-md-12">
+                <label style="text-align:right" for="lastname" class="col-sm-3  control-label">商品状态：</label>
+                <label for="lastname" class="col-sm-9 control-label">@Model.State</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+

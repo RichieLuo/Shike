@@ -1,0 +1,256 @@
+﻿
+
+
+.Evaluate {
+    max-width: 1000px;
+    margin: 0px 0;
+    margin-top: 30px;
+    background: #ffffff;
+}
+
+.Commodity {
+    float:left;
+    width:330px;
+    display:block;
+    margin-left:10px;
+
+}
+.Shops {
+    border: 1px solid #e9dada;
+    width: 1041px;
+    height: 350px;
+    margin: auto;
+}
+
+/*店铺信息*/
+.residents .r-solt {
+    width: auto;
+    margin-left: 20px;
+    font-size: 20px;
+    border-bottom: 1px solid #fd6d37;
+}
+
+/*店铺动态信息*/
+.yy-shull .o-solt {
+    width: auto;
+    margin-left: 20px;
+    font-size: 16px;
+    border-bottom: 1px solid #fd6d37;
+}
+
+
+.box {
+    width: auto;
+    margin: 0px auto;
+}
+
+.tc-s310 {
+    border: 1px solid #eee;
+    width: 200px;
+    height: 150px;
+    margin:40px;
+}
+img {
+    max-width:100%;
+    margin:auto;
+    width:auto;
+}
+.Waresmane{
+    width: 600px;
+    margin-left: 30px;
+    float: left;
+    min-height: 350px;
+    font-size: 12px;
+}
+.tb-mane {
+    text-align:left;
+    padding:8px 0;
+}
+.tb-mane h1 {
+        font-size: 18px;
+        padding-bottom: 0.4em;
+        line-height: 1;
+        font-weight: 700;
+        color: #000;
+    }
+.Waresmane .go-bungdg h3 {
+    float:left;
+}
+
+/*月销量*/
+.tm-ind-panei {
+    border: dotted #C9C9C9;
+    border-width: 1px 0px;
+    margin: -1px 0px 10px 0px;
+    padding: 10px 0px;
+    position: relative;
+    overflow: hidden;
+    clear: both;
+    display: flex;
+}
+
+.tm-ind-iten {
+    float: left;
+    width: 33%;
+    text-align: center;
+    position: relative;
+    left: -1px;
+    border-left: 1px solid #E5DFDA;
+    flex: 1 1 0%;
+    line-height: 16px;
+    cursor: pointer;
+    list-style: none;
+    font-size: 16px;
+}
+
+.tm-ind-panei .tm-Count {
+    display: inline-block;
+    line-height: 16px;
+    height: 16px;
+    color: #C40000;
+    font-weight: 700;
+    margin-left: 3px;
+}
+
+/*评价*/
+.ind-appraise {
+
+}
+.tm-iten {
+    border-left:0px solid #E5DFDA;
+    flex: 1 1 0%;
+    line-height: 16px;
+    cursor: pointer;
+    list-style: none;
+    font-size: 18px;
+}
+
+.ind-appraise .Count {
+    display: inline-block;
+    line-height: 16px;
+    font-weight: 700;
+    margin-left: 3px;
+    height: 20px;
+    width: 25px;
+    color: #f7041a;
+    font-size: 20px;
+}
+.tm-imd1 {
+    margin: 20px;
+   
+}
+
+.tm-imd3 {
+    margin: 20px;
+}
+
+.tm-imd2 {
+    margin: 20px;
+}
+
+/*店铺评论*/
+.Were-ASbandoned {
+    border: 1px solid #e9dada;
+    width: 1041px;
+    height: 370px;
+    margin: auto;
+    display: inline-block
+}
+
+/*累积评价*/
+.tta01 {
+    margin-left: 10px;
+    border-width: 0px 0px;
+    font-size: 18px;
+    padding: 10px 0px;
+    position: relative;
+    overflow: hidden;
+    clear: both;
+    display: flex;
+}
+.tta01 img {
+        display: inline-block;
+        line-height: 16px;
+        height: 16px;
+        font-weight: 700;
+        margin-left: 3px;
+        height:20px;
+        width:300px;
+        margin-left:10px;
+    }
+    /*我的评价*/
+.g-Gturt {
+    background: #eee;
+    overflow: hidden;
+    height: 250px;
+    padding-top: 10px;
+    width: 1000px;
+    margin: auto;
+    position: relative
+}
+    .g-Gturt .Frame {
+        width: 700px;
+        height: 100px;
+        padding: 28px;     
+        border: 1px solid #C9C9C9;
+        background:#ffffff;
+        float:left;
+    }
+    .Lamb
+    {
+        display:inline-block;
+
+    }
+.hunh .b-su {
+    display: inline-block;
+    line-height: 16px;
+    font-weight: 700;
+    margin-left: 3px;
+    height: 20px;
+    width: 25px;
+    color: #f7041a;
+    font-size:20px;
+}
+
+
+.Lamb .box4{
+    font-size:18px;
+    margin:40px;
+}
+
+.chalkiness .box5 {
+    font-size: 18px;
+    display: inline-block;
+    float: left;
+}
+.chalkiness {
+    margin:40px;
+}
+/*我的评论*/
+
+.y-shull {
+    text-align: left;
+}
+.y-shull .oo-solt {
+    width:auto;
+    margin-left:0px;
+    font-size:16px;
+    border-bottom: 1px solid #fd6d37;
+}
+
+
+/*提交评价*/
+
+
+.referring {
+    border: 2px solid #ffffff;
+    margin: 160px;
+    width: 78px;
+    background:#ffffff;
+}
+.referring .evaluate {
+    font-size: 18px;
+
+}
+
+

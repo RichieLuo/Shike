@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ShiKe.Entities.BusinessOrganization.SK_WM_GoodsCollection>
+@{
+    ViewData["Title"] = "我的收藏";
+    Layout = "_UserLayout";
+}
+
+<meta charset="utf-8" />
+<link href="~/css/UserChildrenye/Collection.css" rel="stylesheet" />
+@*<h2>Safety  安全设置</h2>*@
+
+<div class="Information">   
+   <h3 class="CollectionTitle">我的收藏 <span>/ My Collection</span></h3>
+    <div class="commodityList">
+     @foreach (var goodcollection in Model)
+     {
+            <div class="commodity_an">
+                <div class="commodity_an_one">
+                    <input type="hidden" name="name" id="personID" value="" />
+                    <a href="../../Home/ComDetail?id=@goodcollection.Goods.ID" class="an_a"><img src="@goodcollection.Goods.GoodsIMG.UploadPath" alt="@goodcollection.Goods.Name" title="@goodcollection.Goods.Name" /></a>
+                    <div class="s_pic">
+                        <a href="../../Home/ComDetail?id=@goodcollection.Goods.ID">@goodcollection.Goods.Name</a>
+                        <div class="s_price_box">
+                            <span class="s_price"><em class="s_price_sign">¥</em><em class="s_value">@goodcollection.Goods.Price</em></span>
+                            <span class="s_histiry_price"><em class="s_price_sign">¥</em><em class="s_value">@Convert.ToDouble(@Convert.ToDouble(@goodcollection.Goods.Price)+10)</em></span>
+                        </div>
+                        <div class="s_extra_box">
+                            <span class="s_comment">好评：97.27%</span>
+                            <span claas="s_sales">月销：601</span>
+                        </div>
+                    </div>
+                    <div class="ShopcartAndDelete">
+                        <a href="../../Account/DeleteCollection/@goodcollection.ID" class="delete_left sh_de">移除</a>
+                        <a href="#"  class="shopcart_right sh_de" onclick="gotoSaveCa('@goodcollection.Goods.ID')">加入购物车</a>
+                    </div>
+                </div>
+            </div>
+     }
+ 
+    </div>
+</div>
+<script>
+    function gotoSaveCa(pid) {
+        console.log(pid)
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../Account/SavaShoppingCart/' + pid,
+            beforeSend: function () {
+            }
+        }).done(function (data) {
+            if (data.isOK == true) {
+                alert(data.message);
+            } else {
+                alert(data.message);
+            }
+
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+
+</script>

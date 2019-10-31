@@ -1,0 +1,247 @@
+﻿@using ShiKe.ViewModels.ApplicationManagement
+@model IEnumerable<SystemWorkPlaceVM>
+@{
+    Layout = "_SystemConfigLayout";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <div>
+                <button type="button" class="btn btn-success pull-right" onclick="openCreateOrEditForSystemWorkPlace('@Guid.NewGuid().ToString()')"> 新建 </button>
+                <h2 class="sub-header">主菜单条目</h2>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-3">
+                    <h2 class="sub-header">子菜单分区</h2>
+               </div>
+                <div class="col-md-9">
+                    <h2 class="sub-header">子菜单条目</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    @foreach (var wpItem in Model)
+    {
+        <div class="row" style="border-top:solid;border-top-color:darkgrey;border-top-width:1px;padding-bottom:5px">
+            <div class="col-md-2">
+                <h3>@wpItem.Name</h3>
+                <div>
+                    <button class="btn btn-default" onclick="openCreateOrEditForSystemWorkPlace('@wpItem.ID')">编辑</button>
+                    <button class="btn btn-default" onclick="openDeleteModal('@wpItem.ID','你要删除的数据是：@wpItem.Name ，请确认是否删除','DeleteSystemWorkPlace')" >删除</button>
+                    <button class="btn btn-default" onclick="openCreateOrEditForSystemSection('@Guid.NewGuid()','@wpItem.ID')">添加分区</button>
+                </div>
+            </div>
+            <div class="col-md-10">
+            @foreach (var wsItem in wpItem.SystemWorkSectionVMCollection)
+            {
+                <div class="row" style="border-bottom:solid;border-bottom-color:darkgrey;border-bottom-width:1px;padding-bottom:5px">
+                    <div class="col-md-3">
+                        <h3>@wsItem.Name</h3>
+                        <div>
+                            <button class="btn btn-default" onclick="openCreateOrEditForSystemSection('@wsItem.ID','@wpItem.ID')" >编辑</button>
+                            <button class="btn btn-default" onclick="openDeleteModal('@wsItem.ID','你要删除的数据是：@wsItem.Name ，请确认是否删除','DeleteSystemWorkSection')">删除</button>
+                            <button class="btn btn-default" onclick="openCreateOrEditForSystemTask('@Guid.NewGuid()','@wsItem.ID')">添加子菜单</button>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th width="50px">编号</th>
+                                    <th width="200px">名称</th>
+                                    <th>控制器名称</th>
+                                    <th width="200px">实体名称</th>
+                                    <th width="100px">编码</th>
+                                    <th width="100px">数据操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var wtItem in wsItem.SystemWorkTaskVMCollection)
+                                {
+                                    <tr>
+                                        <td>@wtItem.OrderNumber</td>
+                                        <td>@wtItem.Name</td>
+                                        <td>@wtItem.ControllerName</td>
+                                        <td>@wtItem.BusinessEntityName</td>
+                                        <td>@wtItem.SortCode</td>
+                                        <td>
+                                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                                                <button type="button" class="btn btn-default" onclick="openCreateOrEditForSystemTask('@wtItem.ID.ToString()','@wsItem.ID')">编辑</button>
+                                                <button type="button" class="btn btn-default"
+                                                        onclick="openDeleteModal('@wtItem.ID.ToString()','你所选择删除的对象是：@wtItem.Name（@wtItem.SortCode），请确认是否继续执行。','DeleteSystemWorkTask')">
+                                                    删除
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            }
+            </div>
+        </div>
+    }
+</div>
+
+@Html.Partial("../../Views/ApplicationManagement/SystemConfig/_ModalForDelete")
+@Html.Partial("../../Views/ApplicationManagement/SystemConfig/_ModalForCreateOrEdit")
+
+<script type="text/javascript">
+    var deleteActionURL = "";
+
+    // 打开编辑主菜单条目会话框
+    function openCreateOrEditForSystemWorkPlace(id)
+    {
+        // 打开编辑数据会话框
+        $('#createOrEditModal').modal({
+            show: true,
+            backdrop: 'static'
+        });
+        // 访问后台 CreateOrEdit 方法，获取新建或者编辑数据的呈现 imports page 页面内容
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../SystemConfig/CreateOrEditForSystemWorkPlace/' + id,
+            beforeSend: function () {
+                // alert("开始访问");
+            }
+        }).done(function (data) {
+            document.getElementById("createOrEditArea").innerHTML = data;
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+
+    }
+    // 提交编辑主菜单条目数据的表单
+    function postSystemWorkPlaceCreateOrEditForm() {
+        var systemWorkPlaceFormOptions = {
+            dataType: 'json',
+            success: function (saveStatus) {
+                if (saveStatus.saveOk === true) {
+                    $('#createOrEditModal').modal('hide');
+                    window.location.href = saveStatus.statusMessage;
+                }
+            }
+        };
+        $('#SystemWorkPlaceCreateOrEditForm').ajaxSubmit(systemWorkPlaceFormOptions);
+    }
+
+    // 删除数据
+    function openDeleteModal(id, alertMessage,delAction) {
+        document.getElementById("businessObjectID").value = id;
+        document.getElementById("deleteModalMessage").innerText = alertMessage;
+        deleteActionURL = delAction;
+        $('#deleteConfirmModal').modal({
+            show: true,
+            backdrop: 'static'
+        });
+    }
+
+    // 执行删除操作
+    function gotoDelete() {
+        var pid = document.getElementById("businessObjectID").value;
+       $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../SystemConfig/' + deleteActionURL + '/' + pid,
+            beforeSend: function () {
+            }
+        }).done(function (delStatus) {
+            if (delStatus.deleteSatus === true) {
+                $('#deleteConfirmModal').modal('hide')
+                window.location.href = "../../SystemConfig/Index";
+            } else {
+                document.getElementById("deleteModalErrMessage").innerText = delStatus.message;
+            }
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+
+    // 打开编辑菜单分区会话框
+    function openCreateOrEditForSystemSection(id,workPlaceID) {
+        // 打开编辑数据会话框
+        $('#createOrEditModal').modal({
+            show: true,
+            backdrop: 'static'
+        });
+        // 访问后台 CreateOrEdit 方法，获取新建或者编辑数据的呈现 imports page 页面内容
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../SystemConfig/CreateOrEditForSystemWorkSection/' + id + '?systemWorkPlaceID=' + workPlaceID,
+            beforeSend: function () {
+                // alert("开始访问");
+            }
+        }).done(function (data) {
+            document.getElementById("createOrEditArea").innerHTML = data;
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+    // 提交编辑菜单分区数据的表单
+    function postSystemWorkSectionCreateOrEditForm() {
+        var systemWorkSectionFormOptions = {
+            dataType: 'json',
+            success: function (saveStatus) {
+                if (saveStatus.saveOk === true) {
+                    $('#createOrEditModal').modal('hide');
+                    window.location.href = saveStatus.statusMessage;
+                }
+            }
+        };
+        $('#SystemWorkSectionCreateOrEditForm').ajaxSubmit(systemWorkSectionFormOptions);
+    }
+
+    // 打开编辑子菜单条目会话框
+    function openCreateOrEditForSystemTask(id,sectionID) {
+        // 打开编辑数据会话框
+        $('#createOrEditModal').modal({
+            show: true,
+            backdrop: 'static'
+        });
+        // 访问后台 CreateOrEdit 方法，获取新建或者编辑数据的呈现 imports page 页面内容
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../SystemConfig/CreateOrEditForSystemWorkTask/' + id + "?systemWorkSectionID=" + sectionID,
+            beforeSend: function () {
+                // alert("开始访问");
+            }
+        }).done(function (data) {
+            document.getElementById("createOrEditArea").innerHTML = data;
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+
+
+    }
+    // 提交编辑子菜单条目数据的表单
+    function postSystemWorkTaskCreateOrEditForm() {
+        var systemWorkTaskFormOptions = {
+            dataType: 'json',
+            success: function (saveStatus) {
+                if (saveStatus.saveOk === true) {
+                    $('#createOrEditModal').modal('hide');
+                    window.location.href = saveStatus.statusMessage;
+                }
+            }
+        };
+        $('#SystemWorkTaskCreateOrEditForm').ajaxSubmit(systemWorkTaskFormOptions);
+    }
+
+</script>

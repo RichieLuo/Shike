@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ShiKe.ViewModels.BusinessOrganization.DepartmentVM>
+
+<div>
+    <a href="../Department/CreateOrEdit/@Guid.NewGuid().ToString()" type="button" class="btn btn-success pull-right">新建部门</a>
+    <div class="pull-right" style="width:10px"></div>
+    <div class="input-group pull-right" style="width:250px; margin-left:-20px">
+        <input type="text" class="form-control" placeholder="输入关键词...">
+        <span class="input-group-btn">
+            <button class="btn btn-success" type="button">查询</button>
+        </span>
+    </div>
+    <h2 class="sub-header">管理系统部门数据</h2>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th width="50px">编号</th>
+                <th width="200px">部门</th>
+                <th>简要说明</th>
+                <th width="100px">部门编码</th>
+                <th width="150px">数据操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var boVM in Model)
+                {
+                    <tr>
+                        <td>@boVM.OrderNumber</td>
+                        <td>@boVM.Name</td>
+                        <td>@boVM.Description</td>
+                        <td>@boVM.SortCode</td>
+                        <td>
+                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                                @*<a href="../Department/CreateOrEdit/@boVM.ID" type="button" class="btn btn-default">编辑</a>*@
+                                <button type="button" class="btn btn-default" onclick="openCreateOrEditModal('@boVM.ID.ToString()')">编辑</button>
+                                <button type="button" class="btn btn-default" onclick="openDetailInfomationModal('@boVM.ID.ToString()')">明细</button>
+                                <button type="button" class="btn btn-default"
+                                        onclick="openDeleteModal('@boVM.ID.ToString()','你所选择删除的部门是：@boVM.Name（@boVM.SortCode），请确认是否继续执行。')">
+                                    删除
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

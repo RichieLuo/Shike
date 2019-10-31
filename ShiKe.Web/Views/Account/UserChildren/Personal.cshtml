@@ -1,0 +1,108 @@
+﻿@model  ShiKe.ViewModels.ApplicationOrganization.ApplicationUserVM
+@{
+    ViewData["Title"] = "个人中心";
+    Layout = "_UserLayout";
+}
+<meta charset="utf-8" />
+@*<h2>Personal</h2>
+    个人资料*@
+<link href="~/css/ChildrenCss/Personal.css" rel="stylesheet" />
+<div class="Information">
+    <h3 class="CollectionTitle">个人信息 <span>/ My Personal</span></h3>
+    <form class="form-horizontal" asp-action="Save" id="userEditor" data-toggle="validator" role="form">
+        <input type="hidden" name="ID" id="ID" value="@Model.ID" />
+        <input type="hidden" name="IsNew" id="IsNew" value="@Model.IsNew" />
+        <div class="detailed">
+            <div class="photo">
+                <div class="photo_div">
+                    <img class="photo-one" src="~/images/userAvater/eryan.jpg" alt="Alternate Text" />
+                    <div class="photo-two"><a href="javascript:alert('功能正在开发中')">更改图片</a></div>
+                </div>
+                <div class="photo_div photo_d2">
+                    <p>用户名称：<span>@Model.UserName</span></p>
+                    <p><i class="glyphicon glyphicon-gbp"></i><span>积分：124</span></p>
+                </div>
+
+            </div>
+            <ul class="datailed_ul">
+                <li>
+                    <div class="input-group">
+                        <span class="span_addon" id="basic-addon1" style="width:80px">*昵称</span>
+                        <input type="text" style="width:400px;height:30px" class="form-control" id="ChineseFullName" name="ChineseFullName" placeholder="@Model.ChineseFullName" value="@Model.ChineseFullName" aria-describedby="basic-addon1">
+                        <p class="uname_p">昵称不得超过10个汉字</p>
+                    </div>
+                </li>
+                @*<li>
+                    <div class="input-group">
+                        <span class="span_addon" id="basic-addon1" style="width:80px">真实姓名</span>
+                        <input type="text" style="width:400px;height:30px" class="form-control sang_Calender" id="Name" name="Name" placeholder="@Model.Name" value="真实姓名" aria-describedby="basic-addon1">
+                    </div>
+                </li>*@
+                <li>
+                    <div class="input-group">
+                        <span class="span_addon" id="basic-addon1" style="width:80px">电话号码</span>
+                        <input type="text" style="width:400px;height:30px" class="form-control sang_Calender" id="MobileNumber" name="MobileNumber" placeholder="@Model.MobileNumber" value="@Model.MobileNumber" aria-describedby="basic-addon1">
+                    </div>
+                </li>
+                <li>
+                    <div class="input-group">
+                        <span class="span_addon" id="basic-addon1" style="width:80px">电子邮箱</span>
+                        <input type="text" style="width:400px;height:30px" class="form-control sang_Calender" id="EMail" name="EMail" placeholder="@Model.EMail" value="@Model.EMail" aria-describedby="basic-addon1">
+                    </div>
+                </li>
+                @*<li>
+                    <span class="span_addon" id="basic-addon1" style="width:80px">性别</span>
+                    <label><input name="Fruit" type="radio" value="" />男</label>
+                    <label><input name="Fruit" type="radio" value="" />女</label>
+                </li>*@
+                @*<li>
+                        生日：<input type="text" class="sang_Calender" />
+                    </li>*@
+                <li class="input-group">
+                    <span class="span_addon" id="basic-addon1" style="width:80px">地址</span>
+                    <select id="province6" name="province6" onclick="myFunction()"></select><select id="city6" name="city6" onclick="myFunction()"></select><select id="area6" name="area6" onclick="myFunction()"></select><br>
+                    <input class="form-control" id="UserAddress" name="UserAddress" type="text" placeholder="@Model.UserAddress" value="@Model.UserAddress" />
+                </li>
+            </ul>
+          </div>
+        <div class="buttonone"><button type="submit" class="btn btn-success button">保存</button></div>
+    </form>
+</div>
+<script src="~/js/ChildrenJS/datetime.js"></script>
+
+<script language="javascript" defer>
+    new PCAS("province6", "city6", "area6", "--请选择省份--", "--请选择城市--", "--请选择县级--");
+    //new PCAS("province5", "city5", "area5", "--请选择省份--", "--请选择城市--", "--请选择县级--");
+    function myFunction() {
+        var ShopAdress = document.getElementById("UserAddress");
+        var province = document.getElementById("province6");
+        var city = document.getElementById("city6");
+        var area = document.getElementById("area6");
+        var sh = ShopAdress.innerHTML;
+        var ar = area.value;
+
+        ShopAdress.value = province.value + city.value + area.value;
+        if (ar == "") {
+            ShopAdress.value = sh;
+        }
+    }
+
+    // 更改图片
+    function gotoList(keyword) {
+        $.ajax({
+            //alert(data.message + data.isOK)
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../UploadFile/List' + keyword,
+            beforeSend: function () {
+            }
+        }).done(function (data) {
+            document.getElementById("SpecialtyWorkPlace").innerHTML = data;
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+</script>
+

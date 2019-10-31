@@ -1,0 +1,129 @@
+﻿@model ShiKe.ViewModels.BusinessOrganization.SK_WM_ShopVM
+@{
+    ViewData["Title"] = "商家店铺管理首页";
+    Layout = "_SystemLayout";
+}
+
+<meta charset="UTF-8">
+<input type="hidden" id="HiddenID" name="HiddenID" value="@Model.ID" />
+<div id="mainWorkPlaceArea">
+    @*<div class="container" style="color: gray;">*@
+   
+    <div class="row" style="border-bottom: 1px solid #eee;box-sizing: border-box;">
+        <div class="col-sm-3" style="text-align: center;padding-top: 16px">
+            <img src="~/images/logo.png" alt="店铺Logo" style="width: 200px;height: 75px;padding-bottom:10px">
+            @*临时路径*@
+            <p><a href="../ShopManager/CreateOrEdit/@Model.ID"> <span class="glyphicon glyphicon-edit"></span> 编辑店铺设置</a></p>
+        </div>
+        <div class="col-sm-7" style="padding-top: 16px">
+            @if (ViewBag.UserLogonInformation == null)
+            {
+                <p style="padding-left: 36px"><span style="font-size: 18px;font-weight: bold;color: #000">显示店铺名称</span> (用户名：MiMo)</p>
+            }
+            else
+            {
+                <p style="padding-left: 36px"><span style="font-size: 18px;font-weight: bold;color: #000">显示店铺名称</span> (用户名：@ViewBag.UserLogonInformation)</p>
+            }
+
+            <ul class="dianpu_mod1">
+                <li><span style="">管理权限：</span>管理员</li>
+                <li>店铺等级：系统默认</li>
+                <li>最后登录：2017-05-31</li>
+                <li><span style="">店铺名称：</span><a href="../Home/Shop">@Model.Name</a></li>
+                <li>使用期限：不限制</li>
+                <li></li>
+            </ul>
+        </div>
+        <div class="col-sm-2" style="border-left: 1px solid #eee;box-sizing: border-box;">
+            <p>店铺动态评分：</p>
+            <p>描述相符：5分</p>
+            <p>服务态度：5分</p>
+            <p>发货速度：5分</p>
+        </div>
+    </div>
+
+    <div class="row" style="border-top: 2px solid #fff">
+        <div class="col-sm-6" style="border-right: 1px solid #eee;padding-bottom: 40px">
+            <h3 style="margin-bottom: 0;border-left: 4px solid forestgreen;padding-left: 6px;color: #000">店铺及商品提示</h3>
+            <p style="padding-left: 10px">您需要关注的店铺信息以及待处理事项</p>
+            <p style="background-color: #faebcc;padding: 10px 10px">店铺商品发布情况：80/100</p>
+            <ul class="dianpu_mod2">
+                <li><a href="#" style="box-sizing: border-box;border: 1px solid green;padding: 1px 4px;border-radius: 4px;color: green">出售中</a></li>
+                <li><a href="###">违规下架</a></li>
+                <li><a href="###">库存不足</a></li>
+                <li><a href="###">客户留言</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-6" style="box-sizing: border-box">
+
+            <h3 style="margin-bottom: 0;border-left: 4px solid forestgreen;padding-left: 6px;color: #000">商家帮助</h3>
+            <ul class="dianpu_mod3">
+                <li><a href="###">规则体系</a></li>
+                <li><a href="#" onclick="gotoList('@Model.ID.ToString()')">商品管理</a></li>
+                <li><a href="###">促销方式</a></li>
+                <li><a href="###">订单及售后</a></li>
+                <li><a href="###">店铺续约</a></li>
+                <li><a href="###">入驻流程</a></li>
+            </ul>
+
+
+            <h3 style="margin: 70px 0 0 0;border-left: 4px solid #f0ad4e;padding-left: 6px;color: #000;clear: both">平台联系方式</h3>
+            <ul class="dianpu_mod4">
+                <li>电话：0000-8888888</li>
+                <li>邮箱：123456789@qq.com</li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="row" style="border-top: 1px solid #eee;">
+        <div class="col-sm-6" style="border-right: 1px solid #eee;padding-bottom: 40px">
+            <h3 style="margin-bottom: 0;border-left: 4px solid forestgreen;padding-left: 6px;color: #000">交易提示</h3>
+            <p style="padding-left: 10px">您需要立即处理的交易订单</p>
+            <p style="background-color: #faebcc;padding: 10px 10px">
+                <span>近期售出：<a href="###">交易中的订单</a></span>
+                <span style="padding-left: 10px;"> 维权提示：<a href="###">收到的维权投诉</a></span>
+            </p>
+            <ul class="dianpu_mod5">
+                <li><a href="###">待付款</a></li>
+                <li><a href="###">待发货</a></li>
+                <li><a href="###">售前退款</a></li>
+                <li><a href="###">售后退款</a></li>
+                <li><a href="###">售前退货</a></li>
+                <li><a href="###">售后退货</a></li>
+                <li><a href="###">待确认账单</a></li>
+            </ul>
+
+        </div>
+        <div class="col-sm-6" style="box-sizing: border-box">
+            <h3 style="margin-bottom: 0;border-left: 4px solid forestgreen;padding-left: 6px;color: #000">销售情况统计</h3>
+            <p style="padding-left: 10px">按周统计商家店铺的订单量和交易金额</p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>订单量</th>
+                        <th>订单金额</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>昨日销量</td>
+                        <td> --- </td>
+                        <td> --- </td>
+                    </tr>
+                    <tr>
+                        <td>月销量</td>
+                        <td> --- </td>
+                        <td> --- </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@Html.Partial("../../Views/BusinessOrganization/PublicView/_ModalForDelete")
+@Html.Partial("../../Views/BusinessOrganization/PublicView/_ModalForCreateOrEdit")
+<script>
+
+
+</script>

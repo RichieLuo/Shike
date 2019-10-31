@@ -1,0 +1,59 @@
+﻿@model ShiKe.ViewModels.BusinessOrganization.SK_WM_ShopVM
+@{
+    ViewData["Title"] = "商家店铺信息设置";
+    Layout = "_SellerLayout";
+    //var imageData = ViewBag.imgRepository;
+}
+
+<meta charset="UTF-8">
+<form class="form-horizontal" asp-action="SavaShop" id="userEditor" data-toggle="validator" role="form">
+    <input type="hidden" name="ID" id="ID" value="@Model.ID" />
+    <div class="form-group">
+        <label for="" class="col-sm-2 control-label">店铺名称:</label>
+        <div class="col-sm-10">
+            <input type="text" name="Name" id="Name" placeholder="@Model.Name" value="@Model.Name">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="" class="col-sm-2 control-label">店铺LOGO:</label>
+        <div class="col-sm-10">
+            <input type="file" name="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-sm-2 control-label">LOGO预览:</label>
+        <div class="col-sm-10">
+            <img src="@ViewBag.imgshopAvatar" alt="" style="width:200px;height:75px">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-sm-2 control-label">店铺横幅:</label>
+        <div class="col-sm-10">
+            <input type="file" name="" dirname="ShopAvatar" placeholder="店铺名称">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-sm-2 control-label">横幅预览:</label>
+        <div class="col-sm-10">
+            <img src="@ViewBag.imgshopBanner" alt="" style="width:100%;height:180px">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-sm-2 control-label">店铺描述:</label>
+        <div class="col-sm-10">
+            <textarea class="col-sm-10" type="text" name="Description" id="Description" placeholder="@Model.Description">@Model.Description</textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-sm-2 control-label">联系电话:</label>
+        <div class="col-sm-10">
+            <input type="text" name="Telephone" id="Telephone" dirname="ShopBanner" placeholder="@Model.Telephone" value="@Model.Telephone">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <button type="submit" class="btn btn-success" style="width:200px;margin-left:150px">提交</button>
+        </div>
+    </div>
+</form>

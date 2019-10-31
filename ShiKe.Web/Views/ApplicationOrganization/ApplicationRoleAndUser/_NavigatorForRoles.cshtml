@@ -1,0 +1,20 @@
+﻿@model IEnumerable<ShiKe.ViewModels.ApplicationOrganization.ApplicationRoleVM>
+
+<div class="list-group" style="border-radius:0">
+    <div href="#" class="list-group-item" style="border-radius:0;background-color:darkblue;color:white">
+        <button type="button" class="btn btn-xs btn-default pull-right" aria-label="" onclick="gotoCreateOrEdit('@Guid.NewGuid()')">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新建角色
+        </button>
+        <h4 class="list-group-item-heading">系统用户组清单</h4>
+        <p class="list-group-item-text">编辑维护系统用户数据</p>
+    </div>
+    @{
+        foreach (var item in Model)
+        {
+            <button class="list-group-item" onclick="gotoCreateOrEdit('@item.ID')">
+                <h5 class="list-group-item-heading">@item.DisplayName （@item.Name）</h5>
+                <p class="list-group-item-text small"> @item.Description</p>
+            </button>
+        }
+    }
+</div>

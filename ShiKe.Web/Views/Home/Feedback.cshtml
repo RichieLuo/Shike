@@ -1,0 +1,132 @@
+﻿
+@{
+    ViewData["Title"] = "问题反馈";
+    Layout = "_IndexLayout";
+}
+<div class="container">
+    <div class="row" style="height:auto;padding:0;background-color:#fff">
+        <div class="col-xs-8" style="">
+            <div style="padding: 28px 46px;height:702px;box-sizing:border-box">
+                <h2 style="font-size: 26px;width: 100%;margin-top:10px;border-bottom: 1px solid #f2f2f3;font-weight:bold">用户反馈提交</h2>
+                <div style="min-height:500px;padding-top: 0px;">
+                    <div>
+                        <h3>选择与描述问题</h3>
+                        <form action="" method="post" target="iframe" style="font-size: 16px;">
+                            <div>
+                                <label style="display: inline-block;font-size: 16px;vertical-align: middle;width: 95px;height: 35px;line-height: 35px;text-align: right;float: left;" for="">
+                                    问题分类：
+                                </label>
+                                <div>
+                                    <select style="background:transparent;vertical-align:middle;font-family:Microsoft yahei;height: 35px;width:167px;padding-right:34px;font-size:14px;white-space:nowrap;text-overflow:ellipsis;" name="" id="">
+                                        <option value="*">个人中心</option>
+                                        <option value="1">支付问题</option>
+                                        <option value="2">内容问题</option>
+                                        <option value="3">程序问题</option>
+                                        <option value="4">会员问题</option>
+                                        <option value="5">其他</option>
+                                    </select>
+                                </div>
+                                <p>
+                                    <span>
+                                        <input type="radio">
+                                        <label>注册登录</label>
+                                    </span>
+                                    <span>
+                                        <input type="radio">
+                                        <label>个人设置</label>
+                                    </span>
+                                    <span>
+                                        <input type="radio">
+                                        <label>其他</label>
+                                    </span>
+                                </p>
+                                <div>
+                                    <label style="line-height:35px;float:left;font-size:16px;" for="">
+                                        问题描述：
+                                    </label>
+                                    <textarea placeholder="请协助填写提示信息和问题描述，将有利于我们更快地发现和解决问题！" style="color:rgb(204,204,204);height: 120px;width: 570px;border: 1px solid #D7D7D7;resize:none;font-size: 14px;padding: 5px;" name="" id="" value="" onfocus="if(this.value==defaultStatus){this.value='';this.style.color='#000';}" onblur="if(!value){value=defaultStatus;this.style.color='#ccc';}"></textarea>
+                                    <div style="padding-top: 30px">
+                                        <label style="line-height:35px;text-align:right;float:left;font-size:16px;" for="">
+                                            相关页面：
+                                        </label>
+                                        <input style="color:rgb(204,204,204);font-family: Microsoft yahei;vertical-align: middle;width: 570px;height:35px" type="text" placeholder="例如：http://www.shike.com" value="" onfocus="if(this.value==defaultStatus){this.value='';this.style.color='#000';}" onblur="if(!value){value=defaultStatus;this.style.color='#ccc';}">
+                                    </div>
+                                </div>
+                            </div>
+                            <h5 style="padding-left:10px;color:red">填写用户信息<span style="line-height: 35px;font-weight: normal;">(请填写真实有效的信息,以便进一步联络,我们会为您严格保密)</span></h5>
+                            <ul style="padding:0">
+                                <li style="list-style-type:none;">
+                                    <label style="display: inline-block;font-size: 16px;vertical-align: middle;width: 95px;height: 35px;line-height: 35px;text-align: right;float: left;" for="">联系方式：</label>
+                                    <input style="color:rgb(204,204,204);font-family: Microsoft yahei;vertical-align: middle;width:200px;height:35px" type="text" placeholder="请输入您的手机/QQ/邮箱" value="" onfocus="if(this.value==defaultStatus){this.value='';this.style.color='#000';}" onblur="if(!value){value=defaultStatus;this.style.color='#ccc';}">
+                                </li>
+                                <li style="list-style-type:none;margin-left:20px;padding-top: 10px">
+                                    <label style=" margin: 10px;display: inline-block;font-size: 16px;vertical-align: middle;width: 95px;height: 35px;line-height: 35px;float: left;" for="">所在地：</label>
+                                    <div style="padding-top: 7px">
+                                        <select style="margin-left:-40px;background:transparent;vertical-align:middle;font-family:Microsoft yahei;height: 35px;width:167px;padding-right:34px;font-size:14px;white-space:nowrap;text-overflow:ellipsis;" name="" id="">
+                                            <option value="*">请选择省份</option>
+                                            <option value="1">北京市</option>
+                                            <option value="2">天津市</option>
+                                            <option value="3">上海市</option>
+                                            <option value="4">广西省</option>
+                                            <option value="5">海外</option>
+                                        </select>
+                                        <select style="margin-left:5px;background:transparent;vertical-align:middle;font-family:Microsoft yahei;height: 35px;width:167px;padding-right:34px;font-size:14px;white-space:nowrap;text-overflow:ellipsis;" name="" id="">
+                                            <option value="*">请选择城市</option>
+                                            <option value="1">北京市</option>
+                                            <option value="2">天津市</option>
+                                            <option value="3">上海市</option>
+                                            <option value="4">广西省</option>
+                                            <option value="5">海外</option>
+                                        </select>
+                                        <select style="margin-left:5px;background:transparent;vertical-align:middle;font-family:Microsoft yahei;height: 35px;width:167px;padding-right:34px;font-size:14px;white-space:nowrap;text-overflow:ellipsis;" name="" id="">
+                                            <option value="*">请选择区域</option>
+                                            <option value="1">城区</option>
+                                        </select>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div style="padding-top: 20px;margin-left:94px">
+                                <button type="button" class="btn btn-default" style="width: 120px;background-color:#31bbef;border:0;color:#fff;border-radius:4px;font-size:20px;" onclick="Unfinished()">提交</button>
+                                <a class="btn btn-default" style="color: #848484;text-decoration:none;" href="#">重置</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-4" style="padding: 46px 0px 0 80px;height:100%;">
+            <div>
+                <div style="width: 260px;height:40px;background-color: #C72E00">
+                    <h3 style="padding-top: 10px;margin-left: 20px;color:#FFFFFF">在线客服</h3>
+                </div>
+                <img style="width:170px;height: 130px;margin-left:44px" src="~/images/Feedback/timg.jpg" alt="">
+                <p style="margin-left: 20px">周一至周五9：30-18：00</p>
+                <button type="button" class="btn btn-default" style="width: 120px;background-color:#31bbef;border:0;border-radius:4px;font-size:20px;margin-left: 67px;color:#fff">立即咨询</button>
+                <div style="width: 260px;height:40px;background-color: #C72E00">
+                    <h3 style="padding-top: 10px;margin-left: 20px;color:#FFFFFF">常见问题</h3>
+                    <ul style="margin-left:20px;font-size:18px;">
+                        <li><a style="color: #333333;text-decoration:none;" href="../../Home/Unfinished">如何注册新用户</a></li>
+                        <li><a style="color: #333333;text-decoration:none;" href="../../Home/Unfinished">如何联系客服？</a></li>
+                        <li><a style="color: #333333;text-decoration:none;" href="../../Home/Unfinished">订单如何支付？</a></li>
+                        <li><a style="color: #333333;text-decoration:none;" href="../../Home/Unfinished">忘记密码了怎么办？</a></li>
+                        <li><a style="color: #333333;text-decoration:none;" href="../../Home/Unfinished">如何申请开店</a></li>
+                    </ul>
+                    <div style="width: 260px;height:40px;background-color: #C72E00">
+                        <h3 style="padding-top: 10px;margin-left: 20px;color:#fff">客服中心热线</h3>
+                        <div>
+                            <img style="width: 50px;height: 50px" src="~/images/Feedback/dianhua.jpg" alt="">
+                            <img style="width: 200px;height: 50px" src="~/images/Feedback/haoma.jpg" alt="">
+                            <p style="color: #848484">服务时间：09:30-18:00 (工作日)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function Unfinished(){
+         location.href='../../Home/Unfinished';
+    }
+</script>

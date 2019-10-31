@@ -1,0 +1,143 @@
+﻿@model IEnumerable<ShiKe.ViewModels.BusinessOrganization.SK_WM_OrderItemVM>
+@{
+    ViewData["Title"] = "订单确认支付";
+    Layout = "_IndexLayout";
+}
+<meta charset="UTF-8">
+<link href="~/css/checkStand.css" rel="stylesheet" />
+<div class="container">
+    <div class="row" style="padding-top: 20px; padding-bottom: 50px">
+        <div style="position: relative">
+            <span>食刻--</span>
+            <div>
+                <table>
+                    <tr style="background-color: white ;">
+                        <td class="col-xs-5">名称</td>
+                        <td class="col-xs-5">店铺</td>
+                        <td class="col-xs-2">金额</td>
+                    </tr>@foreach (var item in Model)
+                    {
+                        <tr style="height: 36px;border-bottom: 1px dashed #c72e00">
+                            <td class="col-xs-5">@item.GoodsName</td>
+                            <td class="col-xs-5">@item.ShopName</td>
+                            <td class="col-xs-2 tPrice">@item.TotalPrice</td>
+                        </tr>
+
+                    }
+
+                </table>
+            </div>
+            <div style="height: 40px;">
+                <span class="money" style="font-size: 30px" id="TotalPrice"></span> <span>元</span>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="row order_payWay">
+        <ul>
+            <li style="height: 50px" class="payment">
+                <span class="col-xs-3">
+                    <input type="radio">
+                    <span>&nbsp;银行卡支付</span>
+                </span>
+                <soan class="col-xs-7">
+                    <span>尾号：3873|</span>
+                    <span>储蓄卡</span>
+                </soan>
+               
+            </li>
+            <li style="height: 50px" class="payment">
+                <span class="col-xs-3">
+                    <input type="radio">
+                    <span>&nbsp;账号余额：</span>
+                    <span>100元</span>
+                </span>
+                <span class="col-xs-7">
+
+                </span>
+                <span class="col-xs-2" style="float: right">
+                    <span>支付</span>
+                    <span class="money" id="totalPrice"></span>
+                    <span>元</span>
+                </span>
+
+            </li>
+            <li>
+                <div style=" height: 33px ;width: 135px">
+                    <a href="#" style="text-decoration: none;">添加支付方式</a>
+                </div>
+
+            </li>
+        </ul>
+    </div>
+    <form id="payForm" method="post">
+
+        <div class="row order_payPass">
+            <ul style="padding-left: 0px">
+                <li><span>支付密码：</span></li>
+                <li><span class="col-xs-5"><input type="hidden" Jsonname="OrderID" value="@Model.FirstOrDefault().ItemForOrder.ID" /><input type="password" Jsonname="Password" class='form-control'><a href="#">忘记密码？</a></span></li>
+                <li><button class="btn btn-lg btn-primary" style="background: #C72E00; border: #221054;" type="button" onclick="gotoPament()">立即付款</button></li>
+            </ul>
+        </div>
+    </form>
+
+</div>
+
+
+<script>
+    $(function () {
+        var price = 0;
+        $.each($(".tPrice"), function (index, item) {
+
+            price += parseFloat($.trim($(item).text()));
+
+        });
+
+        $("#TotalPrice").text(price.toFixed(2))
+        $("#totalPrice").text(price.toFixed(2))
+
+    })
+</script>
+
+<script>
+
+    function gotoPament() {
+        $.ajax({
+            cache: false,
+            type: 'POST',
+            async: false,
+            url: "../Home/Payment",
+            data: { info: getinfo() },
+            beforeSend: function () {
+            }
+
+        }).done(function (data) {
+                if (data.result === true) {
+                alert("付款成功")
+
+            } else {
+                alert("付款失败")
+            }
+        }).fail(function () {
+            alert("这个连接后台失败！");
+            }).always(function () {
+                location.href = "../Account/Order";
+        });
+    }
+
+    function getinfo() {
+        var list = [];
+        $("#payForm .order_payPass").each(function (i) {
+            var data = new Object();
+            $(this).find("input[Jsonname]").each(function () {
+                var name = $(this).attr("Jsonname");
+                data[name] = $(this).val();
+            });
+            list[i] = data;
+        });
+        return JSON.stringify(list)
+    }
+
+</script>

@@ -1,0 +1,230 @@
+﻿@model IEnumerable<ShiKe.ViewModels.ApplicationOrganization.ApplicationRoleVM>
+@{
+    Layout = "_RoleAndUserLayout";
+}
+@*  *@
+<div class="" id="mainWorkPlaceArea">
+    @Html.Partial("../../Views/ApplicationOrganization/ApplicationRoleAndUser/_ListForUser", ViewBag.UserVMCollection as List<ShiKe.ViewModels.ApplicationOrganization.ApplicationUserVM>)
+</div>
+
+
+@Html.Partial("../../Views/ApplicationOrganization/ApplicationRoleAndUser/_ModalForCreateOrEdit")
+@Html.Partial("../../Views/ApplicationOrganization/ApplicationRoleAndUser/_ModalForDelete")
+@Html.Partial("../../Views/ApplicationOrganization/ApplicationRoleAndUser/_ModalForResetPassword")
+
+<script type="text/javascript">
+    /*
+     * 访问后台 ListForApplicationUser 方法，返回的是：
+     * PartialView("../../Views/ApplicationOrganization/ApplicationRoleAndUser/_ListForUser", userVMCollection)
+     * 变量：id 角色ID
+     */
+    function gotoList(id) {
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../ApplicationRoleAndUser/ListForApplicationUser/' + id,
+            beforeSend: function () {
+                // alert("开始访问");
+            }
+        }).done(function (data) {
+            document.getElementById("mainWorkPlaceArea").innerHTML = data;
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+
+    /*
+     * 访问后台 CreateApplicationUser 方法，返回：
+     * PartialView("../../Views/ApplicationOrganization/ApplicationRoleAndUser/_CreateApplicationUser", boVM)
+     */
+    function createApplicationUser(){
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../ApplicationRoleAndUser/CreateApplicationUser/',
+            beforeSend: function () {
+                // alert("开始访问");
+            }
+        }).done(function (data) {
+            document.getElementById("mainWorkPlaceArea").innerHTML = data;
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+
+    }
+
+    /*
+     * 使用 ajaxSubmit 方法提交在 _CreateApplicationUser.cshtml 中定义的表单：ApplicationUserCreateForm
+     */
+    function postApplicationUserCreateForm() {
+        var systemWorkPlaceFormOptions = {
+            dataType: 'json',
+            success: function (validateMessage) {
+                if (validateMessage.isOK === true) {
+                    gotoList(validateMessage.validateMessageItems[0].message);
+                }
+                else {
+                    $.each(validateMessage.validateMessageItems, function (i, item) {
+                        activeErrStatus(item.messageName, item.message);
+                    });
+                }
+            }
+        };
+        $('#ApplicationUserCreateForm').ajaxSubmit(systemWorkPlaceFormOptions);
+    }
+
+    function editApplicationUser(id,roleID) {
+        // 打开编辑数据会话框
+        $('#createOrEditModal').modal({
+            show: true,
+            backdrop: 'static'
+        });
+        // 访问后台 CreateOrEdit 方法，获取新建或者编辑数据的呈现 imports page 页面内容
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../ApplicationRoleAndUser/EditApplicationUser/' + id + "?roleID=" + roleID,
+            beforeSend: function () {
+                // alert("开始访问");
+            }
+        }).done(function (data) {
+            document.getElementById("createOrEditArea").innerHTML = data;
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+
+    function postApplicationUserEditForm() {
+        var systemWorkPlaceFormOptions = {
+            dataType: 'json',
+            success: function (validateMessage) {
+                if (validateMessage.isOK === true) {
+                    $('#createOrEditModal').modal('hide');
+                    gotoList(validateMessage.validateMessageItems[0].message);
+                } else {
+                    $.each(validateMessage.validateMessageItems, function (i, item) {
+                        activeErrStatus(item.messageName, item.message);
+                    });
+                }
+            }
+        };
+        $('#ApplicationUserCreateOrEditForm').ajaxSubmit(systemWorkPlaceFormOptions);
+    }
+
+    // 呈现错误消息
+    function activeErrStatus(idName, msg) {
+        document.getElementById(idName + "_DIV").classList.add("has-error","has-feedback");
+        document.getElementById(idName + "_Help").innerHTML = '<span class="help-block small" >'+msg+'</span>';
+    }
+
+    // 清理错误消息，输入域失去焦点的时候使用
+    function clearErrStyle(idName) {
+        document.getElementById(idName + "_DIV").classList.remove("has-error", "has-feedback");
+        document.getElementById(idName + "_Help").innerHTML = "";
+    }
+
+    // 失去焦点的时候进行处理的内容
+    function checkIfValidate(idName) {
+        var result = document.getElementById(idName).value;
+        alert(result);
+    }
+
+    // 详细信息
+    function userDetail(id, roleID) {
+
+    }
+
+    // 打开重置密码的会话框
+    function openResetUserPasswordModal(id) {
+
+        // 打开编辑数据会话框
+        $('#resetPasswordModal').modal({
+            show: true,
+            backdrop: 'static'
+        });
+        // 访问后台 ResetUserPassword 方法，获取数据后的呈现 imports page 页面内容
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../ApplicationRoleAndUser/ResetUserPassword/' + id,
+            beforeSend: function () {
+                // alert("开始访问");
+            }
+        }).done(function (data) {
+            document.getElementById("resetPasswordArea").innerHTML = data;
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+
+    }
+
+    // 重置密码
+    function resetUserPassword() {
+        var resetUserPasswordFormOptions = {
+            dataType: 'json',
+            success: function (validateMessage) {
+                if (validateMessage.isOK === true) {
+                    document.getElementById("resetPasswordModalTip").innerHTML = validateMessage.validateMessageItems[0].message;
+                    //$('#resetPasswordModal').modal('hide');
+                }
+                else {
+                    $.each(validateMessage.validateMessageItems, function (i, item) {
+                        activeErrStatus(item.messageName, item.message);
+                    });
+                }
+            }
+        };
+
+        $('#ResetUserPasswordForm').ajaxSubmit(resetUserPasswordFormOptions);
+    }
+
+    // 锁定用户
+    function lockoutUser(id,roleID) {
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../ApplicationRoleAndUser/LockoutUser/' + id + "?roleID=" + roleID,
+            beforeSend: function () {
+                // alert("开始访问");
+            }
+        }).done(function (data) {
+            gotoList(data.roleID);
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+    // 启用用户
+    function unLockoutUser(id, roleID) {
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../ApplicationRoleAndUser/UnLockoutUser/' + id + "?roleID=" + roleID,
+            beforeSend: function () {
+                // alert("开始访问");
+            }
+        }).done(function (data) {
+            gotoList(data.roleID);
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+
+    // 打开移除用户会话框
+    function openRemoveUserModal(id, roleID) {
+
+
+    }
+
+</script>

@@ -1,0 +1,108 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model ShiKe.ViewModels.ApplicationOrganization.ApplicationUserVM
+@using ShiKe.CustomMvcCoreExtension;
+@using ShiKe.Common.ViewModelComponents.ForMvcHelper
+@{
+    ViewData["Title"] = "登录至我的账户";
+    Layout = "_IndexLayout";
+}
+
+<meta charset="UTF-8">
+<div class="container">
+    <div class="row" id="logon" style="padding: 50px 0px;">
+        <div class="col-xs-8"></div>
+        <div class="col-xs-4">
+            <form class="navbar-form" id="LogonForm" role="search" method="post"
+                  data-ajax-mode='replace'
+                  data-ajax='true' data-toggle="validator"
+                  action="../Account/Logon">
+                <div style="background: white;opacity: 1; width: 272px;text-align: center;padding-top:30px; ">
+                    @*@{
+
+                            var inputForUserName = new HtmlInputItemSpecification()
+                            {
+                                ItemID = "UserName",
+                                ItemDisplayName = "用户名",
+                                ItemValue = Model.UserName,
+                                PlaceholderString = "请输入用户名",
+                                AutofocusName = "",
+                                OnfocusFuntion = "clearErrStyle(this.id)",
+                                OnBlurFunction = ""
+                            };
+                            @Html.ShiKeBoorStrapInputValidate(inputForUserName);
+
+                            var inputForMobilePassword = new HtmlInputItemSpecification()
+                            {
+                                ItemID = "Password",
+                                ItemDisplayName = "密码",
+                                ItemValue = Model.Password,
+                                PlaceholderString = "请输入密码，密码长度大于6个字符",
+                                AutofocusName = "",
+                                OnfocusFuntion = "clearErrStyle(this.id)",
+                                OnBlurFunction = ""
+                            };
+                            @Html.ShiKeBoorStrapInputPassword(inputForMobilePassword);
+                        }*@
+
+                    <div class="form-group" style="margin: 10px 0;">
+                        账号：<input type="text" class="form-control" name="UserName" id="UserName" placeholder="请输入用户名...">
+                    </div>
+                    <div class="form-group" style="margin: 10px;">
+                        密码：<input type="password" class="form-control" name="Password" id="Password" placeholder="请输入密码...">
+                    </div>
+                    <div class="form-group" style="margin: 10px;">
+                        验证码：<input style="width: 80px" type="text" class="form-control" placeholder="">
+                        <img src="~/images/VCode.jpg" alt="验证码" style="width: 80px">
+                    </div>
+                    <p id="logonModalErrMessage" style="color:red"></p>     <!--这是一个空的文字段落标签，用于显示登录操作状态 -->
+                    <div class="row">
+                        <button type="button" class="btn btn-success" style="width: 230px;background-color: #C72E00; border-color: #C72E00;" onclick="logon();">登录</button>
+                    </div>
+                    <div class="form-group" style="margin: 20px 0px;">
+                        <a href="../../Home/Unfinished">忘记密码？</a>
+                        <a href="../Home/Register">没有账号？立即注册</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@*<script>
+
+        function logon() {
+            var systemWorkPlaceFormOptions = {
+                dataType: 'json',
+                success: function (validateMessage) {
+                    if (validateMessage.isOK === true) {
+                        //gotoList(validateMessage.validateMessageItems[0].message);
+                        window.location.href = '../../Home/Index'
+                    }
+                    else {
+                        $.each(validateMessage.validateMessageItems, function (i, item) {
+                            activeErrStatus(item.messageName, item.message);
+                        });
+                    }
+                }
+            };
+            $('#LogonForm').ajaxSubmit(systemWorkPlaceFormOptions);
+        }
+
+
+        // 呈现错误消息
+        function activeErrStatus(idName, msg) {
+            document.getElementById(idName + "_DIV").classList.add("has-error", "has-feedback");
+            document.getElementById(idName + "_Help").innerHTML = '<span class="help-block small" >' + msg + '</span>';
+        }
+
+        // 清理错误消息，输入域失去焦点的时候使用
+        function clearErrStyle(idName) {
+            document.getElementById(idName + "_DIV").classList.remove("has-error", "has-feedback");
+            document.getElementById(idName + "_Help").innerHTML = "";
+        }
+
+        // 失去焦点的时候进行处理的内容
+        function checkIfValidate(idName) {
+            var result = document.getElementById(idName).value;
+            alert(result);
+        }
+    </script>*@

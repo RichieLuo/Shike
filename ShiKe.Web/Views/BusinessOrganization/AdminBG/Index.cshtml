@@ -1,0 +1,389 @@
+﻿@model IEnumerable<ShiKe.ViewModels.BusinessOrganization.SK_WM_GoodsVM>
+@{
+    ViewData["Title"] = "系统后台首页";
+    Layout = "_SystemLayout";
+}
+<input type="hidden" id="HiddenID" name="HiddenID" value="" />
+<div id="mainWorkPlaceArea">
+
+    @*欢迎信息 和 时间*@
+    <div class="info-title">
+        <div class="pull-left">
+            <div class="a-avatar pull-left">
+                @if (ViewBag.AvatarPath==null)
+                {  
+                    <img src=" ../../images/default_avatar_male.png" />                  
+                }
+                else
+                {
+                    <img src="@ViewBag.AvatarPath" />
+                }
+               
+            </div>
+            <div class="a-wellcome pull-right">
+                <h3><strong>@ViewBag.CurrAdminName，</strong></h3>
+                <p>欢迎登录管理系统！ <a href="../../AdminBG/Unfinished" >我的个人中心</a></p>
+            </div>
+        </div>
+        <div class="time-title pull-right">
+            <div class="year-month pull-left">
+                <p id="week"></p>
+                <p><span id="year"></span><span id="month"></span><span id="day"></span></p>
+            </div>
+            <div class="hour-minute pull-right">
+                <div class="pull-left" style="line-height:70px">
+                    <strong id="sc"></strong>
+                </div>
+                <div class="pull-right">
+                    <p id="timeNow" style="padding: 12px 0 0 10px;margin:0;font-size: 20px;"></p>
+                    <p id="reminder" style="padding: 0px 0 0 10px;margin:0;font-size: 10px;"></p>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    @*主体内容*@
+    <div class="content-list">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="content">
+                    <div class="w30 left-icon pull-left">
+                        <span class="glyphicon glyphicon-file blue"></span>
+                    </div>
+                    <div class="w70 right-title pull-right">
+                        <div class="title-content">
+                            <p>用户统计</p>
+                            <h3 class="number">7</h3>
+                            <button class="btn btn-default" onclick="Unfinished()">查看详细</button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="content">
+                    <div class="w30 left-icon pull-left">
+                        <span class="glyphicon glyphicon-file violet"></span>
+                    </div>
+                    <div class="w70 right-title pull-right">
+                        <div class="title-content">
+                            <p>会员统计</p>
+                            <h3 class="number">@ViewBag.AllUserCount</h3>
+                            <button class="btn btn-default" onclick="Unfinished()">查看详细</button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="content">
+                    <div class="w30 left-icon pull-left">
+                        <span class="glyphicon glyphicon-file orange"></span>
+                    </div>
+                    <div class="w70 right-title pull-right">
+                        <div class="title-content">
+                            <p>商品统计</p>
+                            <h3 class="number">@ViewBag.AllGoodsCount</h3>
+                            <button class="btn btn-default" onclick="GoToGoodsShow()">查看详细</button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="content">
+                    <div class="w30 left-icon pull-left">
+                        <span class="glyphicon glyphicon-file green"></span>
+                    </div>
+                    <div class="w70 right-title pull-right">
+                        <div class="title-content">
+                            <p>店铺统计</p>
+                            <h3 class="number">@ViewBag.AllShopCount</h3>
+                            <button class="btn btn-default" onclick="Unfinished()">查看详细</button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+        @*信息列表*@
+        @*<div class="row newslist" style="margin-top:20px;">
+                <div class="col-md-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            我的事务<div class="caret"></div>
+                            <a href="#" class="pull-right"><span class="glyphicon glyphicon-refresh"></span></a>
+                        </div>
+                        <div class="panel-body">
+                            <div class="w15 pull-left">
+                                <img src="../../../../images/noavatar_middle.gif" width="25" height="25" alt="图片" class="img-circle">
+                                二颜
+                            </div>
+                            <div class="w55 pull-left">当前有申请入驻的商家需要审核</div>
+                            <div class="w20 pull-left text-center">2017年6月14日</div>
+                            <div class="w10 pull-left text-center"><span class="text-green-main">处理中</span></div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="w15 pull-left">
+                                <img src="../../images/noavatar_middle.gif" width="25" height="25" alt="图片" class="img-circle">
+                                二颜
+                            </div>
+                            <div class="w55 pull-left">当前有申请入驻的商家需要审核</div>
+                            <div class="w20 pull-left text-center">2017年6月14日</div>
+                            <div class="w10 pull-left text-center"><span class="text-green-main">处理中</span></div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="w15 pull-left">
+                                <img src="../../images/noavatar_middle.gif" width="25" height="25" alt="图片" class="img-circle">
+                                二颜
+                            </div>
+                            <div class="w55 pull-left">当前有申请入驻的商家需要审核</div>
+                            <div class="w20 pull-left text-center">2017年6月14日</div>
+                            <div class="w10 pull-left text-center"><span class="text-gray">已关闭</span></div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="w15 pull-left">
+                                <img src="../../images/noavatar_middle.gif" width="25" height="25" alt="图片" class="img-circle">
+                                二颜
+                            </div>
+                            <div class="w55 pull-left">当前有申请入驻的商家需要审核</div>
+                            <div class="w20 pull-left text-center">2017年6月14日</div>
+                            <div class="w10 pull-left text-center"><span>处理中</span></div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="w15 pull-left">
+                                <img src="../../images/noavatar_middle.gif" width="25" height="25" alt="图片" class="img-circle">
+                                二颜
+                            </div>
+                            <div class="w55 pull-left">当前有申请入驻的商家需要审核</div>
+                            <div class="w20 pull-left text-center">2017年6月14日</div>
+                            <div class="w10 pull-left text-center"><span>处理中</span></div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="w15 pull-left">
+                                <img src="../../images/noavatar_middle.gif" width="25" height="25" alt="图片" class="img-circle">
+                                二颜
+                            </div>
+                            <div class="w55 pull-left">当前有申请入驻的商家需要审核</div>
+                            <div class="w20 pull-left text-center">2017年6月14日</div>
+                            <div class="w10 pull-left text-center"><span>处理中</span></div>
+                        </div>
+
+                        <div class="panel-body text-center">
+                            <a href="#" style="color:#5297d6;">查看全部</a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            我的事务统计
+                            <a href="#" class="pull-right"><span class="glyphicon glyphicon-refresh"></span></a>
+                        </div>
+                        <div class="panel-body">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>*@
+    </div>
+    <div class="content-list" style="padding:0 14px">
+        <table class="table table-border table-bordered table-bg">
+            <thead>
+                <tr>
+                    <th colspan="7" scope="col" class="table-Tile">信息统计</th>
+                </tr>
+                <tr class="text-c">
+                    <th>统计</th>
+                    <th>用户数量</th>
+                    <th>会员数量</th>
+                    <th>店铺数量</th>
+                    <th>商品数量</th>   
+                    <th>系统管理员</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-c">
+                    <td>总数</td>
+                    <td>@ViewBag.AllUserCount</td>
+                    <td>7</td>
+                    <td>@ViewBag.AllShopCount</td>
+                    <td>@ViewBag.AllGoodsCount</td>
+                    <td>1</td>
+                </tr>
+                <tr class="text-c">
+                    <td>今日</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr class="text-c">
+                    <td>昨日</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr class="text-c">
+                    <td>本周</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr class="text-c">
+                    <td>本月</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-border table-bordered table-bg mt-20">
+            <thead>
+                <tr>
+                    <th colspan="2" scope="col" class="table-Tile">服务器信息</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th width="30%">服务器计算机名</th>
+                    <td><span id="lbServerName">http://localhost/</span></td>
+                </tr>
+                <tr>
+                    <td>服务器IP地址</td>
+                    <td>192.168.1.1</td>
+                </tr>
+                <tr>
+                    <td>服务器域名</td>
+                    <td>http://localhost/</td>
+                </tr>
+                <tr>
+                    <td>服务器端口 </td>
+                    <td>80</td>
+                </tr>
+                <tr>
+                    <td>服务器IIS版本 </td>
+                    <td>Microsoft-IIS</td>
+                </tr>
+                <tr>
+                    <td>本文件所在文件夹 </td>
+                    <td>Team20150202\B.项目解决方案\正式项目\框架修订版本\ShiKe\ShiKe.Web\Views\BusinessOrganization\AdminBG\</td>
+                </tr>
+                <tr>
+                    <td>服务器操作系统 </td>
+                    <td>Microsoft Windows Service Pack 2</td>
+                </tr>
+                <tr>
+                    <td>系统所在文件夹 </td>
+                    <td>\</td>
+                </tr>
+                <tr>
+                    <td>服务器的语言种类 </td>
+                    <td>Chinese (People's Republic of China)</td>
+                </tr>
+                <tr>
+                    <td>.NET Framework 版本 </td>
+                    <td>4.5</td>
+                </tr>
+                <tr>
+                    <td>服务器当前时间 </td>
+                    <td id="serverTime"></td>
+                </tr>
+                <tr>
+                    <td>服务器上次启动到现在已运行 </td>
+                    <td>7210分钟</td>
+                </tr>
+                <tr>
+                    <td>CPU 总数 </td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>CPU 类型 </td>
+                    <td>x86 Family 6 Model 42 Stepping 1, GenuineIntel</td>
+                </tr>
+                <tr>
+                    <td>虚拟内存 </td>
+                    <td>52480M</td>
+                </tr>
+                <tr>
+                    <td>当前程序占用内存 </td>
+                    <td>3.29M</td>
+                </tr>
+                <tr>
+                    <td>Asp.net所占内存 </td>
+                    <td>51.46M</td>
+                </tr>
+                <tr>
+                    <td>当前系统用户名 </td>
+                    <td>NETWORK SERVICE</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script>
+    function showTime() {
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+        var day = now.getDate();
+        var time = now.toLocaleTimeString();     //获取当前时间
+        var week = now.getDay(); //星期
+
+        var hour = now.getHours();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+
+        //判断星期几
+        var weeks = ["日", "一", "二", "三", "四", "五", "六"];
+        var getWeek = "星期" + weeks[week];
+        var sc;
+
+        //判断是AM or PM
+        if (hour >= 0 && hour < 5) { sc = '凌晨'; }
+        else if (hour > 5 && hour <= 7) { sc = '早上'; }
+        else if (hour > 7 && hour <= 11) { sc = '上午'; }
+        else if (hour > 11 && hour <= 13) { sc = '中午'; }
+        else if (hour > 13 && hour <= 18) { sc = '下午'; }
+        else if (hour > 18 && hour <= 23) { sc = '晚上'; }
+
+        //提醒
+        var reminder;
+        if (hour >= 0 && hour < 5) { reminder = "很晚了请不要熬夜！"; }
+        else if (hour > 5 && hour <= 7) { reminder = "一日之计在于晨！"; }
+        else if (hour > 7 && hour <= 11) { reminder = "请不要忘记吃早餐！"; }
+        else if (hour > 11 && hour <= 13) { reminder = "吃饭时间，请注意劳逸结合！"; }
+        else if (hour > 13 && hour <= 18) { reminder = "放松一下，喝杯下午茶吧！"; }
+        else if (hour > 18 && hour <= 23) { reminder = "忙了一天，休息一下吧！"; }
+
+        document.getElementById('year').innerHTML = year.toString() + "年";
+        document.getElementById('month').innerHTML = month.toString() + "月";
+        document.getElementById('day').innerHTML = day.toString() + "日";
+        document.getElementById('week').innerHTML = getWeek;
+        document.getElementById('sc').innerHTML = sc;
+        document.getElementById('reminder').innerHTML =reminder;
+        document.getElementById('timeNow').innerHTML =  hour + ":" + minutes + ":" + seconds;
+        document.getElementById('serverTime').innerHTML = hour + ":" + minutes + ":" + seconds;
+        setTimeout('showTime()', 1000);
+    }
+    showTime();
+</script>
+
+

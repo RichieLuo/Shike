@@ -1,0 +1,232 @@
+﻿@model IEnumerable<ShiKe.ViewModels.BusinessOrganization.SK_WM_ShopCarGoodsItemVM>
+@{
+    var shopGroup = ViewBag.GoodsShop as IEnumerable<ShiKe.Entities.BusinessOrganization.SK_WM_ShopCarGoodsItem>;
+
+    var GroupDemo = from a in shopGroup
+                    orderby a.CreateOrderTime descending
+                    group a by a.ShopName into g
+                    select new { aKey = g.Key, Items = g };
+    var i = 0;
+}
+@{
+    ViewData["Title"] = "我的购物车";
+    Layout = "_IndexLayout";
+}
+
+<meta charset="UTF-8">
+
+<div class="container" id="workspace">
+    <!--全部商品-->
+    <div class="row" style="height: 80px ; margin:0">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="#"><span>全部商品</span></a></li>
+            <li role="presentation" class="pull-right" style="line-height: 42px "><span>已选商品（不含运费）</span><span id="TotalPriceTop">0.00</span><button class="btn btn-default disabled">结算</button></li>
+
+        </ul>
+        <ul style="list-style: none;padding-left: 0px;padding-top: 5px">
+            <li class="col-xs-1" style="text-align: center"><input class="checkAll" name="subBox" type="checkbox" style="cursor:pointer"><span>全选</span></li>
+            <li class="col-xs-6" style="text-align: center"><span>商品信息</span></li>
+            <li class="col-xs-1" style="text-align: center"><span>单价</span></li>
+            <li class="col-xs-2" style="text-align: center"><span>数量</span></li>
+            <li class="col-xs-1" style="text-align: center"><span>金额</span></li>
+            <li class="col-xs-1" style="text-align: center"><span>操作</span></li>
+        </ul>
+    </div>
+    @{  if (shopGroup.Count() == 0)
+        {
+            <div class="row text-center">
+                <h4 style="margin:20px auto;color:red">购物车空空如也~~</h4>
+                <h4 style="margin:20px auto;"><a href="../Home/Index">点击此处前往选购商品</a></h4>
+            </div>
+        }
+        else
+        {
+            <form method="post" id="goodsForm">
+                <!--商品信息-->
+                @foreach (var Item in GroupDemo)
+                {
+                    i++;
+                    <div class="row" style=" margin: 10px 0 0 0;border: 1px solid #eeeeee ">
+                        <div class="row" style="margin: 0;height: 30px;border-bottom:1px solid #eeeeee ">
+                            <ul style="list-style: none;padding-left: 12px;">
+                                <li><input name="subBox" onclick="CheckGoods('@i.ToString()')" class="@i.ToString()_checkboxforshop" type="checkbox" style="cursor:pointer"><span>店铺名：</span><span>@Item.aKey</span></li>
+                            </ul>
+
+                        </div>
+                        @foreach (var shopCarItem in Item.Items)
+                    {   <div class="GoodsInfo">
+                        @*<input type="hidden" Jsonname="Price"value="@shopCarItem.Price " />
+                            <input type="hidden" Jsonname="TotalPrice" id="@shopCarItem.ID.ToString()_TotalPriceInput" value="@shopCarItem.TotalPrice "/>*@
+                        <input type="hidden" Jsonname="GoodsID" value="@shopCarItem.GoodsID" />
+                        <div class="row" style="margin:0; border-bottom:1px solid #eeeeee ">
+                            <ul style="list-style: none;padding-left: 0px;">
+                                <li class="col-xs-1" style="text-align: center;border-right: 1px solid #eeeeee;height: 150px"><input name="subBox" class="@i.ToString()_checkboxforgoods" type="checkbox"><span>选择</span></li>
+                                <li class="col-xs-2" style="text-align: center;border-right: 1px solid #eeeeee;height: 150px"><img width="120px" height="120px" src="@shopCarItem.ImgPath" alt="商品"></li>
+                                <li class="col-xs-2" style="border-right: 1px solid #eeeeee;height: 150px">@shopCarItem.GoodsName</li>
+                                <li class="col-xs-2" style="border-right: 1px solid #eeeeee;height: 150px"> 套餐类型：默认</li>
+                                <li class="col-xs-1" name="ID" style="text-align: center;border-right: 1px solid #eeeeee;height: 150px">￥ <span id="@shopCarItem.ID.ToString()_Price">@Convert.ToDecimal(shopCarItem.Price)</span></li>
+                                <li class="col-xs-2" style="text-align: center;border-right: 1px solid #eeeeee;height: 150px">
+                                    <div class="col-xs-12">
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" onclick="Minus('@shopCarItem.ID')" id="@shopCarItem.ID.ToString()_minus" type="button">-</button>
+                                            </span>
+                                            <input type="text" id="@shopCarItem.ID.ToString()_inc" Jsonname="Count" oninput="CountChange('@shopCarItem.ID.ToString()')" class="form-control" value="@shopCarItem.Count" min="1">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" onclick="Add('@shopCarItem.ID')" id="@shopCarItem.ID.ToString()_add" type="button">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="col-xs-1" style="text-align: center;border-right: 1px solid #eeeeee;height: 150px">￥<span id="@shopCarItem.ID.ToString()_TotalPrice" class="tPrice">@shopCarItem.TotalPrice </span> </li>
+                                <li class="col-xs-1" style="cursor:pointer;height: 150px"><p><a>移入收藏夹</a></p><p><a herf="#" onclick="deleteShopCar('@shopCarItem.ID.ToString()')">删除</a></p></li>
+                            </ul>
+                        </div>
+                    </div>
+                        }
+                    </div>
+
+                }
+
+            </form>
+        }
+    }
+    <!--结算-->
+    <div class="row" style=" height: 50px ;background:aliceblue;margin: 10px 0 0 0;cursor:pointer">
+        <ul style="list-style: none;padding-left: 0px">
+            <li class="col-xs-1" style="text-align: center;line-height:50px"><input class="checkAll" name="subBox" type="checkbox"><span>全选</span></li>
+            <li class="col-xs-2" style="text-align: center;line-height:50px"><a>删除</a></li>
+            <li class="col-xs-2" style="line-height:50px"><a>清除失效宝贝</a></li>
+            <li class="col-xs-2" style="line-height:50px"><a>移入收藏夹</a></li>
+            <li class="col-xs-1" style="line-height:50px"><a>分享</a></li>
+            <li class="col-xs-3" style="line-height:50px"><a>合计（不含运费）</a><span id="TotalPrice">0.00</span></li>
+            <li class="col-xs-1" style="text-align: center;line-height:50px"><button class="btn btn-default" title="系统提示" data-container="body" data-toggle="popover" onclick="AddOrderSure()" data-placement="bottom">结算</button></li>
+        </ul>
+    </div>
+
+
+
+</div>
+
+<script type="text/javascript">
+    //数量加
+    function Add(id) {
+        var price = $("#" + id + "_Price").text();
+
+        //$("#"+id+"_add").click(function () {
+        var num = parseInt($("#" + id + "_inc").val());
+        $("#" + id + "_inc").val((num + 1).toString());
+        var nn = parseInt($("#" + id + "_inc").val()) * price
+        $("#" + id + "_TotalPrice").text(nn.toFixed(2));
+        $("#" + id + "_TotalPriceInput").val(nn.toFixed(2));
+
+        CountTotal()
+    }
+
+    //数量减
+    function Minus(id) {
+
+        var price = $("#" + id + "_Price").text();
+
+        var num = parseInt($("#" + id + "_inc").val());
+
+        if (num <= 1) {
+            return false;
+        }
+        $("#" + id + "_inc").val((num - 1).toString());
+        var nn = parseInt($("#" + id + "_inc").val()) * price
+        $("#" + id + "_TotalPrice").text(nn.toFixed(2));
+        CountTotal()
+    }
+
+    //直接输入数量
+    function CountChange(id) {
+        var price = $("#" + id + "_Price").text();
+        var num = parseInt($("#" + id + "_inc").val());
+        if (isNaN(num))
+        {
+            num = 0;
+        }
+        var nn = num  * price
+
+        $("#" + id + "_TotalPrice").text(nn.toFixed(2));
+        CountTotal()
+    }
+
+    //计算总价
+    function CountTotal() {
+        var sum = 0;
+        $.each($(".row .tPrice"), function (index, item) {
+            sum += parseFloat($.trim($(item).text()));
+        });
+
+        $("#TotalPrice").text(sum.toFixed(2))
+        $("#TotalPriceTop").text(sum.toFixed(2))
+    }
+
+
+</script>
+<script>
+    $(function () {
+        //选择按钮(未完善)
+        $(".checkAll").click(function () {
+            $('input[name="subBox"]').prop("checked", this.checked);
+        })
+        var $subBox = $("input[name='subBox']");
+        $subBox.click(function () {
+            $(".checkAll").prop("checked", $subBox.length == $("input[name='subBox']:checked").length ? true : false);
+        })
+
+        var sum = 0;
+        $.each($(".row .tPrice"), function (index, item) {
+
+            sum += parseFloat($.trim($(item).text()));
+
+        });
+
+        $("#TotalPrice").text(sum.toFixed(2))
+        $("#TotalPriceTop").text(sum.toFixed(2))
+
+    })
+</script>
+
+<script>
+    //删除购物车
+    function deleteShopCar(id) {
+        $.ajax({
+            type: 'post',
+            url: '../Home/DeleteShopCar/' + id,
+            contentType: 'application/json',
+            beforeSend: function () {
+            },
+            success: function (data) {
+                alert("删除成功")
+                window.location.reload();
+            },
+            error: function () {
+                $.showTuiErrorDialog("失败！");
+            }
+        })
+
+    }
+
+    //结算
+    function AddOrderSure() {
+        location.href = "../Home/OrderSure?orders=" + getShopCarItem()
+
+    }
+
+    function getShopCarItem() {
+        var list = [];
+        $("#goodsForm .GoodsInfo").each(function (i) {
+            var data = new Object();
+            $(this).find("input[Jsonname]").each(function () {
+                var name = $(this).attr("Jsonname");
+                data[name] = $(this).val();
+            });
+            list[i] = data;
+        });
+        return JSON.stringify(list)
+    }
+
+</script>

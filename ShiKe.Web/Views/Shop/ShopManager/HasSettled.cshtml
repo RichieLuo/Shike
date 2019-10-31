@@ -1,0 +1,104 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model ShiKe.ViewModels.BusinessOrganization.SK_WM_ShopSttledVM
+@*@using ShiKe.CustomMvcCoreExtension;
+@using ShiKe.Common.ViewModelComponents.ForMvcHelper*@
+@{
+    ViewData["Title"] = "商家入驻";
+    Layout = "_IndexLayout";
+}
+<link href="~/css/style.css" rel="stylesheet" />
+
+<div class="container">
+
+    <input type="hidden" id="State" name="name" value="@Model.State" />
+    <input type="hidden" id="Step" name="name" value="@Model.Step" />
+    <input type="hidden" id="ID" name="name" value=""@Model.ID />
+
+    <div class="row" style="padding: 10px 0px; ">
+
+        <div class="row" style="height:550px">
+            <div class="row">
+                <div style="width:200px;margin:0 auto">
+                    <h3>
+                        当前审核进度如下
+                    </h3>
+                </div>
+            </div>
+            <div class="row">
+                <ul class="nav nav-pills nav-justified step step-square" data-step="2">
+                    <li>
+                        <a>填写基本信息</a>
+                    </li>
+                    <li>
+                        <a>上传身份信息</a>
+                    </li>
+                    <li>
+                        <a>上传店铺信息</a>
+                    </li>
+                    <li>
+                        <a>提交完成，等待审核</a>
+                    </li>
+                    <li>
+                        <a>审核通过</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="row" style="margin-top:50px">
+                <div style="width:500px;margin:0 auto">
+                   如果您的信息提交不完整或者不想开店了可以点击<a href="#" onclick="openCancelModal()">撤销申请</a>，若要补充信息请重新进入入驻认证填写信息再次提交
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+</div>
+@Html.Partial("../../Views/Shop/ShopManager/_ModalForCancel")
+<script src="~/js/gwdang-notifier-bdext.js"></script>
+
+<script src="~/js/lib.js"></script>
+<script>
+    $(function () {
+        bsStep(parseInt($("#Step").val())+2);
+    })
+</script>
+<script>
+    function openCancelModal() {
+        $('#cancelConfirmModal').modal({
+            show: true,
+            backdrop: 'static'
+        });
+    }
+
+    function gotoCancel() {
+        
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../ShopManager/CancelSettled/',
+            beforeSend: function () {
+            }
+        })
+            .done(function (data) {
+                if (data.message == "撤销成功") {
+                    $('#cancelConfirmModal').modal('hide');
+                    alert(data.message);
+                    window.location.href = '../../Home/Index'
+                }
+                
+
+            })
+            .fail(function () {
+                alert("连接后台失败！");
+            })
+            .always(function () {
+            });
+    }
+
+    
+</script>
+
+
+
+

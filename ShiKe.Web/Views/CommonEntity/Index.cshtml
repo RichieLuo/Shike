@@ -1,0 +1,172 @@
+﻿@model IEnumerable<ShiKe.ViewModels.EntityVM>
+@{
+    Layout = "_AdminDesktopLayout";
+}
+
+<div id="personWorkPlace">
+    @Html.Partial("../../Views/CommonEntity/_List", Model)
+</div>
+
+@Html.Partial("../../Views/CommonEntity/_ModalForDelete")
+@Html.Partial("../../Views/CommonEntity/_ModalForDetail")
+@Html.Partial("../../Views/CommonEntity/_ModalForCreateOrEdit")
+
+<script type="text/javascript">
+    // 数据列表
+    function gotoList(controllerName) {
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../' + controllerName+'/List',
+            beforeSend: function () {
+            }
+        }).done(function (data) {
+            document.getElementById("personWorkPlace").innerHTML = data;
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+
+    // 打开新增或者编辑部门对象数据的会话框
+    function openCreateOrEditModal(id, controllerName) {
+        // 打开明细数据会话框
+        $('#createOrEditModal').modal({
+            show: true,
+            backdrop: 'static'
+        });
+        // 访问后台 CreateOrEdit 方法，获取新建或者编辑数据的呈现 imports page 页面内容
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../' + controllerName+'/CreateOrEdit/' + id,
+            beforeSend: function () {
+                // alert("开始访问");
+            }
+        }).done(function (data) {
+            document.getElementById("createOrEditArea").innerHTML = data;
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+
+    // 执行数据提交保存操作
+    function gotoSave(controllerName) {
+        // 先提取相关的对象属性数据
+        var boID           = document.getElementById('EntityVM_ID').value;
+        var boIsNew        = document.getElementById('EntityVM_IsNew').value;
+        var boName         = document.getElementById('EntityVM_Name').value;
+        var boDescription  = document.getElementById('EntityVM_Description').value;
+        var boSortCode     = document.getElementById('EntityVM_SortCode').value;
+        // 前端数据校验
+        // TBD
+        // 构建向后端提交的数据模型
+        var boDataModel = "{" +
+            "ID:'" + boID + "'," +
+            "IsNew:'" + boIsNew + "'," +
+            "Name:'" + boName + "'," +
+            "Description:'" + boDescription + "'," +
+            "SortCode:'" + boSortCode + "'" +
+            "}";
+        // 转换为后端用的数据模型
+        var jsonData = { 'jsonBoVM': boDataModel };
+        // 执行提交
+        $.ajax({
+            cache: false,
+            type: 'POST',
+            async: false,
+            url: "../../" + controllerName+"/Save",
+            data: jsonData,
+            dataType: 'json',
+            beforeSend: function () {
+            }
+        }).done(function (saveStatus) {
+            if (saveStatus.saveOk == true) {
+                $('#createOrEditModal').modal('hide'); // 关闭对话框
+                gotoList(controllerName);              // 成功后跳转回到列表
+            } else {
+                document.getElementById("createOrSaveErrorMessage").innerText = saveStatus.statusMessage;
+            }
+            }).fail(function () {
+                alert("这个连接后台失败！");
+        }).always(function () {
+        });
+    }
+
+    // 打开查看人员明细信息的会话框
+    function openDetailInfomationModal(id, controllerName) {
+        // 打开明细数据会话框
+        $('#detailInformationModal').modal({
+            show: true,
+            backdrop: 'static'
+        });
+        // 访问后台方法，获取明细数据的呈现的 imports page 内容
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../' + controllerName+'/Detail/' + id,
+            beforeSend: function () {
+            }
+        }).done(function (data) {
+            document.getElementById("detailInformationArea").innerHTML = data;
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+
+    // 查看人员明细信息
+    function gotoDetail(id, controllerName) {
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../' + controllerName+'/Detail/' + id,
+            beforeSend: function () {
+                // alert("开始访问");
+            }
+        }).done(function (data) {
+            document.getElementById("personWorkPlace").innerHTML = data;
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+
+    // 打开删除人员操作会话框
+    function openDeleteModal(id, alertMessage) {
+        document.getElementById("businessObjectID").value = id;
+        document.getElementById("deleteModalMessage").innerText = alertMessage;
+        $('#deleteConfirmModal').modal({
+            show: true,
+            backdrop: 'static'
+        });
+    }
+
+    // 执行删除操作
+    function gotoDelete(controllerName) {
+        var pid = document.getElementById("businessObjectID").value;
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../' + controllerName+'/Delete/' + pid,
+            beforeSend: function () {
+            }
+        }).done(function (delStatus) {
+            if (delStatus.deleteSatus === true) {
+                $('#deleteConfirmModal').modal('hide')
+                gotoList(controllerName);
+            } else {
+                document.getElementById("deleteModalErrMessage").innerText = delStatus.message;
+            }
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+</script>

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ShiKe.ViewModels.BusinessOrganization.SK_WM_ShopSttledVM>
+@{
+    ViewData["Title"] = "待审核的商家入驻申请";
+    Layout = "_SystemLayout";
+}
+<div>
+    <div class="input-group pull-right" style="width:250px">
+        <input id="inputKeyWord" type="text" class="form-control" placeholder="输入关键词..." value="">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" type="button" onclick="gotoSearch()">查询</button>
+        </span>
+    </div>
+    <h2 class="sub-header">商家入驻审核</h2>
+</div>
+<div id="mainWorkPlaceArea">
+    @if (ViewBag.SettledCollection >0)
+    {
+        @Html.Partial("../../Views/Shop/ShopManager/_NoExamineForAllSettledList", Model)
+    }
+    else
+    {
+        <div class="row">
+            <h3 style="margin:120px auto;width:300px;color;gray;height:250px;font-size:24px">当前没有待审核入驻的申请</h3>
+        </div>
+    }
+
+</div>
+@Html.Partial("../../Views/BusinessOrganization/PublicView/_ModalForConfirm")
+
+<script>
+    function gotoNoExamineForAllSettledList() {
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../ShopManager/NoExamineForAllSettledList/',
+            beforeSend: function () {
+            }
+        }).done(function (data) {
+            
+            document.getElementById("mainWorkPlaceArea").innerHTML = data;
+
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+
+    // 打开操作会话框
+    function opensConfirmModal(id, alertMessage) {
+        document.getElementById("smodelID").value = id;
+        document.getElementById("sModalErrMessage").innerText = alertMessage;
+        $('#sConfirmModal').modal({
+            show: true,
+            backdrop: 'static'
+        });
+    }
+
+    // 执行通过操作
+    function gotoPassConfirm() {
+        var pid = document.getElementById("smodelID").value;
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../ShopManager/AddDefaultShop/' + pid,
+            beforeSend: function () {
+            }
+        })
+            .done(function (data) {             
+                if (data.message == "审核通过操作成功,已经为用户添加一个默认店铺！") {
+                    alert(data.message);
+                    window.location.href = "../../ShopManager/NoExamineForAllSettled";
+                }
+                else { 
+                    alert(data.message);
+                    $("#sConfirmModal").modal('hide');
+                }           
+             
+            })
+            .fail(function () {
+                alert("连接后台失败！");
+            })
+            .always(function () {
+            });
+    }
+</script>

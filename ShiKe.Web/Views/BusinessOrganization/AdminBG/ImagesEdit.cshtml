@@ -1,0 +1,51 @@
+﻿@*@model IEnumerable<ShiKe.ViewModels.Attachments.BusinessImageVM>*@
+@{
+    ViewData["Title"] = "编辑图片";
+    Layout = "_SystemLayout";
+}
+
+
+<div style="margin:15px">
+    <div class="row">
+        <h2 class="sub-header">编辑图片</h2>
+        <h5 class="sub-header">商品名称</h5>
+    </div>
+    <div class="row">
+        @foreach (var img in Model)
+        {
+            <div class="col-xs-4">
+
+                <div class="file-preview-frame krajee-default  kv-preview-thumb">
+                    <div class="kv-file-content">
+                        <img class="file-preview-image kv-preview-data rotate-64709 is-portrait-gt4" style="width: 240px; height: 160px; margin-top: 0px;" src="@img.UploadPath" alt="@*@img.DisplayName*@">
+                    </div>
+                    <div class="file-thumbnail-footer" style="height:40px;width:240px">
+                        <button type="button" class="btn btn-default" onclick="saveCover('@img.ID.ToString()','@ViewBag.Goods.ID')">设为封面</button>
+                        <button type="button" class="btn btn-default"
+                                onclick="openDeleteModal('@img.ID.ToString()','你所选择删除的图片名称是：@*@img.DisplayName*@，请确认是否继续执行。')">
+                            删除
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="row">
+        <div class="col-xs-10">
+            <form class="text-center" action="../../Account/SaveAvatar" method="post" enctype="multipart/form-data" id="uploadFilesForm">
+
+                <input id="input-image-1" name="input-image" type="file" multiple class="file" accept="image/*">
+
+            </form>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+
+
+

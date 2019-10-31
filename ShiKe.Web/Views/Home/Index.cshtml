@@ -1,0 +1,894 @@
+﻿@model IEnumerable<ShiKe.ViewModels.BusinessOrganization.SK_WM_GoodsVM>
+@{
+    ViewData["Title"] = ViewBag.SiteTitle;
+    Layout = "_IndexLayout";
+}
+<div class="FloatBar" style="background-color:white">
+    <a href="#" class="FloatBarItem" title="返回顶部">
+        <i class="glyphicon glyphicon-menu-up"></i>
+        <span>返回顶部</span>
+    </a>
+    <a href="javascript:alert('功能正在完善中...')alert('功能正在完善中...')" class="FloatBarItem" title="问卷调查">
+        <i class="glyphicon glyphicon-edit"></i>
+        <span>问卷调查</span>
+    </a>
+    <a href="javascript:alert('功能正在完善中...')alert('功能正在完善中...')" class="FloatBarItem">
+        <i class="glyphicon glyphicon-question-sign" title="帮助中心"></i>
+        <span>帮助中心</span>
+    </a>
+    <a href="../../Home/Feedback" class="FloatBarItem" title="意见反馈">
+        <i class=" glyphicon glyphicon-pencil"></i>
+        <span>意见反馈</span>
+    </a>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="back">
+            <div class="content">
+                <div class="top_I">
+                    @*顶部*@
+                    <div class=" filter">
+                        <ul>
+                            <li>
+                                <a href="javascript:alert('功能正在完善中...')"  class="filter_info">
+                                    <h3>
+                                        <i class="Ic"><img src="~/images/Index/ni.jpg" /></i>
+                                        <span>主食/米饭</span>
+                                        <i class="glyphicon glyphicon-menu-right Ia"></i>
+                                    </h3>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:alert('功能正在完善中...')"  class="filter_info">
+                                    <h3>
+                                        <i class="Ic"><img src="~/images/Index/tui.jpg" /></i>
+                                        <span>熟食/肉类</span>
+                                        <i class="glyphicon glyphicon-menu-right Ia"></i>
+                                    </h3>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:alert('功能正在完善中...')"  class="filter_info">
+                                    <h3>
+                                        <i class="Ic"><img src="~/images/Index/xia.jpg" /></i>
+                                        <span>海味/河鲜</span>
+                                        <i class="glyphicon glyphicon-menu-right Ia"></i>
+                                    </h3>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:alert('功能正在完善中...')"  class="filter_info">
+                                    <h3>
+                                        <i class="Ic"><img src="~/images/Index/xin.jpg" /></i>
+                                        <span>甜品/点心</span>
+                                        <i class="glyphicon glyphicon-menu-right Ia"></i>
+                                    </h3>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:alert('功能正在完善中...')"  class="filter_info">
+                                    <h3>
+                                        <i class="Ic"><img src="~/images/Index/guo.jpg" /></i>
+                                        <span>坚果/炒货</span>
+                                        <i class="glyphicon glyphicon-menu-right Ia"></i>
+                                    </h3>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:alert('功能正在完善中...')"  class="filter_info">
+                                    <h3>
+                                        <i class="Ic"><img src="~/images/Index/ta.jpg" /></i>
+                                        <span>糖果/蜜饯</span>
+                                        <i class="glyphicon glyphicon-menu-right Ia"></i>
+                                    </h3>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:alert('功能正在完善中...')"  class="filter_info">
+                                    <h3>
+                                        <i class="Ic"><img src="~/images/Index/li.jpg" /></i>
+                                        <span>品牌/礼包</span>
+                                        <i class="glyphicon glyphicon-menu-right Ia"></i>
+                                    </h3>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:alert('功能正在完善中...')"  class="filter_info">
+                                    <h3>
+                                        <i class="Ic"><img src="~/images/Index/gan.jpg" /></i>
+                                        <span>饼干/膨化</span>
+                                        <i class="glyphicon glyphicon-menu-right Ia"></i>
+                                    </h3>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:alert('功能正在完善中...')"  class="filter_info">
+                                    <h3>
+                                        <i class="Ic"><img src="~/images/Index/ni.jpg" /></i>
+                                        <span>主食/米饭</span>
+                                        <i class="glyphicon glyphicon-menu-right Ia"></i>
+                                    </h3>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:alert('功能正在完善中...')"  class="filter_info">
+                                    <h3>
+                                        <i class="Ic"><img src="~/images/Index/gan.jpg" /></i>
+                                        <span>饼干/膨化</span>
+                                        <i class="glyphicon glyphicon-menu-right Ia"></i>
+                                    </h3>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:alert('功能正在完善中...')"  class="filter_info">
+                                    <h3>
+                                        <i class="Ic"><img src="~/images/Index/xia.jpg" /></i>
+                                        <span>海味/河鲜</span>
+                                        <i class="glyphicon glyphicon-menu-right Ia"></i>
+                                    </h3>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:alert('功能正在完善中...')"  class="filter_info">
+                                    <h3>
+                                        <i class="Ic"><img src="~/images/Index/li.jpg" /></i>
+                                        <span>品牌/礼包</span>
+                                        <i class="glyphicon glyphicon-menu-right Ia"></i>
+                                    </h3>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:alert('功能正在完善中...')"  class="filter_info">
+                                    <h3>
+                                        <i class="Ic"><img src="~/images/Index/ta.jpg" /></i>
+                                        <span>糖果/蜜饯</span>
+                                        <i class="glyphicon glyphicon-menu-right Ia"></i>
+                                    </h3>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:alert('功能正在完善中...')"  class="filter_info">
+                                    <h3>
+                                        <i class="Ic"><img src="~/images/Index/tui.jpg" /></i>
+                                        <span>熟食/肉类</span>
+                                        <i class="glyphicon glyphicon-menu-right Ia"></i>
+                                    </h3>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="top_r">
+                        <div class="Carousel_Figure">
+                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="5"></li>
+                                </ol>
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active">
+                                        <img src="~/images/Index/Banner/01.jpg" />
+                                        <span class="The_Dishes">北海鱿鱼丝</span>
+                                    </div>
+                                    <div class="item">
+                                        <img src="~/images/Index/Banner/02.jpg" />
+                                        <span class="The_Dishes"> 广东虾饺</span>
+                                    </div>
+                                    <div class="item">
+                                        <img src="~/images/Index/Banner/03.jpg" />
+                                        <span class="The_Dishes">湖北武汉周黑鸭</span>
+                                    </div>
+                                    <div class="item">
+                                        <img src="~/images/Index/Banner/04.jpg" />
+                                        <span class="The_Dishes">湖南常德酱板鸭</span>
+                                    </div>
+                                    <div class="item">
+                                        <img src="~/images/Index/Banner/05.jpg" />
+                                        <span class="The_Dishes">四川口水鸡</span>
+                                    </div>
+                                    <div class="item">
+                                        <img src="~/images/Index/Banner/08.jpg" />
+                                        <span class="The_Dishes">重庆水煮鱼</span>
+                                    </div>
+                                </div>
+                                <!-- Controls -->
+                                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="rest">
+                            <div class="News_Flash">
+                                <h4><i class="glyphicon glyphicon-volume-up" style="margin-right:6px"></i>快讯</h4>
+                                <div class="news">
+                                    <a href="../../News/SpecialtyNews"><span style="margin-right:2px">[推荐]</span>贵州黔西南备好山地美食迎客入黔赏美</a>
+                                    <a href="javascript:alert('功能正在完善中...')" ><span style="margin-right:2px">[公告]</span>华北、华中部分地区配送延迟</a>
+                                    <a href="javascript:alert('功能正在完善中...')" ><span style="margin-right:2px">[特惠]</span>柳州螺蛳粉狂欢千亿礼券 买1送1！</a>
+                                    <a href="javascript:alert('功能正在完善中...')" ><span style="margin-right:2px">[公告]</span>中国有这么多种美食</a>
+                                    <a href="javascript:alert('功能正在完善中...')" ><span style="margin-right:2px">[公告]</span>华北、华中部分地区配送延迟</a>
+                                    <a href="javascript:alert('功能正在完善中...')" ><span style="margin-right:2px">[特惠]</span>柳州螺蛳粉狂欢千亿礼券 买1送1！</a>
+                                    <a href="javascript:alert('功能正在完善中...')" ><span style="margin-right:2px">[公告]</span>中国有这么多种美食</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Recommend">
+                            <ul>
+                                <li class="Arrow"><a href="javascript:alert('功能正在完善中...')" ><img src="~/images/Index/ff.jpg" /></a></li>
+                                <li class="Arrow"><a href="javascript:alert('功能正在完善中...')" ><img src="~/images/Index/jj.jpg" /></a></li>
+                                <li class="Arrow"><a href="javascript:alert('功能正在完善中...')" ><img src="~/images/Index/xe.jpg" /></a></li>
+                                <li class="Arrow Arrow_R"><a href="javascript:alert('功能正在完善中...')" ><img src="~/images/Index/fe.jpg" /></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="Exhibition">
+                    @*美食展示区*@
+                    @*<div class="am_container" style="display:none">*@
+                    <div class="am_container" style="display:none;">
+                        <div class="sele_mt">
+                            <i></i>
+                            <div class="s_time" id="countdown">
+                                <span class="hh">01</span>
+                                <span class="mm">20</span>
+                                <span class="ss">59</span>
+                            </div>
+                        </div>
+                        <div class="am_g">
+                            <div class="am_detail">
+                                <a href="javascript:alert('功能正在完善中...')" class="am_image">
+                                    <img src="~/images/Index/ff.jpg" />
+                                </a>
+                                <div class="a_info">
+                                    <a href="javascript:alert('功能正在完善中...')">香滑面</a>
+                                    <div class="s_price">
+                                        ￥<b>9.90</b>
+                                        <i>个</i>
+                                        <a class="s_buy" href="javascript:alert('功能正在完善中...')">秒杀</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am_detail">
+                                <a href="javascript:alert('功能正在完善中...')" class="am_image">
+                                    <img src="~/images/Index/jj.jpg" />
+                                </a>
+                                <div class="a_info">
+                                    <a href="javascript:alert('功能正在完善中...')">酱子鸡</a>
+                                    <div class="s_price">
+                                        ￥<b>9.90</b>
+                                        <i>个</i>
+                                        <a class="s_buy" href="javascript:alert('功能正在完善中...')">秒杀</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am_detail">
+                                <a href="javascript:alert('功能正在完善中...')" class="am_image">
+                                    <img src="~/images/Index/xe.jpg" />
+                                </a>
+                                <div class="a_info">
+                                    <a href="javascript:alert('功能正在完善中...')">香辣蟹</a>
+                                    <div class="s_price">
+                                        ￥<b>9.90</b>
+                                        <i>斤</i>
+                                        <a class="s_buy" href="javascript:alert('功能正在完善中...')">秒杀</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am_detail">
+                                <a href="javascript:alert('功能正在完善中...')" class="am_image">
+                                    <img src="~/images/Index/fe.jpg" />
+                                </a>
+                                <div class="a_info">
+                                    <a href="javascript:alert('功能正在完善中...')">美味牛肉面</a>
+                                    <div class="s_price">
+                                        ￥<b>9.90</b>
+                                        <i>斤</i>
+                                        <a class="s_buy" href="javascript:alert('功能正在完善中...')">秒杀</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+
+
+                    @{
+                        var snCount = 0;
+                        <div class="Navigation">
+                            <div class="Navigation_E" style="border-bottom: 2px solid @ViewBag.colorEnd[0];">
+
+                                <a href="javascript:alert('功能正在完善中...')" ><i class="glyphicon glyphicon-cutlery fillet_A"></i>小吃快餐</a>
+                                <em class="am-icon-caret-left"></em>
+                                <span>每一道小吃都有一个故事</span>
+                                <ul class="nav nav-pills nav_u">
+                                    @foreach (var cate in @ViewBag.categorys)
+                                    {
+                                        <li role="presentation" class="nav-pills_li"><a href="javascript:"  onclick="CateSearch('@cate.Name')">@cate.Name</a></li>
+
+                                    }
+                                    <li role="presentation" class="nav-pills_li"><a href="javascript:alert('功能正在完善中...')" onclick="SearchMore()" class="notborder">更多美味</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="Commodity_Exhibition">
+                                <div class="Commodity_List div_all">
+                                    <div class="word">
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                    </div>
+                                    <a href="javascript:alert('功能正在完善中...')" >
+                                        <img class="photograph" src="/images/DemoGoodsIMG/indexKFCDemo.png" />
+                                        <div class="outer_con ">
+                                            <h3>
+                                                零食大礼包开抢啦
+                                            </h3>
+                                            <span>
+                                                当小鱼儿恋上软豆腐
+                                            </span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <a href="javascript:alert('功能正在完善中...')"  class="Exhibition_1 Ex_1 div_all" style="background: linear-gradient(@ViewBag.colorStart[0],@ViewBag.colorEnd[0]);">
+                                    <div class="outer_con ">
+                                        <h3>
+                                            雪之恋和风大福
+                                        </h3>
+                                    </div>
+                                    <div class="photograph "><img src="~/images/Index/act1.png" /></div>
+                                </a>
+
+                                <div class="Commodity_Ul">
+
+                                    @foreach (var item in @ViewBag.snackFood)
+                                    {
+                                        if (snCount < 6)
+                                        {
+                                            @*if (snCount == 1)
+                                            {
+                                                <a href="../Home/ComDetail?id=@item.ID" class="com_div Com_tow">
+                                                    <div class="outer_con ">
+                                                        <h3 style="background: #6bdea7;">
+                                                            @item.Name
+                                                        </h3>
+                                                    </div>
+                                                    @if (item.AvatarPath == null)
+                                                    {
+                                                        <div class="outer_1"><img src="~/images/noimage.gif" alt="@item.Name" /></div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="outer_1"><img src="@item.AvatarPath" alt="@item.Name" /></div>
+                                                    }
+                                                    <div class="Com_transition">
+                                                        <div class="Com_t_top"></div>
+                                                        <div class="Com_t_left"></div>
+                                                        <div class="Com_t_bottom"></div>
+                                                        <div class="Com_t_right"></div>
+                                                    </div>
+                                                </a>
+                                            }
+                                            else if (snCount == 2)
+                                            {
+
+                                                <a href="../Home/ComDetail?id=@item.ID" class="com_div Com_three">
+                                                    <div class="outer_con ">
+                                                        <h3 style="background: #6bdea7;">
+                                                            @item.Name
+                                                        </h3>
+                                                    </div>
+                                                    @if (item.AvatarPath == null)
+                                                    {
+                                                        <div class="outer_1"><img src="~/images/noimage.gif" alt="@item.Name" /></div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="outer_1"><img src="@item.AvatarPath" alt="@item.Name" /></div>
+                                                    }
+                                                    <div class="Com_transition">
+                                                        <div class="Com_t_top"></div>
+                                                        <div class="Com_t_left"></div>
+                                                        <div class="Com_t_bottom"></div>
+                                                        <div class="Com_t_right"></div>
+                                                    </div>
+                                                </a>
+                                            }
+                                            else
+                                            {*@
+
+                                                <a href="../Home/ComDetail?id=@item.ID" class="com_div">
+
+                                                    <div class="outer_con ">
+                                                        <h3 style="background: #6bdea7;">
+                                                            @item.Name
+                                                        </h3>
+                                                    </div>
+                                                    @if (item.AvatarPath == null)
+                                                    {
+                                                        <div class="outer_1"><img src="~/images/noimage.gif" alt="@item.Name" /></div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="outer_1"><img src="@item.AvatarPath" alt="@item.Name" /></div>
+                                                    }
+                                                    <div class="Com_transition">
+                                                        <div class="Com_t_top"></div>
+                                                        <div class="Com_t_left"></div>
+                                                        <div class="Com_t_bottom"></div>
+                                                        <div class="Com_t_right"></div>
+                                                    </div>
+                                                </a>
+                                                //}
+                                            }
+                                            snCount++;
+                                        }
+
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    }
+
+                    @{
+                        var baCount = 0;
+                        <div class="Navigation">
+                            <div class="Navigation_E" style="border-bottom: 2px solid @ViewBag.colorEnd[1];">
+
+                                <a href="javascript:alert('功能正在完善中...')" ><i class="glyphicon glyphicon-cutlery fillet_A"></i>烧烤烤肉</a>
+                                <em class="am-icon-caret-left"></em>
+                                <span>每一道烧烤都有一个故事</span>
+                                <ul class="nav nav-pills nav_u">
+                                    @foreach (var cate in @ViewBag.categorys)
+                                    {
+                                        <li role="presentation" class="nav-pills_li"><a href="javascript:"  onclick="CateSearch('@cate.Name')">@cate.Name</a></li>
+
+                                    }
+                                    <li role="presentation" class="nav-pills_li"><a href="javascript:alert('功能正在完善中...')" onclick="SearchMore()" class="notborder">更多美味</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="Commodity_Exhibition">
+                                <div class="Commodity_List div_all">
+                                    <div class="word">
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                    </div>
+                                    <a href="javascript:alert('功能正在完善中...')" >
+                                        <img class="photograph" src="~/images/DemoGoodsIMG/indexKFCDemo.png" />
+                                        <div class="outer_con ">
+                                            <h3>
+                                                KFC大礼包开抢啦
+                                            </h3>
+                                            <span>
+                                                当小鱼儿恋上KFC
+                                            </span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <a href="javascript:alert('功能正在完善中...')"  class="Exhibition_1 Ex_1 div_all" style="background: linear-gradient(@ViewBag.colorStart[1],@ViewBag.colorEnd[1]);">
+                                    <div class="outer_con ">
+                                        <h3>
+                                            雪之恋和风大福
+                                        </h3>
+                                    </div>
+                                    <div class="photograph "><img src="~/images/Index/act1.png" /></div>
+                                </a>
+
+                                <div class="Commodity_Ul">
+
+                                    @foreach (var item in @ViewBag.barbecue)
+                                    {
+                                        if (baCount < 6)
+                                        {
+                                            @*if (baCount == 1)
+                                            {
+                                                <a href="../Home/ComDetail?id=@item.ID" class="com_div Com_tow">
+                                                    <div class="outer_con ">
+                                                        <h3 style="background: #fe9229;">
+                                                            @item.Name
+                                                        </h3>
+                                                    </div>
+                                                    @if (item.AvatarPath == null)
+                                                    {
+                                                        <div class="outer_1"><img src="~/images/noimage.gif" alt="@item.Name" /></div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="outer_1"><img src="@item.AvatarPath" alt="@item.Name" /></div>
+                                                    }
+                                                    <div class="Com_transition">
+                                                        <div class="Com_t_top"></div>
+                                                        <div class="Com_t_left"></div>
+                                                        <div class="Com_t_bottom"></div>
+                                                        <div class="Com_t_right"></div>
+                                                    </div>
+                                                </a>
+                                            }
+                                            else if (baCount == 2)
+                                            {
+
+                                                <a href="../Home/ComDetail?id=@item.ID" class="com_div Com_three">
+                                                    <div class="outer_con ">
+                                                        <h3 style="background: #fe9229;">
+                                                            @item.Name
+                                                        </h3>
+                                                    </div>
+                                                    @if (item.AvatarPath == null)
+                                                    {
+                                                        <div class="outer_1"><img src="~/images/noimage.gif" alt="@item.Name" /></div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="outer_1"><img src="@item.AvatarPath" alt="@item.Name" /></div>
+                                                    }
+                                                    <div class="Com_transition">
+                                                        <div class="Com_t_top"></div>
+                                                        <div class="Com_t_left"></div>
+                                                        <div class="Com_t_bottom"></div>
+                                                        <div class="Com_t_right"></div>
+                                                    </div>
+                                                </a>
+                                            }
+                                            else
+                                            {*@
+
+                                                <a href="../Home/ComDetail?id=@item.ID" class="com_div">
+
+                                                    <div class="outer_con ">
+                                                        <h3 style="background: #fe9229;">
+                                                            @item.Name
+                                                        </h3>
+                                                    </div>
+                                                    @if (item.AvatarPath == null)
+                                                    {
+                                                        <div class="outer_1"><img src="~/images/noimage.gif" alt="@item.Name" /></div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="outer_1"><img src="@item.AvatarPath" alt="@item.Name" /></div>
+                                                    }
+                                                    <div class="Com_transition">
+                                                        <div class="Com_t_top"></div>
+                                                        <div class="Com_t_left"></div>
+                                                        <div class="Com_t_bottom"></div>
+                                                        <div class="Com_t_right"></div>
+                                                    </div>
+                                                </a>
+                                            //}
+                                        }
+                                        baCount++;
+                                    }
+
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    }
+
+                    @{
+                        var dsCount = 0;
+                        <div class="Navigation">
+                            <div class="Navigation_E" style="border-bottom: 2px solid @ViewBag.colorEnd[2];">
+
+                                <a href="javascript:alert('功能正在完善中...')" ><i class="glyphicon glyphicon-cutlery fillet_A"></i>甜点饮品</a>
+                                <em class="am-icon-caret-left"></em>
+                                <span>每一道甜点都有一个故事</span>
+                                <ul class="nav nav-pills nav_u">
+                                    @foreach (var cate in @ViewBag.categorys)
+                                    {
+                                        <li role="presentation" class="nav-pills_li"><a href="javascript:"  onclick="CateSearch('@cate.Name')">@cate.Name</a></li>
+
+                                    }
+                                    <li role="presentation" class="nav-pills_li"><a href="javascript:alert('功能正在完善中...')" onclick="SearchMore()" class="notborder">更多美味</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="Commodity_Exhibition">
+                                <div class="Commodity_List div_all">
+                                    <div class="word">
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                    </div>
+                                    <a href="javascript:alert('功能正在完善中...')" >
+                                        <img class="photograph" src="/images/DemoGoodsIMG/indexKFCDemo.png" />
+                                        <div class="outer_con ">
+                                            <h3>
+                                                零食大礼包开抢啦
+                                            </h3>
+                                            <span>
+                                                当小鱼儿恋上软豆腐
+                                            </span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <a href="javascript:alert('功能正在完善中...')"  class="Exhibition_1 Ex_1 div_all" style="background: linear-gradient(@ViewBag.colorStart[2],@ViewBag.colorEnd[2]);">
+                                    <div class="outer_con ">
+                                        <h3>
+                                            雪之恋和风大福
+                                        </h3>
+                                    </div>
+                                    <div class="photograph "><img src="~/images/Index/act1.png" /></div>
+                                </a>
+
+                                <div class="Commodity_Ul">
+
+                                    @foreach (var item in @ViewBag.dessert)
+                                    {
+                                        if (dsCount < 6)
+                                        {
+                                            @*if (dsCount == 1)
+                                            {
+                                                <a href="../Home/ComDetail?id=@item.ID" class="com_div Com_tow">
+                                                    <div class="outer_con ">
+                                                        <h3 style="background: #b273fc;">
+                                                            @item.Name
+                                                        </h3>
+                                                    </div>
+                                                    @if (item.AvatarPath == null)
+                                                    {
+                                                        <div class="outer_1"><img src="~/images/noimage.gif" alt="@item.Name" /></div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="outer_1"><img src="@item.AvatarPath" alt="@item.Name" /></div>
+                                                    }
+                                                    <div class="Com_transition">
+                                                        <div class="Com_t_top"></div>
+                                                        <div class="Com_t_left"></div>
+                                                        <div class="Com_t_bottom"></div>
+                                                        <div class="Com_t_right"></div>
+                                                    </div>
+                                                </a>
+                                            }
+                                            else if (dsCount == 2)
+                                            {
+
+                                                <a href="../Home/ComDetail?id=@item.ID" class="com_div Com_three">
+                                                    <div class="outer_con ">
+                                                        <h3 style="background: #b273fc;">
+                                                            @item.Name
+                                                        </h3>
+                                                    </div>
+                                                    @if (item.AvatarPath == null)
+                                                    {
+                                                        <div class="outer_1"><img src="~/images/noimage.gif" alt="@item.Name" /></div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="outer_1"><img src="@item.AvatarPath" alt="@item.Name" /></div>
+                                                    }
+                                                    <div class="Com_transition">
+                                                        <div class="Com_t_top"></div>
+                                                        <div class="Com_t_left"></div>
+                                                        <div class="Com_t_bottom"></div>
+                                                        <div class="Com_t_right"></div>
+                                                    </div>
+                                                </a>
+                                            }
+                                            else
+                                            {*@
+
+                                                <a href="../Home/ComDetail?id=@item.ID" class="com_div">
+
+                                                    <div class="outer_con ">
+                                                        <h3 style="background: #b273fc;">
+                                                            @item.Name
+                                                        </h3>
+                                                    </div>
+                                                    @if (item.AvatarPath == null)
+                                                    {
+                                                        <div class="outer_1"><img src="~/images/noimage.gif" alt="@item.Name" /></div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="outer_1"><img src="@item.AvatarPath" alt="@item.Name" /></div>
+                                                    }
+                                                    <div class="Com_transition">
+                                                        <div class="Com_t_top"></div>
+                                                        <div class="Com_t_left"></div>
+                                                        <div class="Com_t_bottom"></div>
+                                                        <div class="Com_t_right"></div>
+                                                    </div>
+                                                </a>
+                                            //}
+                                        }
+                                        dsCount++;
+                                    }
+
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    }
+
+
+                    @{
+                        var otCount = 0;
+                        <div class="Navigation">
+                            <div class="Navigation_E" style="border-bottom: 2px solid @ViewBag.colorEnd[3];">
+
+                                <a href="javascript:alert('功能正在完善中...')" ><i class="glyphicon glyphicon-cutlery fillet_A"></i>其他美食</a>
+                                <em class="am-icon-caret-left"></em>
+                                <span>每一道美食都有一个故事</span>
+                                <ul class="nav nav-pills nav_u">
+                                    @foreach (var cate in @ViewBag.categorys)
+                                    {
+                                        <li role="presentation" class="nav-pills_li"><a href="javascript:" onclick="CateSearch('@cate.Name')">@cate.Name</a></li>
+
+                                    }
+                                    <li role="presentation" class="nav-pills_li"><a href="javascript:alert('功能正在完善中...')" onclick="SearchMore()" class="notborder">更多美味</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="Commodity_Exhibition">
+                                <div class="Commodity_List div_all">
+                                    <div class="word">
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                        <a class="outer" href="javascript:alert('功能正在完善中...')" >吃饭</a>
+                                    </div>
+                                    <a href="javascript:alert('功能正在完善中...')" >
+                                        <img class="photograph" src="/images/DemoGoodsIMG/indexKFCDemo.png" />
+                                        <div class="outer_con ">
+                                            <h3>
+                                                零食大礼包开抢啦
+                                            </h3>
+                                            <span>
+                                                当小鱼儿恋上软豆腐
+                                            </span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <a href="javascript:alert('功能正在完善中...')"  class="Exhibition_1 Ex_1 div_all" style="background: linear-gradient(@ViewBag.colorStart[3],@ViewBag.colorEnd[3]);">
+                                    <div class="outer_con ">
+                                        <h3>
+                                            雪之恋和风大福
+                                        </h3>
+                                    </div>
+                                    <div class="photograph "><img src="~/images/Index/act1.png" /></div>
+                                </a>
+
+                                <div class="Commodity_Ul">
+
+                                    @foreach (var item in @ViewBag.otherDelicacies)
+                                    {
+                                        if (otCount < 6)
+                                        {
+                                            @*if (otCount == 1)
+                                            {
+                                                <a href="../Home/ComDetail?id=@item.ID" class="com_div Com_tow">
+                                                    <div class="outer_con ">
+                                                        <h3 style="background: #fe90a0;">
+                                                            @item.Name
+                                                        </h3>
+                                                    </div>
+                                                    @if (item.AvatarPath == null)
+                                                    {
+                                                        <div class="outer_1"><img src="~/images/noimage.gif" alt="@item.Name" /></div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="outer_1"><img src="@item.AvatarPath" alt="@item.Name" /></div>
+                                                    }
+                                                    <div class="Com_transition">
+                                                        <div class="Com_t_top"></div>
+                                                        <div class="Com_t_left"></div>
+                                                        <div class="Com_t_bottom"></div>
+                                                        <div class="Com_t_right"></div>
+                                                    </div>
+                                                </a>
+                                            }
+                                            else if (otCount == 2)
+                                            {
+
+                                                <a href="../Home/ComDetail?id=@item.ID" class="com_div Com_three">
+                                                    <div class="outer_con ">
+                                                        <h3 style="background: #fe90a0;">
+                                                            @item.Name
+                                                        </h3>
+                                                    </div>
+                                                    @if (item.AvatarPath == null)
+                                                    {
+                                                        <div class="outer_1"><img src="~/images/noimage.gif" alt="@item.Name" /></div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="outer_1"><img src="@item.AvatarPath" alt="@item.Name" /></div>
+                                                    }
+                                                    <div class="Com_transition">
+                                                        <div class="Com_t_top"></div>
+                                                        <div class="Com_t_left"></div>
+                                                        <div class="Com_t_bottom"></div>
+                                                        <div class="Com_t_right"></div>
+                                                    </div>
+                                                </a>
+                                            }
+                                            else
+                                            {*@
+
+                                                <a href="../Home/ComDetail?id=@item.ID" class="com_div">
+
+                                                    <div class="outer_con ">
+                                                        <h3 style="background: #fe90a0;">
+                                                            @item.Name
+                                                        </h3>
+                                                    </div>
+                                                    @if (item.AvatarPath == null)
+                                                    {
+                                                        <div class="outer_1"><img src="~/images/noimage.gif" alt="@item.Name" /></div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="outer_1"><img src="@item.AvatarPath" alt="@item.Name" /></div>
+                                                    }
+                                                    <div class="Com_transition">
+                                                        <div class="Com_t_top"></div>
+                                                        <div class="Com_t_left"></div>
+                                                        <div class="Com_t_bottom"></div>
+                                                        <div class="Com_t_right"></div>
+                                                    </div>
+                                                </a>
+                                            //}
+                                        }
+                                        otCount++;
+                                    }
+
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    function TenantsApply() {
+        location.href = "";
+    }
+    function Unfinished() {
+        location.href = 'javascript:alert('功能正在完善中...')alert('功能正在完善中...')';
+    }
+</script>

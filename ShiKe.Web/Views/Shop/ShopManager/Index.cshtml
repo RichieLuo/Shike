@@ -1,0 +1,150 @@
+﻿@model IEnumerable<ShiKe.ViewModels.BusinessOrganization.SK_WM_ShopVM>
+@{
+    ViewData["Title"] = "全部店铺管理";
+Layout = "_SystemLayout";
+}
+<meta charset="utf-8" />
+
+<div id="ShopWorkPlace">
+    @Html.Partial("../../Views/Shop/ShopManager/_List", Model)
+</div>
+@Html.Partial("../../Views/Shop/ShopManager/_ModalForIllegalExecute")
+<div class="modal fade" id="operationConfirmModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">店铺处理</h4>
+            </div>
+            <div class="modal-body">
+                <p id="operationModalMessage"></p>                         <!--这是一个空的文字段落标签，用于显示所需要的提示信息-->
+                <p id="operationModalErrMessage" style="color:red"></p>   <!--这是一个空的文字段落标签，用于显示数据删除操作是否成功-->
+                <input type="hidden" name="ShopID" id="ShopID" />   <!--这是一个隐藏的数据标签，用于转移待删除对象的ID-->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" onclick="gotolockoutOrunlockout()">确认</button>
+            </div>
+        </div><!-- /.会话框的内容 -->
+    </div><!-- /.会话框形式 -->
+</div><!-- /.modal -->
+
+<script type="text/javascript">
+    // 列表
+    function gotoList(keyword) {
+        $.ajax({
+            //alert(data.message + data.isOK)
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../ShopManager/List' + keyword,
+            beforeSend: function () {
+            }
+        }).done(function (data) {
+            document.getElementById("ShopWorkPlace").innerHTML = data;
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+    //后台全部店铺管理 的翻页
+    function gotoShopList(pageIndex) {
+        var Stype = $("#SelectType").val();
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../ShopManager/IndexPageList/?pageIndex=' + pageIndex + "&objectTypeID=" + Stype,
+            beforeSend: function () {
+            }
+        }).done(function (data) {
+            document.getElementById("ShopWorkPlace").innerHTML = data;
+
+
+
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+    // 新建或编辑信息
+    function gotoCreateOrEdit(id) {
+        // TBD
+    }
+    //执行违规操作
+    function gotoExecuteIllegal(id) {
+        $('#executeIllegal_shop').modal({
+            show: true,
+            backdrop: 'static'
+        });
+        // 访问后台 ExecuteIllegal 方法，获取新建或者编辑数据的呈现 imports page 页面内容
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../ShopManager/ExecuteIllegal/' + id,
+            beforeSend: function () {
+                // alert("开始访问");
+            }
+        }).done(function (data) {
+            document.getElementById("executeIllegalArea").innerHTML = data;
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+    //提交表单数据
+    function postGoodsEditForm() {
+        var systemWorkPlaceFormOptions = {
+            dataType: 'json',
+            success: function (validateMessage) {
+                //if (validateMessage.isOK === true) {
+                    $('#executeIllegal_shop').modal('hide');
+                    gotoShopList("1");
+                //} else {
+                //    $.each(validateMessage.validateMessageItems, function (i, item) {
+                //        activeErrStatus(item.messageName, item.message);
+                //    });
+                //}
+            }
+        };
+        $('#ExecuteIllegalForm').ajaxSubmit(systemWorkPlaceFormOptions);
+    }
+
+    // 打开操作会话框
+    function openOperationModal(id, alertMessage) {
+        document.getElementById("ShopID").value = id;
+        document.getElementById("operationModalMessage").innerText = alertMessage;
+        $('#operationConfirmModal').modal({
+            show: true,
+            backdrop: 'static'
+        });
+    }
+    function gotolockoutOrunlockout() { 
+
+    }
+    // 执行删除操作
+    function gotoDelete() {
+        var pid = document.getElementById("ShopID").value;
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../ShopManager/Delete/' + pid,
+            beforeSend: function () {
+            }
+        }).done(function (data) {
+            //alert(data.message + data.isOK)
+            if (data.isOK == true) {
+                $('#operationConfirmModal').modal('hide')
+                gotoList('');
+            } else {
+                document.getElementById("operationModalErrMessage").innerText = data.message;
+            }
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+
+</script>

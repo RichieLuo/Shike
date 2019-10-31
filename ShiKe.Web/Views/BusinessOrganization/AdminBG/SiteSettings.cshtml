@@ -1,0 +1,108 @@
+﻿@model ShiKe.ViewModels.WebSettingManagement.SK_SiteSettingsVM
+@{
+    ViewData["Title"] = "网站基本信息设置";
+    Layout = "_SystemLayout";
+}
+<div>
+    <div>
+        <h2 class="sub-header">网站基本信息设置<h2>
+    </div>
+
+    <form class="form-horizontal" id="SiteSettingForm" action="../../AdminBG/SiteSettings"
+          method="post"
+          enctype="multipart/form-data"
+          data-ajax-update=''
+          data-ajax-mode='replace'
+          data-ajax='true' data-toggle="validator">
+        <input type="hidden" name="ID" id="ID" value="@Model.ID" />
+        <div class="form-group">
+            <label for="Name" class="col-xs-2 control-label">站点标题：</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" name="Name" id="Name" placeholder="请输入站点标题" value="@Model.Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Suffix" class="col-xs-2 control-label">标题后缀：</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" name="Suffix" id="Suffix" placeholder="请输入标题后缀" value="@Model.Suffix">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="LOGO" class="col-xs-2 control-label">网站LOGO：</label>
+            <div class="col-xs-10">
+                @if (Model.Logo == null)
+            {
+                    <img src="~/images/logo_2.png" style="width: 140px;height: 60px" alt=""><input type="file" name="LOGO" id="LOGO" value="上传LOGO">
+                }
+                else
+                {
+                    <img src="@Model.Logo.UploadPath" style="width: 140px;height: 60px" alt=""><input type="file" name="LOGO" id="LOGO" value="上传LOGO">
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="DomainName" class="col-xs-2 control-label">网站域名：</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" name="DomainName" id="DomainName" placeholder="请输入网站域名" value="@Model.DomainName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="KeyWords" class="col-xs-2 control-label">网站关键字：</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" name="KeyWords" id="KeyWords" placeholder="请输入网站关键字，多个关键字用英文逗号','隔开" value="@Model.KeyWords">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Copyright" class="col-xs-2 control-label">网站版权：</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" name="Copyright" id="Copyright" placeholder="请输入网站版权" value="@Model.Copyright">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="IPC" class="col-xs-2 control-label">网站备案号：</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" name="ICP" id="ICP" placeholder="请输入网站ICP备案号" value="@Model.ICP">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Description" class="col-xs-2 control-label">网站描述：</label>
+            <div class="col-xs-10">
+                <input type="hidden" name="Description" id="Description" value="" />
+                <textarea class="form-control" name="DescriptionText" id="DescriptionText" placeholder="请输入网站描述" cols="30" rows="5">@Model.Description</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Statistics" class="col-xs-2 control-label">站点统计代码：</label>
+            <div class="col-xs-10">
+                <input type="hidden" name="Statistics" id="Statistics" value="" />
+                <textarea class="form-control" name="StatisticsText" id="StatisticsText" cols="30" rows="5" placeholder="这里填写站点统计代码（百度统计代码申请：https://tongji.baidu.com）">@Model.Statistics</textarea>
+            </div>
+        </div>
+        <div class="form-group" style="height: 70px; padding-top: 20px;padding-left:304px">
+            <button type="button" class="btn  btn-success" style="float:left;width: 200px;height: 40px;" onclick="saveChange()">保存</button>
+            <button type="reset" class="btn  btn-default" style="float:left;margin-left: 30px;height: 40px;">重置</button>
+        </div>
+    </form>
+</div>
+
+<script>
+
+    //js提交表单
+    function saveChange() {
+        changeVal();
+        $("#SiteSettingForm").submit();
+    }
+
+    //获取描述的值  和  信息统计的值
+    function changeVal() {
+        var deText = $("#DescriptionText").val();
+        var deVal = $("#Description").val(deText);
+
+
+        var stText = $("#StatisticsText").val();
+        var stVal = $("#Statistics").val(stText);
+
+        //alert("deText:" + deText + "\r\n deVal:" + deVal + "\r\n stText:" + stText + "\r\n stVal:" + stVal);
+    }
+
+</script>

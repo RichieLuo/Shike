@@ -1,0 +1,138 @@
+﻿
+
+/*底部*/
+.footer {
+    /*width: 1200px;*/
+    margin: 50px auto 0px;
+    border-top: 2px solid #FF5400;
+    text-align: left;
+    display: block;
+    position: relative;
+    background: #2d2d2d;
+}
+
+    .footer .footer_center {
+        padding:20px 0;
+        width: 1200px;
+        height: 200px;
+        background: #2d2d2d;
+        margin:0 auto;
+    }
+
+.footer_center .foot_left {
+    float: left;
+    width: 790px;
+    overflow: hidden;
+    padding-top: 22px;
+}
+.foot_left .foot_b_a ul {
+    margin-bottom:0;
+}
+.foot_left .foot_b_a ul li {
+    float: left;
+    color: #999;
+    font-size: 14px;
+}
+/*.foot_left ul {
+    float: right;
+    margin: 15px;
+}*/
+    .foot_left .foot_b_a ul li a, .foot_right ul li a {
+        color: #666;
+    }
+.footer_center .foot_right {
+        float: left;
+        width: 410px;
+    }
+.foot_right ul {
+    float: right;
+    margin: 15px;
+    padding-left:0;
+}
+    .foot_right ul li {
+        color: #666;
+        line-height: 25px;
+        font-family: "Microsoft YaHei";
+        letter-spacing: 1px;
+    }
+    
+    .footer .footer_top {
+            line-height: 27px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .footer .footer_top a {
+            margin: 0px 4px;
+            white-space: nowrap;
+            color: #6C6C6C;
+        }
+
+            .footer .footer_top a:hover {
+                text-decoration: none;
+                color: #434343;
+            }
+
+        .footer .footer_top b {
+            margin: 0px 3px;
+            font-weight: 400;
+            color: #666;
+        }
+
+    .footer .footer_bottom {
+        line-height: 27px;
+        text-align: left;
+    }
+
+        .footer .footer_bottom a {
+            color: #808080;
+            font-size: 12px;
+            text-decoration: none;
+        }
+
+            .footer .footer_bottom a:hover {
+                text-decoration: none;
+                color: #434343;
+            }
+
+
+
+#foot_head {
+    font-weight: bold;
+    color: #cc4125;
+}
+.foot_w {
+    /*width: 1200px;*/
+    height: 200px;  
+    background: #2d2d2d;
+}
+
+.foot_b {
+    width: 790px;
+    height: 200px;
+    padding: 20px 0px;
+    padding-bottom:0;
+    margin: 10px auto;
+    margin-bottom:0px;
+}
+
+.foot_b_a {
+    width: 790px;
+    height: 30px;
+}
+
+.foot_b ul {
+    padding: 0 20px;
+    margin-bottom: 10px;
+}
+
+    .foot_b ul li {
+        float: left;
+        color: #999;
+        font-size: 14px;
+    }
+
+#foot_b_a_head {
+    font-weight: bold;
+    color: #cc4125;
+}

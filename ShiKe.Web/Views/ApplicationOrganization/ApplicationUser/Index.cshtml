@@ -1,0 +1,302 @@
+﻿@model IEnumerable<ShiKe.ViewModels.ApplicationOrganization.ApplicationRoleVM>
+@using ShiKe.CustomMvcCoreExtension
+@{
+    ViewData["Title"] = "系统用户管理";
+    Layout = "_RoleAndUserLayout";
+    var pageParameter = ViewBag.PageParameter as ShiKe.Common.JsonModels.ListPageParameter;
+
+}
+
+<div class="" id="mainWorkPlaceArea">
+    @Html.Partial("../../Views/ApplicationOrganization/ApplicationUser/_List", ViewBag.UserVMCollection as List<ShiKe.ViewModels.ApplicationOrganization.ApplicationUserVM>)
+</div>
+
+<!-- 一组和数据操作有关的会话框 -->
+@Html.Partial("../../Views/ApplicationOrganization/ApplicationUser/_ModalForEditApplicationUser")
+@Html.Partial("../../Views/ApplicationOrganization/ApplicationUser/_ModalForDeleteApplicationUser")
+@Html.Partial("../../Views/ApplicationOrganization/ApplicationUser/_ModalForResetPassword")
+
+<!-- 一组用于留存查询、分页、导航处理等相关的中间变量，方便需要的时候提取 -->
+@Html.ShiKeSetListPageParameter(pageParameter)
+
+<script type="text/javascript">
+
+    // 访问后台 ListForApplicationUser 方法，返回的是：
+    // PartialView("../../Views/ApplicationOrganization/ApplicationUser/_List", userVMCollection)
+    // 变量：id 角色ID
+    function gotoList(id) {
+        $('#shikeTypeID').val(id);
+        gotoListWithJson();  
+    }
+    // 指定页面的访问后台的方法，用于在左侧菜单单击选择用户的时候
+    function gotoListWithPageIndex(id,pageIndex) {
+        $('#shikeTypeID').val(id);
+        $('#shikePageIndex').val('1');
+        $('#shikeKeyword').val('');
+        gotoListWithJson();
+    }
+
+    // 访问后台 CreateApplicationUser 方法，返回：
+    // PartialView("../../Views/ApplicationOrganization/ApplicationUser/_CreateApplicationUser", boVM)
+    function createApplicationUser(){
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../ApplicationUser/Create/',
+            beforeSend: function () {
+                // alert("开始访问");
+            }
+        }).done(function (data) {
+            document.getElementById("mainWorkPlaceArea").innerHTML = data;
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+
+    }
+
+    // 使用 ajaxSubmit 方法提交在 _CreateApplicationUser.cshtml 中定义的表单：ApplicationUserCreateForm
+    function postApplicationUserCreateForm() {
+        var systemWorkPlaceFormOptions = {
+            dataType: 'json',
+            success: function (validateMessage) {
+                if (validateMessage.isOK === true) {
+                    gotoList(validateMessage.validateMessageItems[0].message);
+                }
+                else {
+                    $.each(validateMessage.validateMessageItems, function (i, item) {
+                        activeErrStatus(item.messageName, item.message);
+                    });
+                }
+            }
+        };
+        $('#ApplicationUserCreateForm').ajaxSubmit(systemWorkPlaceFormOptions);
+    }
+
+    // 编辑用户数据
+    function editApplicationUser(id,roleID) {
+        // 打开编辑数据会话框
+        $('#createOrEditModal').modal({
+            show: true,
+            backdrop: 'static'
+        });
+        // 访问后台 CreateOrEdit 方法，获取新建或者编辑数据的呈现 imports page 页面内容
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../ApplicationUser/Edit/' + id + "?roleID=" + roleID,
+            beforeSend: function () {
+                // alert("开始访问");
+            }
+        }).done(function (data) {
+            document.getElementById("createOrEditArea").innerHTML = data;
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+    // 提交编辑后的用户数据
+    function postApplicationUserEditForm() {
+        var systemWorkPlaceFormOptions = {
+            dataType: 'json',
+            success: function (validateMessage) {
+                if (validateMessage.isOK === true) {
+                    $('#createOrEditModal').modal('hide');
+                    gotoList(validateMessage.validateMessageItems[0].message);
+                } else {
+                    $.each(validateMessage.validateMessageItems, function (i, item) {
+                        activeErrStatus(item.messageName, item.message);
+                    });
+                }
+            }
+        };
+        $('#ApplicationUserEditForm').ajaxSubmit(systemWorkPlaceFormOptions);
+    }
+
+    // 呈现错误消息
+    function activeErrStatus(idName, msg) {
+        document.getElementById(idName + "_DIV").classList.add("has-error","has-feedback");
+        document.getElementById(idName + "_Help").innerHTML = '<span class="help-block small" >'+msg+'</span>';
+    }
+    // 清理错误消息，输入域失去焦点的时候使用
+    function clearErrStyle(idName) {
+        document.getElementById(idName + "_DIV").classList.remove("has-error", "has-feedback");
+        document.getElementById(idName + "_Help").innerHTML = "";
+    }
+
+    // 失去焦点的时候进行处理的内容 TBD
+    function checkIfValidate(idName) {
+        var result = document.getElementById(idName).value;
+        alert(result);
+    }
+
+    // 详细信息 TDB
+    function userDetail(id, roleID) {
+
+    }
+
+    // 打开重置密码的会话框
+    function openResetUserPasswordModal(id) {
+        // 打开编辑数据会话框
+        $('#resetPasswordModal').modal({
+            show: true,
+            backdrop: 'static'
+        });
+        // 访问后台 ResetUserPassword 方法，获取数据后的呈现 imports page 页面内容
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../ApplicationUser/ResetUserPassword/' + id,
+            beforeSend: function () {
+                // alert("开始访问");
+            }
+        }).done(function (data) {
+            document.getElementById("resetPasswordArea").innerHTML = data;
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+    // 提交重置密码的数据
+    function resetUserPassword() {
+        var resetUserPasswordFormOptions = {
+            dataType: 'json',
+            success: function (validateMessage) {
+                if (validateMessage.isOK === true) {
+                    document.getElementById("resetPasswordModalTip").innerHTML = validateMessage.validateMessageItems[0].message;
+                    //$('#resetPasswordModal').modal('hide');
+                }
+                else {
+                    $.each(validateMessage.validateMessageItems, function (i, item) {
+                        activeErrStatus(item.messageName, item.message);
+                    });
+                }
+            }
+        };
+
+        $('#ResetUserPasswordForm').ajaxSubmit(resetUserPasswordFormOptions);
+    }
+
+    // 锁定用户
+    function lockoutUser(id,roleID) {
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../ApplicationUser/LockoutUser/' + id + "?roleID=" + roleID,
+            beforeSend: function () {
+                // alert("开始访问");
+            }
+        }).done(function (data) {
+            gotoList(data.roleID);
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+    // 启用用户
+    function unLockoutUser(id, roleID) {
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../ApplicationUser/UnLockoutUser/' + id + "?roleID=" + roleID,
+            beforeSend: function () {
+                // alert("开始访问");
+            }
+        }).done(function (data) {
+            gotoList(data.roleID);
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+
+    // 打开删除用户会话框
+    function openDeleteUserModal(id, tipString) {
+        // 打开编辑数据会话框
+        $('#deleteUserModal').modal({
+            show: true,
+            backdrop: 'static'
+        });
+        document.getElementById("deleteModalMessage").innerHTML = "<i class='fa fa-exclamation fa-1x'></i> "+tipString;
+        $('#businessObjectID').val(id);
+    }
+    // 执行删除
+    function gotoDeleteUser() {
+        var userID = $('#businessObjectID').val();
+        $.ajax({
+            cache: false,
+            type: 'post',
+            async: false,
+            url: '../../ApplicationRoleAndUser/' + deleteActionURL + '/' + pid,
+            beforeSend: function () {
+            }
+        }).done(function (delStatus) {
+            if (delStatus.deleteSatus === true) {
+                $('#deleteUserModal').modal('hide')
+                window.location.href = "../../SystemConfig/Index";
+            } else {
+                document.getElementById("deleteModalErrMessage").innerText = delStatus.message;
+            }
+        }).fail(function () {
+            alert("连接后台失败！");
+        }).always(function () {
+        });
+    }
+    // 处理分页器响应
+    function gotoPage(pageIndex) {
+        $('#shikePageIndex').val(pageIndex);
+        gotoListWithJson();
+    }
+
+    // 处理常规关键词检索响应
+    function gotoSearch() {
+        var keyword = $('#inputKeyWord').val();
+        $('#shikeKeyword').val(keyword);
+        $('#shikePageIndex').val('1');
+        $('#shikeSortDesc').val('')
+        $('#shikeSortProperty').val('UserName')
+        gotoListWithJson();
+    }
+
+    // 处理排序响应
+    function gotoSort(sortPropertyName,sortID) {
+        var sortStatus = $('#shikeSortDesc').val();  // 获取当前的排序形式
+        if (sortStatus == 'Default') { 
+            document.getElementById(sortID).innerHTML = '<span aria-hidden="true" class="glyphicon glyphicon-chevron-down" style="color:white"></span>';
+            $('#shikeSortDesc').val('')
+
+        } else { 
+            document.getElementById(sortID).innerHTML = '<span aria-hidden="true" class="glyphicon glyphicon-chevron-up" style="color:white"></span>';
+            $('#shikeSortDesc').val('Default')
+        }
+        $('#shikeSortProperty').val(sortPropertyName)
+        gotoListWithJson();
+    }
+
+    // 提取数据列表相关的参数，构成完成后向后端提交
+    function gotoListWithJson() {
+        var listParaJson = shikeGetListParaJson();
+        var jsonData = { "listPageParaJson": listParaJson };
+        $.ajax({
+            cache: false,
+            type: "POST",
+            async: true,
+            url: '../../ApplicationUser/List',
+            data: jsonData,
+            beforeSend: function () {
+                document.getElementById("mainWorkPlaceArea").innerHTML = "<p style='margin-top:50px;' align='center'> <i class='fa fa-spinner fa-pulse fa-2x'></i></p>" +
+                    "<p style='margin-top:50px;' align='center'>  数据加载中，请稍候...</p>";
+            }
+        }).done(function (data) {
+            document.getElementById("mainWorkPlaceArea").innerHTML = data;
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            //console.error("调试错误:" + errorThrown);
+        }).always(function () {
+        });
+    }
+</script>

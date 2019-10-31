@@ -1,0 +1,69 @@
+﻿@model ShiKe.ViewModels.ApplicationOrganization.ApplicationUserVM
+
+@{
+    var avatarPath = Model.AvatarPath;
+    if (String.IsNullOrEmpty(avatarPath))
+    {
+        avatarPath = "../../images/default_avatar_male.png";
+    }
+
+}
+
+<!-- some CSS styling changes and overrides -->
+<style>
+    .kv-avatar .file-preview-frame, .kv-avatar .file-preview-frame:hover {
+        margin: 0;
+        padding: 0;
+        border: none;
+        box-shadow: none;
+        text-align: center;
+        width:205px !important;
+    }
+
+    .kv-avatar .file-input {
+        display: table-cell;
+        max-width: 220px;
+    }
+    .krajee-default.file-preview-frame .kv-file-content img {
+        width: 120px !important;
+        height: 120px !important;
+        border-radius:50%;
+    }
+    .file-preview{border:0!important}
+</style>
+
+<form class="text-center" action="../../Account/SaveAvatar" method="post" enctype="multipart/form-data" id="uploadFilesForm">
+    <div class="kv-avatar center-block" style="width:200px">
+        <input id="avatar-2" name="avatar-2" type="file" class="file-loading">
+    </div>
+</form>
+<div id="uploadTips" style=""> </div>
+<div id="kv-avatar-errors-2" class="center-block" style="display:none">错误提示</div>
+
+
+<!-- the fileinput plugin initialization -->
+<script>
+    var btnCust = '<button type="button" class="btn btn-default" title="选择好图片后，点击上传" ' +
+    'onclick="uploadSimpleFiles()">' +
+    '<i class="glyphicon glyphicon-open"></i>确认上传' +
+    '</button>';
+    $("#avatar-2").fileinput({
+        overwriteInitial: true,
+        maxFileSize: 5500,
+        showClose: false,
+        showCaption: false,
+        showBrowse: false,
+        browseOnZoneClick: true,        
+        removeLabel: '',
+        removeIcon: '<i class="glyphicon glyphicon-remove"></i>取消操作',
+        removeTitle: '取消已经选择好的图片',
+        elErrorContainer: '#kv-avatar-errors-2',
+        msgErrorClass: 'alert alert-block alert-danger',
+        defaultPreviewContent: '<img src="@avatarPath" alt="选择头像" style="width:120px;height:120px;border-radius:50%;"><h6 class="text-muted">单击选择</h6>',
+        layoutTemplates: {main2: '{preview} ' +  btnCust},
+        allowedFileExtensions: ["jpg", "png", "gif"]
+    });
+
+
+</script>
+

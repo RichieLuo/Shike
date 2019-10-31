@@ -1,0 +1,43 @@
+﻿@model ShiKe.ViewModels.BusinessOrganization.DepartmentVM
+
+<input type="hidden" name="ID" id="Department_ID" value="@Model.ID" />
+<input type="hidden" name="IsNew" id="Department_IsNew" value="@Model.IsNew.ToString()" />
+
+<div class="form-horizontal">
+    <div class="form-group">
+        <label for="ParentItemID" class="col-sm-3 control-label">上级部门：</label>
+        <div class="col-sm-9">
+            <select class="form-control" name="ParentItemID" id="Department_ParentItemID">
+                @foreach (var sItem in Model.ParentItemCollection)
+            {
+                if (sItem.ID == Model.ParentItemID)
+                {
+                        <option value="@sItem.ID" selected>@sItem.DisplayName</option>
+                    }
+                    else
+                    {
+                        <option value="@sItem.ID">@sItem.DisplayName</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Name" class="col-sm-3 control-label">名称：</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" name="Name" id="Department_Name" placeholder="请输入部门名称" value="@Model.Name" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Description" class="col-sm-3 control-label">简要描述：</label>
+        <div class="col-sm-9">
+            <textarea class="form-control" rows="4" name="Description" id="Department_Description">@Model.Description</textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="SortCode" class="col-sm-3 control-label">部门编码：</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" name="SortCode" id="Department_SortCode" placeholder="请输入人员编码" value="@Model.SortCode" data-error="不能为空。" required>
+        </div>
+    </div>
+</div>

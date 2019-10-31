@@ -1,0 +1,579 @@
+  
+{
+    font-size: 14px;
+    text-align: center;
+}
+      .clear 
+    {
+        clear: both;
+    }
+[class*="se_avg_"] {
+    display: block;
+    padding: 0px;
+    margin: 0px;
+    se_margin list-style: none;
+}
+[class*="se_avg_"] > li       /*100*/
+{
+    display: block;
+    height:auto;
+    float:left;
+}
+  a:link, a:visited ,a:hover
+{
+    text-decoration: none; /*不生成任何线条*/
+    outline: none; /*无边框*/
+    color: #000;
+}
+
+
+.se_tabs_d2 .se_tabs_nav 
+{
+    
+    background-color: #EEEEEE;
+}
+.se-nav-tabs, se_tabs_bd
+{
+    border-color:transparent;/*背景透明*/
+}
+  .user_order .se_margin 
+{
+    margin: 0px;
+}
+.se_btn
+{
+    display:inline-block;
+    margin-bottom:0px;
+    padding:0.5em 1em;
+    vertical-align:middle;
+    font-weight:normal;
+    line-height:1.2;
+    text-align:center;
+    white-space:nowrap;
+    border:1px solid transparent;
+    border-radius:0px;
+    cursor:pointer;
+    outline:none;
+    -webkit-appearance:none;
+    user-select:none;
+    transition:background-color 300ms ease-out,border-color 300ms ease-out;
+
+}
+  .user_order .se_btn 
+{
+    font-size: 14px;
+    color: #FFF;
+}
+.se_margin
+{
+    width:100%;
+    height:auto;
+}
+
+
+
+.se_nav_tabs
+{
+    border-bottom:1px solid #DDD;
+}
+.se_nav {
+    margin-bottom: 0px;
+    display: inline-block;
+    padding: 0px;
+    list-style: none;
+    width: 100%;
+}
+.se_avg_sm_2 > li  /*10-30*/   
+{
+    width: 50%;
+}
+.se_nav > li      /*11-31*/
+{
+    position: relative;
+    display: block;
+}
+.se_nav_tabs > li /*12-32*/ 
+{
+    float: left;
+    margin-bottom: -1px;
+}
+.se_nav_tabs> li /*13-33*/ 
+{
+    cursor: pointer;
+}
+    .se_nav_tabs > li + li /*1 34*/ 
+    {
+        margin-top: 0px;
+    }
+.se_avg_sm_2 > li:nth-of-type(n)  /*14-35*/
+{
+    clear: none;
+}
+.se_avg_sm_2 > li:nth-of-type(2n+1) /*规定属于其父元素的第2n+1个 li 元素的每个 li*/ /*15*/
+{
+    clear: both;
+}
+.se_tabs_d2 .se_tabs_nav li      /*16-36*/
+{    
+    max-width: 50%;
+    height:42px;
+}
+
+   
+.se_nav_tabs > li.se_active       /*17*/
+{
+    border-bottom:2px solid #F03726;
+}
+
+.se_tabs_d2 .se_tabs_nav > .se_active     /*18 末*/ 
+{
+    position: relative;
+    background-color: #FCFCFC;
+    border-bottom: 2px solid #0E90D2;
+}
+
+
+
+
+.se_nav > li > a    /*120-40*/
+{
+    position: relative;
+    display: block;
+    padding:0.4em  1em;
+    border-radius:0;
+}
+.se_nav_tabs > li > a  /*141*/
+{
+    margin-right:5px;
+    line-height:1.6;
+    border:1px solid transparent;
+    border-radius:0 0 0 0;
+}
+
+.se_nav_tabs > li > a /*121-42*/ 
+{
+    padding: 0px 2px;
+    margin: 0px 0px;
+    text-align: center;
+}
+
+.se_tabs_d2 .se_tabs_nav a    /*122-43 末*/
+{
+    color:#222222;
+    line-height:42px;
+}
+.se_nav_tabs > li.se_active > a, .se_nav_tabs > li.se_active > a:hover, .se_nav_tabs > li.se_active > a:focus /*123*/ 
+{
+    border: 1px solid #DDD;
+}
+.se_nav_tabs > li.se_active > a, .se_nav_tabs > li.se_active > a:hover, .se_nav_tabs > li.se_active > a:focus, .se_nav_tabs > li a:hover  /*124*/
+{
+    background:none;
+    border-color:transparent;
+    cursor:default;
+}
+.se_tabs_d2 .se_tabs_nav > .se_active a   /*125*/
+{
+    line-height:40px;
+    color:#0E90D2;
+}
+.se_tabs_d2 .se-tabs_nav li
+{
+    height:42px;
+}
+
+
+.se_tabs_d2 .se_tabs_nav > .se_active:after
+{
+    position:absolute;
+    width:0px;
+    height:0px;
+    bottom:0px;
+    left:50%;
+    margin-left:-5px;
+    border:6px rgba(0,0,0,0) solid;
+    content:"";
+    z-index:1;
+    border-bottom-color:#0E90D2;
+}
+  element.style /*150*/
+{
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.se_tabs_bd          /*151*/
+{
+    position:relative;
+    overflow:hidden;
+    border:1px solid #DDD;
+    border-top:none;
+    z-index:100;
+    transition:height .3s;
+}
+.se_nav_tabs, .se_tabs_bd      /*152*/
+{
+    border-color:transparent; /*边框颜色：完全透明*/
+}
+
+.se_fade       /*171*/
+{
+    opacity:0;
+    -webkit-transition:opacity .2s linear;
+    transition:opacity .2s linear;
+}
+
+
+.se_fade_bd .se_tab_panel    /*160*/
+{
+    position:absolute;
+    top:0px;
+    float:left;
+    width:100%;
+    transition:transform 0.3s, -webkit-transform 0.3s; /*过渡效果*/
+}
+.se_fade.se_in   /*162*/
+{
+    opacity:1;
+}
+.se_tabs_bd .se_tab_panel    /*172*/
+{
+    position: absolute;
+    top: 0;
+    z-index: 99;
+    float: left;
+    width: 100%;
+    padding: 10px 10px 15px;
+    visibility: hidden;
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+    transition: transform 0.3s, -webkit-transform 0.3s;
+    -webkit-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    transform: translateX(-100%);
+}
+    .se_tabs_bd .se_tab_panel.se_active /*163*/ {
+        position: relative;
+        z-index: 100;
+        visibility: visible;
+        transform: translateX(0); /*指定按给定数量在x轴方向平移*/
+    }
+.se_tabs_bd .se_tab_panel   /*173*/
+{
+    padding: 0px 0px 15px;
+}
+
+  .order_top {
+    display: none;
+    width: 100%;
+    overflow: hidden;
+    padding: 10px 0px;
+    border: 1px solid #EEE;
+    margin-bottom: 8px;
+}
+
+      .order_top ul {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        float: left;
+    }
+
+  .order_top ul .order_li {
+    display: inline-block;
+    width: 20%;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    float: left;
+}
+
+    .order_main {
+    padding: 0px;
+}
+
+
+      .order_main ul {
+        display: inline-block;
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+        border-bottom: 1px solid #eee;
+    }
+
+  .order_main ul .Specialty_n {
+    display: inline-block;
+    width: 20%;
+    height: 50px;
+    float: left;
+    line-height:50px;
+    text-align:center;
+}
+
+  .order_main ul .Specialty_ns
+{
+    line-height:0;
+}
+      .order_main ul .Specialty_n span {
+        vertical-align: middle;
+    }
+      .order_main ul .Specialty_n .li_a {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 1px solid red;
+        color: red;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+        margin-left: 4px;
+    }
+
+  .order_main ul .Specialty_n .li_d {
+    display: inline-block;
+    width: auto;
+    height: auto;
+}
+
+      .order_main ul .Specialty_n .li_d a {
+        display: block;
+        height: 18px;
+        margin: 4px 0 0px;
+        text-align: center;
+        line-height: 18px;
+        color: blue;
+    }
+
+
+/*布局*/
+  .th, .td 
+{
+    float: left;
+    text-align: center;
+}
+  .order_left ul 
+{
+    width: 100%;
+    overflow: hidden;
+}
+  .item_list 
+{
+    position: relative;
+    overflow: hidden;
+}
+
+  .item_info 
+{
+    margin: 0px 0px 0px 91px;
+    padding-right: 25px;
+}
+
+  .item_basic_info 
+{
+    padding-top: 20px;
+    text-align: left;
+}
+  .order_right .td_amount, .td_changeorder 
+{
+    width: 100%;
+    text-align: right;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 5px;
+}
+  .td_changeorder li 
+{
+    float: right;
+}
+  .move_right 
+{
+    float: right;
+}
+  .td_status p.Mystatus 
+{
+    position: absolute;
+    top: 25px;
+    right: 0px;
+    color: #DD514C;
+}
+  .td.td_change.td_changebutton 
+{
+    width: 100%;
+    text-align: right;
+    margin-top: 5px;
+}
+.se_btn_danger 
+{
+    color:#FFF;
+    background-color:#DD514C;
+    border-color:#DD514C;
+}
+  .user_order .se_btn
+{
+    font-size:14px;
+    color:#FFF;
+}
+
+
+    @media only screen and (min-width:640px) 
+    {
+          .order_top 
+        {
+            display:block;
+        }
+          .th 
+        {
+            line-height: 16px;
+            padding: 0px;
+        }
+
+          .th_price, .td_price 
+        {
+            position: static;
+            width: 10%;
+            text-align: center;
+        }
+
+          .th_item, .td_item 
+        {
+            width: 67%;
+            overflow: hidden;
+        }
+        
+          .th_moneystatus {
+            display: block;
+        }
+          .th_change
+        {
+            display:block;
+        }
+          .th_amount, .th_status, .th_change {
+            display: none;
+        }
+
+          ul.td_changeorder {
+            width: 20%;
+        }
+
+          .td_changeorder li {
+            float: left;
+            width: 50%;
+            margin-top: 10px;
+            font-size: 12px;
+            font-weight: 100;
+        }
+
+              .td_changeorder li span {
+                display: none;
+            }
+
+          .change.move_right {
+            position: absolute;
+            top: 0px;
+            right: 30%;
+            width: 10%;
+            text-align: center;
+        }
+
+          .td_status p.Mystatus {
+            text-align: center;
+            width: 15%;
+            top: -30px;
+        }
+
+          .td_moneystatus p.Mystatus {
+            position: static;
+            width: 100%;
+            margin-top: 24px;
+        }
+
+        .se_tabs_bd .se_tab_panel {
+            padding: 10px 0px 15px;
+        }
+    }
+
+    @media only screen and (min-width:1025px) {
+        /*布局*/
+          .th_item, .td_item {
+            width: 40%;
+            overflow: hidden;
+            display: block;
+        }
+
+          .th_price, .td_price {
+            width: 10%;
+        }
+          .order_content {
+            position: relative;
+            overflow: hidden;
+        }
+          .th_amount, .th_status, th_change {
+            display: block;
+            width: 10%;
+        }
+
+          .th_changebuttom {
+            width: 30%;
+            text-align: center;
+        }
+
+          .order_left ul {
+            width: 100%;
+            overflow: hidden;
+        }
+
+          ul.td_changeorder {
+            width: 20%;
+        }
+
+          .change.move_right {
+            position: absolute;
+            top: 0px;
+            right: 30%;
+        }
+
+          .move_right {
+            float: none;
+        }
+
+          .td_moneystatus {
+            width: 100%;
+        }
+
+          .td.td_change.td_changebutton {
+            position: absolute;
+            top: 0px;
+            height: 0px;
+            width: 30%;
+            text-align: center;
+            margin-top: 20px;
+        }
+    }
+
+.se_tabs_bd .se_tab_panel * {
+    -webkit-user-drag: none;
+}
+.se_tabs_bd .se_tab_panel.se_active  .se_tab_panel 
+{
+    -webkit-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    transform: translateX(100%);
+}
+
+ .se_active {
+    display: none;
+}
+
+.selected {
+    display: block;
+}
+
+
